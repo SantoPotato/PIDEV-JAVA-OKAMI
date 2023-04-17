@@ -1,0 +1,8 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Property of Okami™
+${licensePrefix}Not destined for commercial use
+<#if licenseLast??>
+${licenseLast}
+</#if>
