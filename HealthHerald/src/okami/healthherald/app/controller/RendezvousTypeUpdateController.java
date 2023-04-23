@@ -12,9 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import okami.healthherald.entities.RendezvousType;
 import okami.healthherald.services.RendezvousTypeCRUD;
 
@@ -28,23 +26,15 @@ public class RendezvousTypeUpdateController implements Initializable {
     int id;
 
     @FXML
-    private Label labelPage;
-    @FXML
-    private Label labelPath;
-    @FXML
-    private Label labelIndex;
-    @FXML
-    private ImageView logo;
-    @FXML
     private Button buttonRendezvous;
     @FXML
     private Button buttonRendezvousType;
     @FXML
-    private Button buttonTest;
-    @FXML
     private Button buttonUpdate;
     @FXML
-    private TextField textName;
+    private Button buttonIndex;
+    @FXML
+    private TextField textNom;
 
     /**
      * Initializes the controller class.
@@ -61,7 +51,7 @@ public class RendezvousTypeUpdateController implements Initializable {
     private void redirectRendezvous(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousIndex.fxml"));
-            labelIndex.getScene().setRoot(loader.load());
+            buttonIndex.getScene().setRoot(loader.load());
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -72,7 +62,7 @@ public class RendezvousTypeUpdateController implements Initializable {
     private void redirectRendezvousType(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousTypeIndex.fxml"));
-            labelIndex.getScene().setRoot(loader.load());
+            buttonIndex.getScene().setRoot(loader.load());
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -80,20 +70,16 @@ public class RendezvousTypeUpdateController implements Initializable {
     }
 
     @FXML
-    private void redirectTest(ActionEvent event) {
-    }
+    private void rendezvousTypeUpdate(ActionEvent event) {
 
-    @FXML
-    private void rendezvousUpdate(ActionEvent event) {
-
-        RendezvousType t = new RendezvousType(textName.getText());
+        RendezvousType t = new RendezvousType(textNom.getText());
         RendezvousTypeCRUD rc = new RendezvousTypeCRUD();
         //System.out.println(salle + " " +type + " " + endat + " " + users);
         rc.update(t, id);
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousTypeIndex.fxml"));
-            labelIndex.getScene().setRoot(loader.load());
+            buttonIndex.getScene().setRoot(loader.load());
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -102,7 +88,7 @@ public class RendezvousTypeUpdateController implements Initializable {
 
     public void setRendezvous(RendezvousType r) {
         id = r.getId();
-        textName.setText(r.getType());
+        textNom.setText(r.getType());
 
     }
 

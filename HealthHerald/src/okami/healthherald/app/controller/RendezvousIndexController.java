@@ -39,21 +39,24 @@ import okami.healthherald.services.RendezvousCRUD;
  */
 public class RendezvousIndexController implements Initializable {
 
-    private ListView<User> listViewTest;
     @FXML
-    private Label labelPage;
-    @FXML
-    private Label labelPath;
-    @FXML
-    private Label labelIndex;
+    private Button buttonIndex;
     @FXML
     private Button buttonRendezvous;
     @FXML
     private Button buttonRendezvousType;
     @FXML
-    private Button buttonTest;
-    @FXML
     private TableView<Rendezvous> tableviewRendezvous;
+    @FXML
+    private TableColumn<Rendezvous, Date> columnDateStart;
+    @FXML
+    private TableColumn<Rendezvous, Date> columnDateEnd;
+    @FXML
+    private TableColumn<Rendezvous, Salle> columnSalle;
+    @FXML
+    private TableColumn<Rendezvous, RendezvousType> columnType;
+    @FXML
+    private TableColumn<Rendezvous, String> columnUsers;
     @FXML
     private TextField textSearch;
     @FXML
@@ -65,19 +68,6 @@ public class RendezvousIndexController implements Initializable {
     @FXML
     private Button buttonDelete;
 
-    @FXML
-    private TableColumn<Rendezvous, Integer> idColumn;
-    @FXML
-    private TableColumn<Rendezvous, Date> dateStartColumn;
-    @FXML
-    private TableColumn<Rendezvous, Date> dateEndColumn;
-    @FXML
-    private TableColumn<Rendezvous, Salle> salleColumn;
-    @FXML
-    private TableColumn<Rendezvous, RendezvousType> typeColumn;
-    @FXML
-    private TableColumn<Rendezvous, String> listUsersColumn;
-
     /**
      * Initializes the controller class.
      *
@@ -87,20 +77,19 @@ public class RendezvousIndexController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("Id"));
-        dateStartColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
-        dateEndColumn.setCellValueFactory(new PropertyValueFactory<>("Durée"));
-        salleColumn.setCellValueFactory(new PropertyValueFactory<>("Salle"));
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("Type"));
-        listUsersColumn.setCellValueFactory(new PropertyValueFactory<>("Membres"));
+        columnDateStart.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        columnDateEnd.setCellValueFactory(new PropertyValueFactory<>("Durée"));
+        columnSalle.setCellValueFactory(new PropertyValueFactory<>("Salle"));
+        columnType.setCellValueFactory(new PropertyValueFactory<>("Type"));
+        columnUsers.setCellValueFactory(new PropertyValueFactory<>("Membres"));
 
         RendezvousCRUD rc = new RendezvousCRUD();
         tableviewRendezvous.setItems(FXCollections.observableArrayList(rc.showAll()));
 
-        dateStartColumn.setCellValueFactory(dateStartRowData -> new SimpleObjectProperty<>(dateStartRowData.getValue().getDaterv()));
-        dateEndColumn.setCellValueFactory(dateEndRowData -> new SimpleObjectProperty<>(dateEndRowData.getValue().getEndAt()));
+        columnDateStart.setCellValueFactory(dateStartRowData -> new SimpleObjectProperty<>(dateStartRowData.getValue().getDaterv()));
+        columnDateEnd.setCellValueFactory(dateEndRowData -> new SimpleObjectProperty<>(dateEndRowData.getValue().getEndAt()));
 
-        listUsersColumn.setCellValueFactory(cellData -> {
+        columnUsers.setCellValueFactory(cellData -> {
             Collection<User> users = cellData.getValue().getUserCollection();
             if (users == null || users.isEmpty()) {
                 return new SimpleStringProperty("");
@@ -112,10 +101,6 @@ public class RendezvousIndexController implements Initializable {
             }
         });
 
-    }
-
-    @FXML
-    private void rendezvousSearch(ActionEvent event) {
     }
 
     @FXML
@@ -131,7 +116,7 @@ public class RendezvousIndexController implements Initializable {
 //            stage.setScene(scene);
 //            stage.show();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousAdd.fxml"));
-            labelIndex.getScene().setRoot(loader.load());
+            buttonIndex.getScene().setRoot(loader.load());
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -153,7 +138,7 @@ public class RendezvousIndexController implements Initializable {
 
                 c.setRendezvous(r);
 
-                labelIndex.getScene().setRoot(root);
+                buttonIndex.getScene().setRoot(root);
 
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
@@ -182,7 +167,7 @@ public class RendezvousIndexController implements Initializable {
     private void redirectRendezvousType(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousTypeIndex.fxml"));
-            labelIndex.getScene().setRoot(loader.load());
+            buttonIndex.getScene().setRoot(loader.load());
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -190,7 +175,11 @@ public class RendezvousIndexController implements Initializable {
     }
 
     @FXML
-    private void redirectTest(ActionEvent event) {
+    private void rendezvousTextSearch(ActionEvent event) {
+    }
+
+    @FXML
+    private void rendezvousButtonSearch(ActionEvent event) {
     }
 
 }

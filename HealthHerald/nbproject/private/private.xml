@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ilyes/Documents/NetBeansProjects/HealthHerald/src/okami/healthherald/app/controller/RendezvousIndexController.java</file>
-            <file>file:/C:/Users/ilyes/Documents/NetBeansProjects/HealthHerald/src/okami/healthherald/app/controller/RendezvousAddController.java</file>
-            <file>file:/C:/Users/ilyes/Documents/NetBeansProjects/HealthHerald/src/okami/healthherald/app/gui/MainWindow.java</file>
-            <file>file:/C:/Users/ilyes/Documents/NetBeansProjects/HealthHerald/src/okami/healthherald/services/RendezvousCRUD.java</file>
-            <file>file:/C:/Users/ilyes/Documents/NetBeansProjects/HealthHerald/src/okami/healthherald/app/controller/RendezvousUpdateController.java</file>
+            <file>file:/C:/Users/ilyes/Documents/GitHub/PIDEV-JAVA-OKAMI/HealthHerald/src/okami/healthherald/app/controller/RendezvousTypeUpdateController.java</file>
+            <file>file:/C:/Users/ilyes/Documents/GitHub/PIDEV-JAVA-OKAMI/HealthHerald/src/okami/healthherald/app/gui/MainWindow.java</file>
+            <file>file:/C:/Users/ilyes/Documents/GitHub/PIDEV-JAVA-OKAMI/HealthHerald/src/okami/healthherald/app/controller/RendezvousTypeAddController.java</file>
         </group>
     </open-files>
 </project-private>

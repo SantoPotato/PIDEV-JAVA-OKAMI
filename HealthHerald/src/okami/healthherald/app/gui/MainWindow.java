@@ -16,16 +16,18 @@ import javafx.stage.Stage;
  * @author
  */
 public class MainWindow extends Application {
-    
+
     @Override
     public void start(Stage primaryStage) {
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("RendezvousIndex.fxml"));
-        
+
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("../themes/nord-dark.css").toExternalForm());
 
+            primaryStage.setMinWidth(720);
+            primaryStage.setMinHeight(480);
             primaryStage.setTitle("TesT");
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -40,5 +42,5 @@ public class MainWindow extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

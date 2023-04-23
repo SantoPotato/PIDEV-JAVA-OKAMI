@@ -10,88 +10,87 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="904.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="okami.healthherald.app.controller.RendezvousTypeUpdateController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="okami.healthherald.app.controller.RendezvousTypeUpdateController">
    <children>
-      <Pane layoutX="242.0" layoutY="72.0" prefHeight="150.0" prefWidth="663.0" style="-fx-background-color: #3a6867;" AnchorPane.bottomAnchor="510.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+      <HBox alignment="CENTER_LEFT" layoutX="352.0" layoutY="297.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="labelPage" layoutX="291.0" layoutY="43.0" prefHeight="35.0" prefWidth="512.0" style="-fx-font-size: 24;" text="Catégorie Rendez-vous - Modification" />
-            <Label fx:id="labelPath" layoutX="291.0" layoutY="28.0" prefHeight="0.0" prefWidth="296.0" style="-fx-font-size: 12;" text="/home/rendez-vous-type/update" />
-         </children>
-      </Pane>
-      <VBox prefHeight="650.0" prefWidth="246.0" style="-fx-background-color: #244140;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="660.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Pane prefHeight="200.0" prefWidth="200.0">
+            <VBox alignment="TOP_CENTER" maxWidth="-Infinity" prefWidth="300.0" style="-fx-background-color: #244140;" HBox.hgrow="ALWAYS">
                <children>
-                  <Label fx:id="labelIndex" layoutX="24.0" layoutY="117.0" prefHeight="69.0" prefWidth="198.0" style="-fx-font-size: 32;" text="HealthHerald" />
-                  <ImageView fx:id="logo" fitHeight="122.0" fitWidth="130.0" layoutX="58.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/hh.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Button fx:id="buttonRendezvous" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#redirectRendezvous" prefHeight="51.0" prefWidth="246.0" style="-fx-background-color: none; -fx-font-size: 18;" text="Rendez-vous" textFill="WHITE">
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-            <Button fx:id="buttonRendezvousType" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#redirectRendezvousType" prefHeight="51.0" prefWidth="246.0" style="-fx-background-color: none; -fx-font-size: 18;" text="Type de Rendez-vous" textFill="WHITE">
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-            <Button fx:id="buttonTest" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#redirectTest" prefHeight="51.0" prefWidth="246.0" style="-fx-background-color: none; -fx-font-size: 18;" text="TesT" textFill="WHITE">
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-         </children>
-      </VBox>
-      <VBox layoutX="256.0" layoutY="247.0" prefHeight="366.0" prefWidth="620.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="160.0">
-         <children>
-            <GridPane prefHeight="490.0" prefWidth="624.0">
-               <columnConstraints>
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints maxHeight="480.0" minHeight="0.0" prefHeight="180.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="360.0" minHeight="0.0" prefHeight="57.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="480.0" minHeight="0.0" prefHeight="240.0" valignment="CENTER" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Label prefHeight="27.0" prefWidth="327.0" style="-fx-font-size: 18;" text="Veuillez entrez le nom de la catégorie :" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </Label>
-                  <Button fx:id="buttonUpdate" mnemonicParsing="false" onAction="#rendezvousUpdate" prefHeight="40.0" prefWidth="160.0" text="Modifier" GridPane.rowIndex="2" />
-                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                  <VBox alignment="TOP_CENTER" maxHeight="-Infinity" prefHeight="240.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label prefHeight="60.0" prefWidth="140.0" style="-fx-font-size: 18;" text="Nom">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets left="10.0" right="10.0" />
-                           </padding>
-                        </Label>
-                        <TextField fx:id="textName" prefHeight="60.0" prefWidth="440.0">
-                           <padding>
-                              <Insets left="10.0" right="10.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets left="10.0" right="10.0" />
-                           </HBox.margin>
-                        </TextField>
+                        <ImageView fitHeight="140.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                           <image>
+                              <Image url="@../images/hh.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="buttonIndex" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: None; -fx-font-size: 32;" text="HealthHerald" />
                      </children>
-                  </HBox>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Button fx:id="buttonRendezvous" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#redirectRendezvous" style="-fx-background-color: none; -fx-font-size: 18;" text="Rendez-vous" textFill="WHITE" VBox.vgrow="ALWAYS" />
+                        <Button fx:id="buttonRendezvousType" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#redirectRendezvousType" style="-fx-background-color: none; -fx-font-size: 18;" text="Type de Rendez-vous" textFill="WHITE" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
                </children>
-            </GridPane>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="120.0" style="-fx-background-color: #3a6867;" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label style="-fx-font-size: 12;" text="/home/rendez-vous-type/update" VBox.vgrow="ALWAYS" />
+                        <Label style="-fx-font-size: 32;" text="Type de Rendez-vous - Modification" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+                  <VBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <GridPane vgap="10.0" VBox.vgrow="ALWAYS">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints prefHeight="80.0" valignment="CENTER" vgrow="ALWAYS" />
+                              <RowConstraints maxHeight="-Infinity" prefHeight="160.0" valignment="CENTER" vgrow="ALWAYS" />
+                              <RowConstraints prefHeight="80.0" valignment="CENTER" vgrow="ALWAYS" />
+                           </rowConstraints>
+                           <children>
+                              <Label maxHeight="1.7976931348623157E308" style="-fx-font-size: 18;" text="Veuillez entrez le nouveau nom du type de rendez-vous" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                 <GridPane.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Button fx:id="buttonUpdate" minHeight="-Infinity" mnemonicParsing="false" onAction="#rendezvousTypeUpdate" prefWidth="160.0" text="Modifier" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                 <GridPane.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <HBox GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                 <children>
+                                    <Label maxHeight="1.7976931348623157E308" prefWidth="160.0" style="-fx-font-size: 18;" text="Nom" HBox.hgrow="ALWAYS">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="textNom" maxHeight="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
          </children>
-      </VBox>
+      </HBox>
    </children>
 </AnchorPane>
