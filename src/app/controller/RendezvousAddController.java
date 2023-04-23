@@ -2,7 +2,7 @@
  * Property of Okami�
  * Not destined for commercial use
  */
-package okami.healthherald.app.controller;
+package app.controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,12 +25,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import okami.healthherald.entities.Rendezvous;
-import okami.healthherald.entities.RendezvousType;
-import okami.healthherald.entities.Salle;
-import okami.healthherald.entities.User;
-import okami.healthherald.services.RendezvousCRUD;
-import okami.healthherald.utils.ConnectionDB;
+import entities.Rendezvous;
+import entities.RendezvousType;
+import entities.Salle;
+import entities.User;
+import services.RendezvousCRUD;
+import utils.ConnectionDB;
 
 /**
  * FXML Controller class

@@ -2,7 +2,7 @@
  * Property of Okami�
  * Not destined for commercial use
  */
-package okami.healthherald.app.controller;
+package app.controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -13,8 +13,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import okami.healthherald.entities.RendezvousType;
-import okami.healthherald.services.RendezvousTypeCRUD;
+import entities.RendezvousType;
+import services.RendezvousTypeCRUD;
 
 /**
  * FXML Controller class

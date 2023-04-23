@@ -2,7 +2,7 @@
  * Property of Okami�
  * Not destined for commercial use
  */
-package okami.healthherald.app.controller;
+package app.controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,8 +19,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import okami.healthherald.entities.RendezvousType;
-import okami.healthherald.services.RendezvousTypeCRUD;
+import entities.RendezvousType;
+import services.RendezvousTypeCRUD;
 
 /**
  * FXML Controller class
@@ -52,6 +52,8 @@ public class RendezvousTypeIndexController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
