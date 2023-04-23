@@ -2,7 +2,7 @@
  * Property of Okami�
  * Not destined for commercial use
  */
-package app.controller;
+package okami.healthherald.app.controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,16 +23,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.image.ImageView;
-import entities.Rendezvous;
-import entities.RendezvousType;
-import entities.Salle;
-import entities.User;
-import services.RendezvousCRUD;
-import utils.ConnectionDB;
+import okami.healthherald.entities.Rendezvous;
+import okami.healthherald.entities.RendezvousType;
+import okami.healthherald.entities.Salle;
+import okami.healthherald.entities.User;
+import okami.healthherald.services.RendezvousCRUD;
+import okami.healthherald.utils.ConnectionDB;
 
 /**
  * FXML Controller class
@@ -44,13 +42,9 @@ public class RendezvousAddController implements Initializable {
     Connection c;
 
     @FXML
-    private Label labelIndex;
-    @FXML
     private Button buttonRendezvous;
     @FXML
     private Button buttonRendezvousType;
-    @FXML
-    private Button buttonTest;
     @FXML
     private Button buttonAdd;
     @FXML
@@ -60,15 +54,11 @@ public class RendezvousAddController implements Initializable {
     @FXML
     private ListView<User> listViewUser;
     @FXML
-    private Label labelPage;
-    @FXML
-    private Label labelPath;
-    @FXML
-    private ImageView logo;
-    @FXML
     private DatePicker dateStart;
     @FXML
     private DatePicker dateEnd;
+    @FXML
+    private Button buttonIndex;
 
     /**
      * Initializes the controller class.
@@ -123,7 +113,7 @@ public class RendezvousAddController implements Initializable {
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousIndex.fxml"));
-            labelIndex.getScene().setRoot(loader.load());
+            buttonIndex.getScene().setRoot(loader.load());
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -206,7 +196,7 @@ public class RendezvousAddController implements Initializable {
     private void redirectRendezvous(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousIndex.fxml"));
-            labelIndex.getScene().setRoot(loader.load());
+            buttonIndex.getScene().setRoot(loader.load());
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -217,15 +207,11 @@ public class RendezvousAddController implements Initializable {
     private void redirectRendezvousType(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousTypeIndex.fxml"));
-            labelIndex.getScene().setRoot(loader.load());
+            buttonIndex.getScene().setRoot(loader.load());
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-    }
-
-    @FXML
-    private void redirectTest(ActionEvent event) {
     }
 
 }

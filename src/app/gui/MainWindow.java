@@ -2,7 +2,7 @@
  * Property of Okami�
  * Not destined for commercial use
  */
-package app.gui;
+package okami.healthherald.app.gui;
 
 import java.io.IOException;
 import javafx.application.Application;
@@ -26,6 +26,8 @@ public class MainWindow extends Application {
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("../themes/nord-dark.css").toExternalForm());
 
+            primaryStage.setMinWidth(720);
+            primaryStage.setMinHeight(480);
             primaryStage.setTitle("TesT");
             primaryStage.setScene(scene);
             primaryStage.show();
