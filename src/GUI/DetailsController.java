@@ -27,6 +27,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import Entities.Equipement;
 import Entities.Categoriesequipement;
 import Services.EquipementCRUD;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 import java.sql.SQLException;
 import javafx.scene.Parent;
 
@@ -149,6 +152,23 @@ public class DetailsController implements Initializable {
         if (e != null) {
             EquipementCRUD ec = new EquipementCRUD();
             ec.supprimerequipement(e.getId());
+            String ACCOUNT_SID = "AC2d6462eff326ec211eee2f8927df20f6";
+        String AUTH_TOKEN = "faf4715bb6360d51301f648384e6b5fa";
+        String TWILIO_NUMBER = "+15674323540";
+        String USER_NUMBER = "+21652953558";
+       
+        // Initialize the Twilio client
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+
+// Send an SMS message to the user
+        Message message = Message.creator(
+            new PhoneNumber(USER_NUMBER),
+            new PhoneNumber(TWILIO_NUMBER),
+            "Your equipment  "+e.getNomeq()+ " has been deleted successfully!"
+        ).create();
+
+// Print the message SID for debugging purposes
+        System.out.println(message.getSid());
             tableviewEquipement.getItems().remove(e); // remove from the tableview
         }
     }

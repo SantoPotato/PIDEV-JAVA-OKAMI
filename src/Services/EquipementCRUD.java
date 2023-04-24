@@ -41,6 +41,7 @@ public class EquipementCRUD implements InterfaceCRUD {
             ps.setBoolean(3, e.getDispoeq());
             ps.setInt(4, e.getCategoriesequipement().getId());
              ps.executeUpdate();
+            
             System.out.println("equipement ajouté!!!");
         } catch (SQLException ex) {
             ex.printStackTrace();                    

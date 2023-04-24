@@ -9,6 +9,9 @@ import Entities.Categoriesequipement;
 import Entities.Equipement;
 import Services.CategoriesEquipementCRUD;
 import Services.EquipementCRUD;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -97,7 +100,24 @@ Connection c;
         Equipement e = new Equipement(id,nom, etateq, dispo,  type);
         EquipementCRUD ec = new EquipementCRUD();
         
-        ec.modifierequipement(e,e.getId());
+        ec.modifierequipement(e,id);
+        String ACCOUNT_SID = "AC2d6462eff326ec211eee2f8927df20f6";
+        String AUTH_TOKEN = "faf4715bb6360d51301f648384e6b5fa";
+        String TWILIO_NUMBER = "+15674323540";
+        String USER_NUMBER = "+21652953558";
+         
+        // Initialize the Twilio client
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+ 
+// Send an SMS message to the user
+        Message message = Message.creator(
+            new PhoneNumber(USER_NUMBER),
+            new PhoneNumber(TWILIO_NUMBER),
+            "Your equipment "+e.getNomeq()+ "  has been updated successfully!"
+        ).create();
+
+// Print the message SID for debugging purposes
+        System.out.println(message.getSid());
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Details.fxml"));
         try {
