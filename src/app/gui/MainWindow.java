@@ -2,7 +2,7 @@
  * Property of Okami�
  * Not destined for commercial use
  */
-package okami.healthherald.app.gui;
+package app.gui;
 
 import java.io.IOException;
 import javafx.application.Application;

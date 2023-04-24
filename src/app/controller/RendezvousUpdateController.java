@@ -2,7 +2,7 @@
  * Property of Okami�
  * Not destined for commercial use
  */
-package okami.healthherald.app.controller;
+package app.controller;
 
 import java.io.IOException;
 import java.net.URL;

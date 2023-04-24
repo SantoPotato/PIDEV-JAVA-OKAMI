@@ -128,5 +128,25 @@ public class Rendezvous {
     public String toString() {
         return "Rendez-vous " + type + " le : " + String.format("%td/%tm/%tY", daterv, daterv, daterv) + " à " + String.format("%tH:%tM", daterv, daterv) + " en " + salle;
     }
+    
+        public String showDuree()
+    {
+        Date duree = new Date(endAt.getTime() - daterv.getTime());
+        int hours = Integer.parseInt(String.format("%tH", duree)) - 1;
+        int minutes = Integer.parseInt(String.format("%tM", duree));
+        String duree_string = "";
+        if (hours > 0 && minutes > 0) {
+            return duree_string + hours + " heures et " + minutes + " minutes";
+        }
+        else {
+            if (hours > 0) {
+                duree_string = duree_string + hours + " heures";
+            }
+            if (minutes > 0) {
+                duree_string = duree_string + minutes + " minutes";
+            }
+        }
+        return duree_string;
+    }
 
 }
