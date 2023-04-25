@@ -35,6 +35,10 @@ public class RendezvousTypeUpdateController implements Initializable {
     private Button buttonIndex;
     @FXML
     private TextField textNom;
+    @FXML
+    private Button buttonRendezvousStatistique;
+    @FXML
+    private Button buttonBack;
 
     /**
      * Initializes the controller class.
@@ -90,6 +94,33 @@ public class RendezvousTypeUpdateController implements Initializable {
         id = r.getId();
         textNom.setText(r.getType());
 
+    }
+
+    @FXML
+    private void redirectRendezvousStatistique(ActionEvent event) {
+                try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousStats.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void redirectIndex(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Index.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void redirectBack(ActionEvent event) {
+        redirectRendezvousType(event);
     }
 
 }

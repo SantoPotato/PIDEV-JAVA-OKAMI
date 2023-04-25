@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -29,6 +28,7 @@ import entities.Rendezvous;
 import entities.RendezvousType;
 import entities.Salle;
 import entities.User;
+import java.time.LocalDateTime;
 import services.RendezvousCRUD;
 import utils.ConnectionDB;
 
@@ -59,6 +59,10 @@ public class RendezvousAddController implements Initializable {
     private DatePicker dateEnd;
     @FXML
     private Button buttonIndex;
+    @FXML
+    private Button buttonRendezvousStatistique;
+    @FXML
+    private Button buttonBack;
 
     /**
      * Initializes the controller class.
@@ -99,8 +103,8 @@ public class RendezvousAddController implements Initializable {
 
     @FXML
     private void rendezvousAdd(ActionEvent event) {
-        Date daterv = java.sql.Date.valueOf(dateStart.getValue());
-        Date endat = java.sql.Date.valueOf(dateEnd.getValue());
+        LocalDateTime daterv = dateStart.getValue().atStartOfDay();
+        LocalDateTime endat = dateEnd.getValue().atStartOfDay();
 
         Salle salle = Salle.getValue();
         RendezvousType type = Type.getValue();
@@ -212,6 +216,33 @@ public class RendezvousAddController implements Initializable {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    @FXML
+    private void redirectRendezvousStatistique(ActionEvent event) {
+                try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousStats.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void redirectIndex(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Index.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void redirectBack(ActionEvent event) {
+        redirectRendezvous(event);
     }
 
 }

@@ -17,7 +17,7 @@ public class User {
     private String password;
     private String nom;
     private String prenom;
-    private boolean isVerified;
+    private Boolean isVerified;
     private Collection<Rendezvous> rendezvousCollection;
     private Collection<ResetPasswordRequest> resetPasswordRequestCollection;
     private Roleuser roleId;

@@ -13,8 +13,8 @@ import java.util.Collection;
 public class Salle {
 
     private Integer id;
-    private int numsa;
-    private int etagesa;
+    private Integer numsa;
+    private Integer etagesa;
     private String typesa;
     private Collection<Rendezvous> rendezvousCollection;
     private Collection<Plannification> plannificationCollection;

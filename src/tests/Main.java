@@ -6,7 +6,7 @@ package tests;
 
 
 import entities.Rendezvous;
-import java.util.Date;
+import java.time.LocalDateTime;
 import services.RendezvousCRUD;
 
 /**
@@ -18,22 +18,12 @@ public class Main {
     
     public static void main(String[] args) { 
         RendezvousCRUD R = new RendezvousCRUD();
+        Rendezvous rdv = new Rendezvous();
+        rdv.setDaterv(LocalDateTime.now());
+ 
         
-        Rendezvous r = new Rendezvous();
-        Date d = new Date();
-        r.setDaterv(d);
-
-        Date d1 = new Date(d.getTime() + 3720 *1000);
-        
-        r.setEndAt(d1);
-        
-        Date duree = new Date(d1.getTime() - d.getTime());
-        
-        System.out.println(r.getDaterv());
-        System.out.println(r.getEndAt());
-        
-        System.out.println(duree);
-        System.out.println(r.showDuree());
+        System.out.println(rdv.toString());
+        System.out.println(       R.searchRendezvous("aziz")           );
         
     }
     

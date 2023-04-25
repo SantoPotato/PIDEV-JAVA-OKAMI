@@ -3,17 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ilyes/Documents/GitHub/PIDEV-JAVA-OKAMI/src/entities/Plannification.java</file>
-            <file>file:/C:/Users/ilyes/Documents/GitHub/PIDEV-JAVA-OKAMI/src/app/controller/RendezvousTypeIndexController.java</file>
-            <file>file:/C:/Users/ilyes/Documents/GitHub/PIDEV-JAVA-OKAMI/src/services/RendezvousInterface.java</file>
-            <file>file:/C:/Users/ilyes/Documents/GitHub/PIDEV-JAVA-OKAMI/src/services/RendezvousTypeCRUD.java</file>
-            <file>file:/C:/Users/ilyes/Documents/GitHub/PIDEV-JAVA-OKAMI/src/app/controller/RendezvousTypeUpdateController.java</file>
-            <file>file:/C:/Users/ilyes/Documents/GitHub/PIDEV-JAVA-OKAMI/src/entities/Historique.java</file>
+            <file>file:/C:/Users/ilyes/Documents/GitHub/PIDEV-JAVA-OKAMI/src/app/gui/MainWindow.java</file>
             <file>file:/C:/Users/ilyes/Documents/GitHub/PIDEV-JAVA-OKAMI/src/services/RendezvousCRUD.java</file>
-            <file>file:/C:/Users/ilyes/Documents/GitHub/PIDEV-JAVA-OKAMI/src/app/controller/RendezvousTypeAddController.java</file>
-            <file>file:/C:/Users/ilyes/Documents/GitHub/PIDEV-JAVA-OKAMI/src/app/controller/RendezvousUpdateController.java</file>
+            <file>file:/C:/Users/ilyes/Documents/GitHub/PIDEV-JAVA-OKAMI/src/entities/Rendezvous.java</file>
             <file>file:/C:/Users/ilyes/Documents/GitHub/PIDEV-JAVA-OKAMI/src/app/controller/RendezvousIndexController.java</file>
-            <file>file:/C:/Users/ilyes/Documents/GitHub/PIDEV-JAVA-OKAMI/src/app/controller/RendezvousAddController.java</file>
         </group>
     </open-files>
 </project-private>

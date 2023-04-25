@@ -12,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -30,6 +29,7 @@ import entities.Rendezvous;
 import entities.RendezvousType;
 import entities.Salle;
 import entities.User;
+import java.time.LocalDateTime;
 import services.RendezvousCRUD;
 import utils.ConnectionDB;
 
@@ -61,6 +61,10 @@ public class RendezvousUpdateController implements Initializable {
     private Button buttonIndex;
     @FXML
     private Button buttonUpdate;
+    @FXML
+    private Button buttonRendezvousStatistique;
+    @FXML
+    private Button buttonBack;
 
     /**
      * Initializes the controller class.
@@ -123,8 +127,8 @@ public class RendezvousUpdateController implements Initializable {
 
     @FXML
     private void rendezvousUpdate(ActionEvent event) {
-        Date daterv = java.sql.Date.valueOf(dateStart.getValue());
-        Date endat = java.sql.Date.valueOf(dateEnd.getValue());
+        LocalDateTime daterv = dateStart.getValue().atStartOfDay();
+        LocalDateTime endat = dateEnd.getValue().atStartOfDay();
 
         Salle salle = Salle.getValue();
         RendezvousType type = Type.getValue();
@@ -146,8 +150,8 @@ public class RendezvousUpdateController implements Initializable {
 
     public void setRendezvous(Rendezvous r) {
         id = r.getId();
-        dateStart.setValue(r.getDaterv().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        dateEnd.setValue(r.getEndAt().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        dateStart.setValue(r.getDaterv().toLocalDate());
+        dateEnd.setValue(r.getEndAt().toLocalDate());
         Type.setValue(r.getType());
         Salle.setValue(r.getSalle());
         r.getUserCollection().forEach((user) -> {
@@ -228,6 +232,33 @@ public class RendezvousUpdateController implements Initializable {
         }
 
         return data;
+    }
+
+    @FXML
+    private void redirectRendezvousStatistique(ActionEvent event) {
+                try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousStats.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void redirectIndex(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Index.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void redirectBack(ActionEvent event) {
+        redirectRendezvous(event);
     }
 
 }

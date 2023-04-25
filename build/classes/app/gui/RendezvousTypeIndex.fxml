@@ -4,6 +4,8 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -29,13 +31,18 @@
                               <Image url="@../images/hh.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="buttonIndex" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: None; -fx-font-size: 32;" text="HealthHerald" />
+                        <Button fx:id="buttonIndex" contentDisplay="CENTER" mnemonicParsing="false" onAction="#redirectIndex" style="-fx-background-color: None; -fx-font-size: 32;" text="HealthHerald" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button fx:id="buttonRendezvous" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#redirectRendezvous" style="-fx-background-color: none; -fx-font-size: 18;" text="Rendez-vous" textFill="WHITE" VBox.vgrow="ALWAYS" />
-                        <Button fx:id="buttonRendezvousType" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#redirectRendezvousType" style="-fx-background-color: none; -fx-font-size: 18;" text="Type de Rendez-vous" textFill="WHITE" VBox.vgrow="ALWAYS" />
+                        <MenuButton mnemonicParsing="false" style="-fx-background-color: none; -fx-font-size: 18;" text="Rendez-vous" VBox.vgrow="ALWAYS">
+                           <items>
+                              <MenuItem fx:id="buttonRendezvous" mnemonicParsing="false" onAction="#redirectRendezvous" text="Index" />
+                              <MenuItem fx:id="buttonRendezvousType" mnemonicParsing="false" text="Type" />
+                              <MenuItem fx:id="buttonRendezvousStatistique" mnemonicParsing="false" onAction="#redirectRendezvousStatistique" text="Statistiques" />
+                           </items>
+                        </MenuButton>
                      </children>
                   </VBox>
                </children>
@@ -44,7 +51,7 @@
                <children>
                   <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="120.0" style="-fx-background-color: #3a6867;" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label style="-fx-font-size: 12;" text="/home/rendez-vous-type" VBox.vgrow="ALWAYS" />
+                        <Label style="-fx-font-size: 12;" text="/home/rendez-vous/type" VBox.vgrow="ALWAYS" />
                         <Label style="-fx-font-size: 32;" text="Type de Rendez-vous " VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>

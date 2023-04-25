@@ -7,7 +7,6 @@ package app.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -28,6 +27,8 @@ import entities.Rendezvous;
 import entities.RendezvousType;
 import entities.Salle;
 import entities.User;
+import java.time.format.DateTimeFormatter;
+import javafx.scene.control.MenuItem;
 import services.RendezvousCRUD;
 
 /**
@@ -40,15 +41,15 @@ public class RendezvousIndexController implements Initializable {
     @FXML
     private Button buttonIndex;
     @FXML
-    private Button buttonRendezvous;
+    private MenuItem buttonRendezvous;
     @FXML
-    private Button buttonRendezvousType;
+    private MenuItem buttonRendezvousType;
     @FXML
     private TableView<Rendezvous> tableviewRendezvous;
     @FXML
-    private TableColumn<Rendezvous, Date> columnDateStart;
+    private TableColumn<Rendezvous, String> columnDateStart;
     @FXML
-    private TableColumn<Rendezvous, Date> columnDateEnd;
+    private TableColumn<Rendezvous, String> columnDateEnd;
     @FXML
     private TableColumn<Rendezvous, Salle> columnSalle;
     @FXML
@@ -65,6 +66,10 @@ public class RendezvousIndexController implements Initializable {
     private Button buttonUpdate;
     @FXML
     private Button buttonDelete;
+    @FXML
+    private MenuItem buttonRendezvousStatistique;
+    
+    RendezvousCRUD rc = new RendezvousCRUD();
 
     /**
      * Initializes the controller class.
@@ -80,12 +85,12 @@ public class RendezvousIndexController implements Initializable {
         columnSalle.setCellValueFactory(new PropertyValueFactory<>("Salle"));
         columnType.setCellValueFactory(new PropertyValueFactory<>("Type"));
         columnUsers.setCellValueFactory(new PropertyValueFactory<>("Membres"));
-
-        RendezvousCRUD rc = new RendezvousCRUD();
         tableviewRendezvous.setItems(FXCollections.observableArrayList(rc.showAll()));
 
-        columnDateStart.setCellValueFactory(dateStartRowData -> new SimpleObjectProperty<>(dateStartRowData.getValue().getDaterv()));
-        columnDateEnd.setCellValueFactory(dateEndRowData -> new SimpleObjectProperty<>(dateEndRowData.getValue().getEndAt()));
+        columnDateStart.setCellValueFactory(dateStartRowData -> new SimpleObjectProperty<>(
+                dateStartRowData.getValue().getDaterv().format(DateTimeFormatter.ofPattern("EEEE d MMMM yyyy à h:mm")))
+        );
+        columnDateEnd.setCellValueFactory(dateEndRowData -> new SimpleObjectProperty<>(dateEndRowData.getValue().showDuree()));
 
         columnUsers.setCellValueFactory(cellData -> {
             Collection<User> users = cellData.getValue().getUserCollection();
@@ -158,10 +163,6 @@ public class RendezvousIndexController implements Initializable {
     }
 
     @FXML
-    private void redirectRendezvous(ActionEvent event) {
-    }
-
-    @FXML
     private void redirectRendezvousType(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousTypeIndex.fxml"));
@@ -174,10 +175,34 @@ public class RendezvousIndexController implements Initializable {
 
     @FXML
     private void rendezvousTextSearch(ActionEvent event) {
+        tableviewRendezvous.setItems(FXCollections.observableArrayList( rc.searchRendezvous( textSearch.getText() ) ));
     }
 
     @FXML
     private void rendezvousButtonSearch(ActionEvent event) {
+        tableviewRendezvous.setItems(FXCollections.observableArrayList( rc.searchRendezvous( textSearch.getText() ) ));
+    }
+
+    @FXML
+    private void redirectRendezvousStatistique(ActionEvent event) {
+                try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousStats.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void redirectIndex(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Index.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
 }

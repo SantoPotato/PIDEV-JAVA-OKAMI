@@ -20,4 +20,6 @@ public interface RendezvousTypeInterface {
     public void remove(Integer id);
 
     public List<RendezvousType> showAll();
+    
+    public List<RendezvousType> searchRendezvousType(String value);
 }

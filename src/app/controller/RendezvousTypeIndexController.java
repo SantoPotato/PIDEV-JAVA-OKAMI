@@ -20,19 +20,20 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import entities.RendezvousType;
+import javafx.scene.control.MenuItem;
 import services.RendezvousTypeCRUD;
 
 /**
  * FXML Controller class
  *
- * @author ilyes
+ * @author
  */
 public class RendezvousTypeIndexController implements Initializable {
 
     @FXML
-    private Button buttonRendezvous;
+    private MenuItem buttonRendezvous;
     @FXML
-    private Button buttonRendezvousType;
+    private MenuItem buttonRendezvousType;
     @FXML
     private TableView<RendezvousType> tableviewRendezvousType;
     @FXML
@@ -49,9 +50,14 @@ public class RendezvousTypeIndexController implements Initializable {
     private Button buttonIndex;
     @FXML
     private TableColumn<RendezvousType, String> columnNom;
+    @FXML
+    private MenuItem buttonRendezvousStatistique;
+
+    RendezvousTypeCRUD rc = new RendezvousTypeCRUD();
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
@@ -59,7 +65,6 @@ public class RendezvousTypeIndexController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         columnNom.setCellValueFactory(new PropertyValueFactory<>("Nom"));
 
-        RendezvousTypeCRUD rc = new RendezvousTypeCRUD();
         tableviewRendezvousType.setItems(FXCollections.observableArrayList(rc.showAll()));
 
         columnNom.setCellValueFactory(typeRowData -> new SimpleObjectProperty<>(typeRowData.getValue().getType()));
@@ -75,10 +80,6 @@ public class RendezvousTypeIndexController implements Initializable {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-    }
-
-    @FXML
-    private void redirectRendezvousType(ActionEvent event) {
     }
 
     @FXML
@@ -128,10 +129,34 @@ public class RendezvousTypeIndexController implements Initializable {
 
     @FXML
     private void rendezvousTextSearch(ActionEvent event) {
+        tableviewRendezvousType.setItems(FXCollections.observableArrayList(rc.searchRendezvousType(textSearch.getText())));
     }
 
     @FXML
     private void rendezvousButtonSearch(ActionEvent event) {
+        tableviewRendezvousType.setItems(FXCollections.observableArrayList(rc.searchRendezvousType(textSearch.getText())));
+    }
+
+    @FXML
+    private void redirectRendezvousStatistique(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousStats.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void redirectIndex(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Index.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
 }
