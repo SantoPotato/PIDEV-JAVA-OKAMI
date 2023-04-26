@@ -58,6 +58,10 @@ public class Categoriesequipement implements Serializable {
         this.nomcate = nomcate;
     }
 
+    public Categoriesequipement(String nom) {
+        this.nomcate = nom;
+    }
+
     public Integer getId() {
         return id;
     }

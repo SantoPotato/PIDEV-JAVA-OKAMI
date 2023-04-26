@@ -16,7 +16,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class EquipementCRUD implements InterfaceCRUD {
@@ -106,7 +108,54 @@ public class EquipementCRUD implements InterfaceCRUD {
         return list;
     }
     
-  
+    /**
+     *
+     * @param searchQuery
+     * @return
+     */
+    public List<Equipement> searchEquipement(String searchQuery) {
+    List<Equipement> list = new ArrayList<>();
+    try {
+        String req = "SELECT e.*, c.* FROM equipement e INNER JOIN categoriesequipement c ON c.id=e.Categoriesequipement " +
+                     "WHERE e.nomeq LIKE ? OR c.nomcate LIKE ?";
+        PreparedStatement ps = conn.prepareStatement(req);
+        ps.setString(1, "%" + searchQuery + "%");
+        ps.setString(2, "%" + searchQuery + "%");
+        ResultSet RS = ps.executeQuery();
+        while(RS.next()){
+            Categoriesequipement c = new Categoriesequipement(RS.getInt("c.id"), RS.getString("c.nomcate"));
+            Equipement e = new Equipement();
+            e.setNomeq(RS.getString("e.nomeq"));
+            e.setId(RS.getInt("e.id"));
+            e.setEtateq(RS.getBoolean("e.etateq"));
+            e.setDispoeq(RS.getBoolean("e.dispoeq"));
+            e.setCategoriesequipement(c);
+            list.add(e);
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+
+    return list;
+}
+    
+   public Map<String, Integer> getEquipementStatisticsByEtat() {
+    Map<String, Integer> stats = new HashMap<>();
+    try {
+        String req = "SELECT etateq, COUNT(*) as count FROM equipement GROUP BY etateq";
+        Statement st = conn.createStatement();
+        ResultSet RS = st.executeQuery(req);
+        while (RS.next()) {
+            boolean etat = RS.getBoolean("etateq");
+            int count = RS.getInt("count");
+            String etatStr = etat ? "En Service" : "Hors Service";
+            stats.put(etatStr, count);
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return stats;
+}
 
     
     

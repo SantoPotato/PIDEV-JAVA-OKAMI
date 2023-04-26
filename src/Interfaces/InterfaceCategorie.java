@@ -15,7 +15,7 @@ import java.util.List;
 public interface InterfaceCategorie {
      public void ajouterCategorie(Categoriesequipement Ct);
      public void ajouterCategorie2(Categoriesequipement Ct);
-    public void modifierCategorie(Categoriesequipement Ct);
+    public void modifierCategorie(Categoriesequipement Ct,int id);
     public void supprimerCategorie(int id) ;
     public List<Categoriesequipement> afficherCategorie();
 }

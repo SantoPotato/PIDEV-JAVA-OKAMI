@@ -38,33 +38,32 @@ import utils.MyConnection;
  */
 public class EditEquipementController implements Initializable {
 Connection c;
-    @FXML
-    private Label labelPage;
-    @FXML
-    private Label labelPath;
-    @FXML
-    private Label labelIndex;
-    @FXML
-    private ImageView logo;
-    @FXML
-    private Button buttonRendezvous;
-    @FXML
-    private Button buttonRendezvousType;
-    @FXML
-    private Button buttonTest;
-    @FXML
-    private Button buttonAdd;
-    @FXML
+
+@FXML
     private TextField nomeq;
-    @FXML
+@FXML
     private CheckBox etat;
-    @FXML
+@FXML
     private CheckBox Disponible;
-    @FXML
+@FXML
     private ComboBox<Categoriesequipement> Categorie;
     
-    private int id;
+    
+    @FXML
+    private Button buttonIndex;
+    @FXML
+    private Button buttonEquipement;
+    @FXML
+    private Button buttonCat;
+    @FXML
+    private Button buttonStatistique;
+    @FXML
+    private Button buttonBack;
+    @FXML
+    private Button buttonEdit;
 
+    private int id;
+    
     /**
      * Initializes the controller class.
      * @param url
@@ -90,10 +89,60 @@ Connection c;
     id=e.getId();
 }
 
+
+
     @FXML
-    private void EquipementEdit(ActionEvent event) {
-       
-        String nom = nomeq.getText();
+    private void redirectIndex(ActionEvent event) {
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Index.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void redirectEquipement(ActionEvent event) {
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("EquipementIndex.fxml"));
+            buttonEquipement.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void redirectCat(ActionEvent event) {
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CategorieIndex.fxml"));
+            buttonCat.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void redirectStatistique(ActionEvent event) {
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Statistique.fxml"));
+            buttonStatistique.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void redirectBack(ActionEvent event) {
+         redirectEquipement(event);
+    }
+
+@FXML
+    private void equipementeDIT(ActionEvent event) {
+                String nom = nomeq.getText();
         Boolean etateq = etat.isSelected();
         Boolean dispo = Disponible.isSelected();
         Categoriesequipement type = Categorie.getValue();
@@ -102,7 +151,7 @@ Connection c;
         
         ec.modifierequipement(e,id);
         String ACCOUNT_SID = "AC2d6462eff326ec211eee2f8927df20f6";
-        String AUTH_TOKEN = "faf4715bb6360d51301f648384e6b5fa";
+        String AUTH_TOKEN = "87e7b77c190b95c90cd841110549c27d";
         String TWILIO_NUMBER = "+15674323540";
         String USER_NUMBER = "+21652953558";
          
@@ -119,14 +168,16 @@ Connection c;
 // Print the message SID for debugging purposes
         System.out.println(message.getSid());
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Details.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EquipementIndex.fxml"));
         try {
             Parent root = loader.load();
-            buttonAdd.getScene().setRoot(root);   // Change the scene to another one
+            buttonEdit.getScene().setRoot(root);   // Change the scene to another one
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
     }
+
+   
    
 }
 

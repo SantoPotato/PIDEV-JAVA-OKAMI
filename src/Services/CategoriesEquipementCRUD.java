@@ -55,11 +55,13 @@ public class CategoriesEquipementCRUD implements InterfaceCategorie {
     }
     
    @Override
-    public void modifierCategorie(Categoriesequipement Ct) {
+    public void modifierCategorie(Categoriesequipement Ct,int id) {
         try {
-            String req = "UPDATE `categoriesequipement` SET `nomcate` = '" + Ct.getNomcate() + "' WHERE `equipement`.`id` = " + Ct.getId();
-            Statement st = conn.createStatement();
-            st.executeUpdate(req);
+            String req = "UPDATE categoriesequipement SET nomcate =? where id=?";
+            PreparedStatement pst = conn.prepareStatement(req);
+            pst.setString(1, Ct.getNomcate());
+            pst.setInt(5, id);
+            pst.executeUpdate();
             System.out.println("categoriesequipement updated !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

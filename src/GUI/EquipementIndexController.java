@@ -32,39 +32,21 @@ import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import java.sql.SQLException;
 import javafx.scene.Parent;
+import javafx.scene.control.MenuItem;
 
 /**
  * FXML Controller class
  *
  * @author belkn
  */
-public class DetailsController implements Initializable {
+public class EquipementIndexController implements Initializable {
 
-   
-    @FXML
-    private Label labelPage;
-    @FXML
-    private Label labelPath;
-    @FXML
-    private Label labelIndex;
+  
     @FXML
     private Button buttonEquipement;
     @FXML
-    private Button buttonCategorie;
-    @FXML
-    private Button buttonTest;
-    @FXML
     private TableView<Equipement> tableviewEquipement;
-    @FXML
-    private TableColumn<Equipement, Integer> idColumn;
-    @FXML
-    private TableColumn<Equipement, String> NomColumn;
-    @FXML
-    private TableColumn<Equipement, Boolean> EtatColumn;
-    @FXML
-    private TableColumn<Equipement, Boolean> DispoColumn;
-    @FXML
-    private TableColumn<Equipement, Categoriesequipement> typeColumn;
+    
     @FXML
     private TextField textSearch;
     @FXML
@@ -75,6 +57,20 @@ public class DetailsController implements Initializable {
     private Button buttonUpdate;
     @FXML
     private Button buttonDelete;
+    @FXML
+    private Button buttonIndex;
+    @FXML
+    private Button buttonCat;
+    @FXML
+    private Button buttonStatistique;
+    @FXML
+    private TableColumn<Equipement, String> columnNom;
+    @FXML
+    private TableColumn<Equipement, Boolean> columnEtat;
+    @FXML
+    private TableColumn<Equipement, Boolean> columnDispo;
+    @FXML
+    private TableColumn<Equipement, Categoriesequipement> columnCat;
 
     /**
      * Initializes the controller class.
@@ -84,11 +80,10 @@ public class DetailsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        NomColumn.setCellValueFactory(new PropertyValueFactory<>("nomeq"));
-        EtatColumn.setCellValueFactory(new PropertyValueFactory<>("etateq"));
-        DispoColumn.setCellValueFactory(new PropertyValueFactory<>("dispoeq"));
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("Categoriesequipement"));
+        columnNom.setCellValueFactory(new PropertyValueFactory<>("nomeq"));
+        columnEtat.setCellValueFactory(new PropertyValueFactory<>("etateq"));
+        columnDispo.setCellValueFactory(new PropertyValueFactory<>("dispoeq"));
+        columnCat.setCellValueFactory(new PropertyValueFactory<>("Categoriesequipement"));
         
 
         EquipementCRUD ec = new EquipementCRUD();
@@ -96,25 +91,56 @@ public class DetailsController implements Initializable {
         
     }
 
- @FXML
-    private void Categorieequipement(ActionEvent event) {
-         try {
-             FXMLLoader loader = new FXMLLoader(getClass().getResource("CategorieIndexController.fxml"));
-            labelIndex.getScene().setRoot(loader.load());
+    @FXML
+    private void redirectIndex(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Index.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
     }
+    
+
     @FXML
-    private void EquipementSearch(ActionEvent event) {
+    private void redirectCat(ActionEvent event) {
+  try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CategorieIndex.fxml"));
+            buttonCat.getScene().setRoot(loader.load());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML
-    private void EquipementAdd(ActionEvent event) {
+    private void redirectStatistique(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Statistique.fxml"));
+            buttonStatistique.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void equipementTextSearch(ActionEvent event) {
+         EquipementCRUD ec = new EquipementCRUD();
+        tableviewEquipement.setItems(FXCollections.observableArrayList( ec.searchEquipement( textSearch.getText() ) ));
+    }
+
+    @FXML
+    private void equipementButtonSearch(ActionEvent event) {
+         EquipementCRUD ec = new EquipementCRUD();
+       tableviewEquipement.setItems(FXCollections.observableArrayList( ec.searchEquipement( textSearch.getText() ) ));
+    }
+
+    @FXML
+    private void equipementAdd(ActionEvent event) {
          try {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("AjoutEquipement.fxml"));
-            labelIndex.getScene().setRoot(loader.load());
+            buttonAdd.getScene().setRoot(loader.load());
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -122,11 +148,11 @@ public class DetailsController implements Initializable {
     }
 
     @FXML
-    private void EquipementUpdate(ActionEvent event) throws SQLException {
-           Equipement e = tableviewEquipement.getSelectionModel().getSelectedItem();
+    private void equipementUpdate(ActionEvent event) throws SQLException {
+        Equipement e = tableviewEquipement.getSelectionModel().getSelectedItem();
            
         if (e != null) {
-            // RendezvousCRUD rc = new RendezvousCRUD();
+            
             try {
                 FXMLLoader loader;
                 loader = new FXMLLoader(getClass().getResource("EditEquipement.fxml"));
@@ -136,7 +162,7 @@ public class DetailsController implements Initializable {
 
                 c.setEquipement(e);
 
-                labelIndex.getScene().setRoot(root);
+                buttonUpdate.getScene().setRoot(root);
 
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
@@ -146,17 +172,18 @@ public class DetailsController implements Initializable {
     }
 
     @FXML
-    private void EquipementDelete(ActionEvent event) {
+    private void equipementDelete(ActionEvent event) {
         Equipement e =  (Equipement) tableviewEquipement.getSelectionModel().getSelectedItem();
 
         if (e != null) {
             EquipementCRUD ec = new EquipementCRUD();
             ec.supprimerequipement(e.getId());
-            String ACCOUNT_SID = "AC2d6462eff326ec211eee2f8927df20f6";
-        String AUTH_TOKEN = "faf4715bb6360d51301f648384e6b5fa";
+            tableviewEquipement.getItems().remove(e);
+                String ACCOUNT_SID = "AC2d6462eff326ec211eee2f8927df20f6";
+        String AUTH_TOKEN = "87e7b77c190b95c90cd841110549c27d";
         String TWILIO_NUMBER = "+15674323540";
         String USER_NUMBER = "+21652953558";
-       
+         
         // Initialize the Twilio client
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
@@ -164,13 +191,17 @@ public class DetailsController implements Initializable {
         Message message = Message.creator(
             new PhoneNumber(USER_NUMBER),
             new PhoneNumber(TWILIO_NUMBER),
-            "Your equipment  "+e.getNomeq()+ " has been deleted successfully!"
+            "Your equipment "+e.getNomeq()+ " has been added successfully!"
         ).create();
 
 // Print the message SID for debugging purposes
         System.out.println(message.getSid());
-            tableviewEquipement.getItems().remove(e); // remove from the tableview
+        
         }
+    }
+
+    @FXML
+    private void redirectEquipement(ActionEvent event) {
     }
     
     
