@@ -15,22 +15,24 @@ public class user {
     private String prenom;
     private String password;
     private String email;
-    
+    private String roles; 
     public user(){}
     
-    public user(int id, String nom, String prenom, String password, String email) {
+    public user(int id, String nom, String prenom, String password, String email,String roles) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.password = password;
         this.email = email;
+        this.roles = roles;
     }
 
-    public user(String nom, String prenom, String password, String email) {
+    public user(String nom, String prenom, String password, String email,String roles) {
         this.nom = nom;
         this.prenom = prenom;
         this.password = password;
         this.email = email;
+        this.roles = roles;
     }
 
     public int getId() {
@@ -69,13 +71,20 @@ public class user {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String roles) {
         this.email = email;
+    }
+     public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
     @Override
     public String toString() {
-        return "personne{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", password=" + password + ", email=" + email + '}';
+        return "personne{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", roles=" + roles + ", password=" + password + ", email=" + email + '}';
     }
     
     
