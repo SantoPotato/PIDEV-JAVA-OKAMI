@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import entities.RendezvousType;
 import javafx.scene.control.MenuItem;
+import services.HistoriqueCRUD;
 import services.RendezvousTypeCRUD;
 
 /**
@@ -121,9 +122,10 @@ public class RendezvousTypeIndexController implements Initializable {
         RendezvousType t = tableviewRendezvousType.getSelectionModel().getSelectedItem();
 
         if (t != null) {
-            RendezvousTypeCRUD rc = new RendezvousTypeCRUD();
             rc.remove(t.getId());
             tableviewRendezvousType.getItems().remove(t); // remove from the tableview
+            HistoriqueCRUD hc = new HistoriqueCRUD();
+            hc.add(1, "a supprimé le type de rendez-vous '" + String.valueOf(t.getId()) + "'");
         }
     }
 

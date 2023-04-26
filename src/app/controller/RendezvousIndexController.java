@@ -4,6 +4,7 @@ package app.controller;
  * Property of Okami�
  * Not destined for commercial use
  */
+import utils.HistoriqueMenuItem;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
@@ -28,7 +29,9 @@ import entities.RendezvousType;
 import entities.Salle;
 import entities.User;
 import java.time.format.DateTimeFormatter;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import services.HistoriqueCRUD;
 import services.RendezvousCRUD;
 
 /**
@@ -68,7 +71,9 @@ public class RendezvousIndexController implements Initializable {
     private Button buttonDelete;
     @FXML
     private MenuItem buttonRendezvousStatistique;
-    
+    @FXML
+    private MenuButton historique;
+
     RendezvousCRUD rc = new RendezvousCRUD();
 
     /**
@@ -102,6 +107,11 @@ public class RendezvousIndexController implements Initializable {
                         .collect(Collectors.toList());
                 return new SimpleStringProperty(String.join("\n", userStrings));
             }
+        });
+
+        HistoriqueCRUD hc = new HistoriqueCRUD();
+        hc.showAll().forEach(item -> {
+            historique.getItems().add(new HistoriqueMenuItem(item));
         });
 
     }
@@ -156,9 +166,10 @@ public class RendezvousIndexController implements Initializable {
         Rendezvous r = tableviewRendezvous.getSelectionModel().getSelectedItem();
 
         if (r != null) {
-            RendezvousCRUD rc = new RendezvousCRUD();
             rc.remove(r.getId());
             tableviewRendezvous.getItems().remove(r); // remove from the tableview
+            HistoriqueCRUD hc = new HistoriqueCRUD();
+            hc.add(1, "a supprimé le rendez-vous '" + String.valueOf(r.getId()) + "'");
         }
     }
 
@@ -175,17 +186,17 @@ public class RendezvousIndexController implements Initializable {
 
     @FXML
     private void rendezvousTextSearch(ActionEvent event) {
-        tableviewRendezvous.setItems(FXCollections.observableArrayList( rc.searchRendezvous( textSearch.getText() ) ));
+        tableviewRendezvous.setItems(FXCollections.observableArrayList(rc.searchRendezvous(textSearch.getText())));
     }
 
     @FXML
     private void rendezvousButtonSearch(ActionEvent event) {
-        tableviewRendezvous.setItems(FXCollections.observableArrayList( rc.searchRendezvous( textSearch.getText() ) ));
+        tableviewRendezvous.setItems(FXCollections.observableArrayList(rc.searchRendezvous(textSearch.getText())));
     }
 
     @FXML
     private void redirectRendezvousStatistique(ActionEvent event) {
-                try {
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousStats.fxml"));
             buttonIndex.getScene().setRoot(loader.load());
 

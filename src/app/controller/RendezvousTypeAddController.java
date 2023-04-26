@@ -14,6 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import entities.RendezvousType;
+import javafx.scene.control.MenuItem;
+import services.HistoriqueCRUD;
 import services.RendezvousTypeCRUD;
 
 /**
@@ -24,9 +26,9 @@ import services.RendezvousTypeCRUD;
 public class RendezvousTypeAddController implements Initializable {
 
     @FXML
-    private Button buttonRendezvous;
+    private MenuItem buttonRendezvous;
     @FXML
-    private Button buttonRendezvousType;
+    private MenuItem buttonRendezvousType;
     @FXML
     private Button buttonAdd;
     @FXML
@@ -34,7 +36,7 @@ public class RendezvousTypeAddController implements Initializable {
     @FXML
     private TextField textNom;
     @FXML
-    private Button buttonRendezvousStatistique;
+    private MenuItem buttonRendezvousStatistique;
     @FXML
     private Button buttonBack;
 
@@ -76,8 +78,10 @@ public class RendezvousTypeAddController implements Initializable {
 
         RendezvousType t = new RendezvousType(textNom.getText());
         RendezvousTypeCRUD rc = new RendezvousTypeCRUD();
-        //System.out.println(salle + " " +type + " " + endat + " " + users);
         rc.add(t);
+        
+        HistoriqueCRUD hc = new HistoriqueCRUD();
+        hc.add(1, "a ajouté un nouveau type de rendez-vous");
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousTypeIndex.fxml"));

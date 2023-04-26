@@ -5,6 +5,7 @@
 package entities;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -26,6 +27,13 @@ public class Historique {
 
     public Historique(Integer id, String description, LocalDateTime date) {
         this.id = id;
+        this.description = description;
+        this.date = date;
+    }
+    
+        public Historique(Integer id, User u, String description, LocalDateTime date) {
+        this.id = id;
+        this.userId=u;
         this.description = description;
         this.date = date;
     }
@@ -81,7 +89,7 @@ public class Historique {
 
     @Override
     public String toString() {
-        return "entities.Historique[ id=" + id + " ]";
+        return userId + " " + description + " le " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("d/MM/yyyy à h:mm"));
     }
 
 }
