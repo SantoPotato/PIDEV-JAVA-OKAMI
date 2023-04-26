@@ -17,6 +17,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -72,11 +74,35 @@ public class SalleUpdateController implements Initializable {
         });
     }
 
-    @FXML
-    private void SalleUpdate(ActionEvent event) {
-        if (selectedSalle == null) {
-            return;
+   @FXML
+private void SalleUpdate(ActionEvent event) {
+    if (selectedSalle == null) {
+        return;
+    }
+
+    // Vérifier les champs saisis
+    String errorMessage = "";
+    try {
+        int num = Integer.parseInt(champNum.getText());
+        if (num > 10) {
+            errorMessage += "Le numéro de la salle ne doit pas dépasser 10.\n";
         }
+    } catch (NumberFormatException e) {
+        errorMessage += "Le numéro de la salle doit être un entier.\n";
+    }
+    try {
+        int etage = Integer.parseInt(champEtage.getText());
+        if (etage > 6) {
+            errorMessage += "L'étage de la salle ne doit pas dépasser 6.\n";
+        }
+    } catch (NumberFormatException e) {
+        errorMessage += "L'étage de la salle doit être un entier.\n";
+    }
+    if (champType.getValue() == null || champType.getValue().isEmpty()) {
+        errorMessage += "Le type de la salle ne doit pas être vide.\n";
+    }
+
+    if (errorMessage.isEmpty()) {
         String sql = "UPDATE salle SET numsa=?, etagesa=?, typesa=? WHERE id=?";
 
         try (PreparedStatement stmt = c.prepareStatement(sql)) {
@@ -87,16 +113,26 @@ public class SalleUpdateController implements Initializable {
             stmt.executeUpdate();
             System.out.println("Salle mise à jour");
             try {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/SalleIndex.fxml"));
-    buttonIndex.getScene().setRoot(loader.load());
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/SalleIndex.fxml"));
+                buttonIndex.getScene().setRoot(loader.load());
 
-} catch (IOException ex) {
-    System.out.println(ex.getMessage());
-}
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
         } catch (SQLException ex) {
             Logger.getLogger(SalleUpdateController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    } else {
+        // Afficher une boîte de dialogue modale avec les messages d'erreur
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Erreur de saisie");
+        alert.setHeaderText("Il y a des erreurs de saisie");
+        alert.setContentText(errorMessage);
+        alert.showAndWait();
     }
+}
+
+
 
     public void setSelectedSalle(Salle salle) {
         this.selectedSalle = salle;

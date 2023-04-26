@@ -7,7 +7,6 @@ package app.controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,19 +17,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.StringConverter;
-import salle.entities.Plannification;
 import salle.entities.Salle;
 import salle.services.SalleCRUD;
-import salle.utils.MyDB;
+
 /**
  * FXML Controller class
  *
@@ -47,16 +40,13 @@ public class SalleIndexController implements Initializable {
     @FXML
     private TableView<Salle> tableviewSalle;
     @FXML
-private TableColumn<Salle,Integer> columnNumsa;
-@FXML
-private TableColumn<Salle, Integer> columnEtagesa;
-@FXML
-private TableColumn<Salle, String> columnTypesa;
-
+    private TableColumn<Salle, Integer> columnNumsa;
+    @FXML
+    private TableColumn<Salle, Integer> columnEtagesa;
+    @FXML
+    private TableColumn<Salle, String> columnTypesa;
     @FXML
     private TextField textSearch;
-    @FXML
-    private Button buttonSearch;
     @FXML
     private Button buttonAdd;
     @FXML
@@ -69,9 +59,8 @@ private TableColumn<Salle, String> columnTypesa;
      * Initializes the controller class.
      */
     @Override
-public void initialize(URL url, ResourceBundle rb) {
-
-    columnNumsa.setCellValueFactory(new PropertyValueFactory<>("numsa"));
+    public void initialize(URL url, ResourceBundle rb) {
+        columnNumsa.setCellValueFactory(new PropertyValueFactory<>("numsa"));
     columnEtagesa.setCellValueFactory(new PropertyValueFactory<>("etagesa"));
     columnTypesa.setCellValueFactory(new PropertyValueFactory<>("typesa"));
 
@@ -102,38 +91,38 @@ textSearch.textProperty().addListener((observable, oldValue, newValue) -> {
         return false;
     });
 });
-
-}
- 
+    }    
 
     @FXML
-private void SalleAdd(ActionEvent event) {
-    try {
+    private void redirectSalle(ActionEvent event) {
+        try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/SalleIndex.fxml"));
+        buttonIndex.getScene().setRoot(loader.load());
+
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+    }
+
+    @FXML
+    private void redirectPlannification(ActionEvent event) {
+    }
+
+
+
+    @FXML
+    private void AddSalle(ActionEvent event) {
+        try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/SalleAdd.fxml"));
         buttonIndex.getScene().setRoot(loader.load());
 
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
     }
-}
-
-@FXML
-private void SalleDelete(ActionEvent event) {
-    Salle s = tableviewSalle.getSelectionModel().getSelectedItem();
-
-    if (s != null) {
-        SalleCRUD sc = new SalleCRUD();
-        sc.SupprimerSalle(s.getId());
-        tableviewSalle.getItems().remove(s); // remove from the tableview
-        
-        System.out.println("Salle Supprimé !");
-        refreshTable();
     }
-}
 
-    
     @FXML
-    private void SalleUpdate(ActionEvent event) {
+    private void UpdateSalle(ActionEvent event) {
         Salle s = tableviewSalle.getSelectionModel().getSelectedItem();
 
         if (s != null) {
@@ -153,23 +142,21 @@ private void SalleDelete(ActionEvent event) {
             }
 
         }
+    }
 
-}
-    
     @FXML
-private void handleButtonSearch(ActionEvent event) {
-    textSearch.setText("");
-    filteredSalleList.setPredicate(salle -> true);
+private void DeleteSalle(ActionEvent event) {
+    Salle s = tableviewSalle.getSelectionModel().getSelectedItem();
+
+    if (s != null) {
+        SalleCRUD sc = new SalleCRUD();
+        sc.SupprimerSalle(s.getId());
+        tableviewSalle.getItems().remove(s); // remove from the tableview
+        tableviewSalle.refresh(); // refresh the tableview to update the display
+        System.out.println("Salle Supprimé !");
+    }
 }
 
 
-
-@FXML
-private void refreshTable() {
-    SalleCRUD sc = new SalleCRUD();
-    ObservableList<Salle> salleList = FXCollections.observableArrayList(sc.AfficherSalle());
-    filteredSalleList = new FilteredList<>(salleList, p -> true);
-    tableviewSalle.setItems(filteredSalleList);
+    
 }
-}
-

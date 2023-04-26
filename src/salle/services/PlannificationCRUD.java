@@ -54,12 +54,12 @@ public class PlannificationCRUD {
             while(rs.next()){
                 Plannification p =new Plannification();
                 
-                p.setId(rs.getInt(1));
-                p.setId_salle(rs.getInt(2));
-                p.setDatepl (rs.getDate(3));
-                p.setHeuredebutpl(rs.getTime(4));
-                p.setHeurefinpl(rs.getTime(5));
-              
+//                p.setId(rs.getInt(1));
+//                p.setId_salle(rs.getInt(2));
+//                p.setDatepl (rs.getDate(3));
+//                p.setHeuredebutpl(rs.getTime(4));
+//                p.setHeurefinpl(rs.getTime(5));
+//              
 
                 plannifications.add(p);
 

@@ -166,6 +166,23 @@ try {
         }
         return Salles;
     }
+    
+    public List<Integer> getAllSalles() {
+    List<Integer> ids = new ArrayList<>();
+    try {
+        String qry = "SELECT id FROM salle";
+        cnx = MyDB.getInstance().getCnx();
+        Statement stm = cnx.createStatement();
+        ResultSet rs = stm.executeQuery(qry);
+        while (rs.next()) {
+            ids.add(rs.getInt(1));
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return ids;
+}
+
         /*public List<Salle> afficherDemandeparid(int id){
        List<Salle> list = new ArrayList<>();
        try {
