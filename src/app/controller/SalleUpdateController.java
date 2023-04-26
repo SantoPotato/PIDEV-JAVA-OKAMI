@@ -84,7 +84,7 @@ private void SalleUpdate(ActionEvent event) {
     String errorMessage = "";
     try {
         int num = Integer.parseInt(champNum.getText());
-        if (num > 10) {
+        if ((num > 10)||(num <0)) {
             errorMessage += "Le numéro de la salle ne doit pas dépasser 10.\n";
         }
     } catch (NumberFormatException e) {
@@ -92,7 +92,7 @@ private void SalleUpdate(ActionEvent event) {
     }
     try {
         int etage = Integer.parseInt(champEtage.getText());
-        if (etage > 6) {
+        if ((etage > 6)||(etage <0)) {
             errorMessage += "L'étage de la salle ne doit pas dépasser 6.\n";
         }
     } catch (NumberFormatException e) {
@@ -166,6 +166,17 @@ private void SalleUpdate(ActionEvent event) {
     private void redirectSalle(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/SalleIndex.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void redirectPlannification(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/PlannificationIndex.fxml"));
             buttonIndex.getScene().setRoot(loader.load());
 
         } catch (IOException ex) {

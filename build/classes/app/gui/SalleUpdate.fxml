@@ -34,7 +34,7 @@
                   <VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
                      <children>
                         <Button fx:id="buttonSalle" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#redirectSalle" style="-fx-background-color: none; -fx-font-size: 18;" text="Salle" textFill="WHITE" VBox.vgrow="ALWAYS" />
-                        <Button fx:id="buttonPlannification" alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: none; -fx-font-size: 18;" text="Plannification" textFill="WHITE" VBox.vgrow="ALWAYS" />
+                        <Button fx:id="buttonPlannification" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#redirectPlannification" style="-fx-background-color: none; -fx-font-size: 18;" text="Plannification" textFill="WHITE" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                </children>

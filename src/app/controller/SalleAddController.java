@@ -84,6 +84,13 @@ public class SalleAddController implements Initializable {
 
     @FXML
     private void redirectPlannification(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/PlannificationIndex.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML
@@ -96,7 +103,7 @@ private void SalleAdd(ActionEvent event) {
     // Vérifier les champs saisis
     try {
         num = Integer.parseInt(champNum.getText());
-        if (num > 10) {
+        if ((num > 10)||(num < 0)) {
             errorMessage += "Le numéro de la salle ne doit pas dépasser 10.\n";
         }
     } catch (NumberFormatException e) {
@@ -104,7 +111,7 @@ private void SalleAdd(ActionEvent event) {
     }
     try {
         etage = Integer.parseInt(champEtage.getText());
-        if (etage > 6) {
+        if ((etage > 6)||(etage < 0 )) {
             errorMessage += "L'étage de la salle ne doit pas dépasser 6.\n";
         }
     } catch (NumberFormatException e) {
