@@ -24,7 +24,7 @@ public class MainWindow extends Application {
 
         try {
             Locale.setDefault(new Locale("fr"));
-            Parent root = FXMLLoader.load(getClass().getResource("Index.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("test.fxml"));
 
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("../themes/nord-dark.css").toExternalForm());
