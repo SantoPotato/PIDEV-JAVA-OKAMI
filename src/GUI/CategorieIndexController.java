@@ -71,7 +71,7 @@ public class CategorieIndexController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        
         NomColumn.setCellValueFactory(new PropertyValueFactory<>("typecat"));
         
         StockcategoriesCRUD cc = new StockcategoriesCRUD();

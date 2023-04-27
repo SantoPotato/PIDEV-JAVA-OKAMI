@@ -70,7 +70,6 @@
                <children>
                   <TableView fx:id="tableviewEquipement" prefHeight="456.0" prefWidth="624.0" style="-fx-background-color: #3a6867;" GridPane.rowIndex="1">
                     <columns>
-                      <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
                       <TableColumn fx:id="NomColumn" prefWidth="75.0" text="typecat" />
                     </columns>
                      <columnResizePolicy>

@@ -234,6 +234,7 @@ private void StockSearch(ActionEvent event) {
             StockCRUD ec = new StockCRUD();
             ec.Supprimer(e.getId());
             tableviewEquipement.getItems().remove(e); // remove from the tableview
+            
         }
     }
 
