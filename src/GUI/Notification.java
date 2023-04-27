@@ -13,8 +13,6 @@ import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-
-
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -97,45 +95,8 @@ private double xOffset = 0;
     });
     
 }
- public static void showNotificationImage() {
-    Platform.runLater(() -> {
-        Stage notificationStage = new Stage();
-        notificationStage.initStyle(StageStyle.TRANSPARENT);
-
-        ImageView imageView = new ImageView(new Image("file:C:/Users/khalil/Documents/NetBeansProjects/pidev desktop/src/Guinotif.png"));
-        imageView.setFitHeight(5);
-        imageView.setPreserveRatio(true);
-        imageView.setFitHeight(imageView.getImage().getHeight() /7);
-        imageView.setFitWidth(imageView.getImage().getWidth() /7);
-
-        VBox notificationPane = new VBox(imageView);
-        notificationPane.setPadding(new Insets(10));
-        notificationPane.setAlignment(Pos.TOP_RIGHT);
-
-        Scene scene = new Scene(notificationPane);
-        scene.setFill(Color.TRANSPARENT);
-
-        notificationStage.setScene(scene);
-        notificationStage.setAlwaysOnTop(true);
-
-        // Set the margin to position the image in the top right corner
-        
-double sceneWidth = notificationPane.getScene().getWidth();
-double sceneHeight = notificationPane.getScene().getHeight();
-VBox.setMargin(imageView, new Insets(10, 10, sceneHeight-40, sceneWidth-40));
-
-        
-        PauseTransition delay = new PauseTransition(Duration.seconds(2));
-        delay.setOnFinished(event -> {
-            notificationStage.show();
-            // auto hide after 3 seconds
-            PauseTransition delay2 = new PauseTransition(Duration.seconds(3));
-            delay2.setOnFinished(event2 -> notificationStage.close());
-            delay2.play();
-        });
-        delay.play();
-    });
+ 
 }
 
 
-}
+

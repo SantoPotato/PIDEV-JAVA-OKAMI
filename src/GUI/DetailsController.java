@@ -135,9 +135,11 @@ textSearch.textProperty().addListener((observable, oldValue, newValue) -> {
 Stock stock = new Stock();
 
 // Call the getQuantites() method on the instance of Stock
- if (stock.getQuantites() < 10) {
-    Notification.showNotification("New Notification", "Votre Post a été ajouté avec succès!"); 
+
+if (stock.getQuantites() < 10) {
+    Notification.showNotification("New Notification", String.format("Votre stock Aspirine est inférieur à 10!"));
 }
+
 
 
 

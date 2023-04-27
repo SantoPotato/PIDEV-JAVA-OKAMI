@@ -28,7 +28,7 @@ public class FirstWindow extends Application {
     public void start(Stage primaryStage) {
 
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Details.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("AjoutStock.fxml"));
         
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("../themes/nord-dark.css").toExternalForm());

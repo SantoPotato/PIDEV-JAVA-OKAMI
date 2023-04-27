@@ -46,7 +46,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="buttonTest" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="51.0" prefWidth="246.0" style="-fx-background-color: none; -fx-font-size: 18;" text="TesT" textFill="WHITE">
+            <Button fx:id="buttonTest" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="51.0" prefWidth="246.0" style="-fx-background-color: none; -fx-font-size: 18;" textFill="WHITE">
                <padding>
                   <Insets left="50.0" />
                </padding>
