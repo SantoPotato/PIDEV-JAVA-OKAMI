@@ -3,22 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/USER/Desktop/3A/java/gestionduvehicules/src/vehicules/gui/CategorieController.java</file>
-            <file>file:/C:/Users/USER/Desktop/3A/java/gestionduvehicules/src/vehicules/entities/Vehicules.java</file>
-            <file>file:/C:/Users/USER/Desktop/3A/java/gestionduvehicules/src/vehicules/utils/MyConnection.java</file>
-            <file>file:/C:/Users/USER/Desktop/3A/java/gestionduvehicules/src/vehicules/entities/Categorie.java</file>
-            <file>file:/C:/Users/USER/Desktop/3A/java/gestionduvehicules/src/evenements/gui/EvenementsController.java</file>
-            <file>file:/C:/Users/USER/Desktop/3A/java/gestionduvehicules/src/vehicules/intefaces/InterfaceCategorie.java</file>
-            <file>file:/C:/Users/USER/Desktop/3A/java/gestionduvehicules/src/vehicules/services/VehiculesCRUD.java</file>
-            <file>file:/C:/Users/USER/Desktop/3A/java/gestionduvehicules/src/vehicules/gui/front.fxml</file>
-            <file>file:/C:/Users/USER/Desktop/3A/java/gestionduvehicules/src/vehicules/gui/NewFXMain.java</file>
-            <file>file:/C:/Users/USER/Desktop/3A/java/gestionduvehicules/src/vehicules/gui/HomePage.java</file>
-            <file>file:/C:/Users/USER/Desktop/3A/java/gestionduvehicules/src/vehicules/intefaces/InterfaceVehicules.java</file>
-            <file>file:/C:/Users/USER/Desktop/3A/java/gestionduvehicules/src/vehicules/gui/Vehicules.fxml</file>
-            <file>file:/C:/Users/USER/Desktop/3A/java/gestionduvehicules/src/gestionduvehicules/Gestionduvehicules.java</file>
-            <file>file:/C:/Users/USER/Desktop/3A/java/gestionduvehicules/src/vehicules/gui/Categorie.fxml</file>
-            <file>file:/C:/Users/USER/Desktop/3A/java/gestionduvehicules/src/vehicules/services/CategoriesCRUD.java</file>
-            <file>file:/C:/Users/USER/Desktop/3A/java/gestionduvehicules/src/vehicules/gui/VehiculesController.java</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/Details.fxml</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/StatController.java</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/FirstWindow.java</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/stock/services/StockCRUD.java</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/DetailsController.java</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/Stat.fxml</file>
         </group>
     </open-files>
 </project-private>

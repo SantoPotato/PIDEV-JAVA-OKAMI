@@ -30,7 +30,7 @@ public class VehiculesCRUD implements InterfaceVehicules {
 
             String requete1 = "INSERT INTO Vehicules(catv_id,nomvh,dispovh,etatvh,descvh,imagesvh,date) VALUES(?,?,?,?,?,?,STR_TO_Date(?,'%Y-%m-%d'))";
             PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(requete1);
-            pst.setInt(1, r.getCatv_id());
+            pst.setString(1, r.getCatv_id());
             pst.setString(2, r.getNomvh());
             pst.setInt(3, r.getDispovh());
             pst.setString(4, r.getEtatvh());
@@ -60,7 +60,7 @@ public class VehiculesCRUD implements InterfaceVehicules {
             String requete4;
             requete4 = " UPDATE Vehicules SET catv_id=?,nomvh=?,dispovh=?,etatvh=?,descvh=?,imagesvh=?,date=? WHERE id=?" ;
             PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(requete4);
-            pst.setInt(1, r.getCatv_id());
+            pst.setString(1, r.getCatv_id());
             pst.setString(2, r.getNomvh());
             pst.setInt(3, r.getDispovh());
             pst.setString(4, r.getEtatvh());
@@ -111,7 +111,7 @@ ArrayList<Vehicules> myList = new ArrayList();
             ResultSet rs = st.executeQuery(requete);
      
               while (rs.next()) {
-           Vehicules r = new Vehicules(rs.getInt("id"), rs.getInt("catv_id"), rs.getString("nomvh"), rs.getInt("dispovh"),rs.getString("etatvh"), rs.getString("imagesvh"), rs.getString("descvh"), rs.getString("date"));
+           Vehicules r = new Vehicules(rs.getInt("id"), rs.getString("catv_id"), rs.getString("nomvh"), rs.getInt("dispovh"),rs.getString("etatvh"), rs.getString("imagesvh"), rs.getString("descvh"), rs.getString("date"));
               myList.add(r);
             }
         } catch (SQLException ex) {

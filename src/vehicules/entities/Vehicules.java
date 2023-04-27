@@ -15,7 +15,7 @@ import javafx.util.Callback;
 
 public class Vehicules {
     private int id;
-    private int catv_id;
+    private String catv_id;
     private String nomvh;
     private int dispovh;
     private String etatvh;
@@ -23,7 +23,7 @@ public class Vehicules {
     private String imagesvh;
     private String date;
 
-    public Vehicules(int id, int catv_id, String nomvh, int dispovh, String etatvh, String descvh, String imagesvh, String date) {
+    public Vehicules(int id, String catv_id, String nomvh, int dispovh, String etatvh, String descvh, String imagesvh, String date) {
         this.id = id;
         this.catv_id = catv_id;
         this.nomvh = nomvh;
@@ -34,7 +34,7 @@ public class Vehicules {
         this.date = date;
     }
 
-    public Vehicules(int catv_id, String nomvh, int dispovh, String etatvh, String descvh, String imagesvh, String date) {
+    public Vehicules(String catv_id, String nomvh, int dispovh, String etatvh, String descvh, String imagesvh, String date) {
         this.catv_id = catv_id;
         this.nomvh = nomvh;
         this.dispovh = dispovh;
@@ -55,11 +55,11 @@ public class Vehicules {
         this.id = id;
     }
 
-    public int getCatv_id() {
+    public String getCatv_id() {
         return catv_id;
     }
 
-    public void setCatv_id(int catv_id) {
+    public void setCatv_id(String catv_id) {
         this.catv_id = catv_id;
     }
 

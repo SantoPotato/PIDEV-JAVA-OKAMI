@@ -26,7 +26,7 @@ public class NewFXMain extends Application {
     public void start(Stage primaryStage) {
             Parent root= null;
         try {
-            root = FXMLLoader.load(getClass().getResource("Categorie.fxml"));//Categorie Vehicules
+            root = FXMLLoader.load(getClass().getResource("Vehicules.fxml"));//Categorie Vehicules
             Scene scene = new Scene(root);
             primaryStage.setTitle("Ajout d'une vehicules");
             primaryStage.setScene(scene);

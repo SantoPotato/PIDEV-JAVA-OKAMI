@@ -48,6 +48,7 @@ import java.util.Properties;
 //import javax.mail.internet.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -106,7 +107,7 @@ public class VehiculesController implements Initializable {
     @FXML
     private TextArea tfet;
     @FXML
-    private TextArea tfcat;
+    private ComboBox<?> tfcat;
     @FXML
     private Label etdispo;
     @FXML
@@ -146,7 +147,7 @@ public class VehiculesController implements Initializable {
             Statement st = MyConnection.getInstance().getCnx().createStatement();
             ResultSet rs = st.executeQuery(requete);
             while (rs.next()) {
-     Vehicules r = new Vehicules(rs.getInt("id"), rs.getInt("catv_id"), rs.getString("nomvh"), rs.getInt("dispovh"),rs.getString("etatvh"), rs.getString("imagesvh"), rs.getString("descvh"), rs.getString("date"));
+     Vehicules r = new Vehicules(rs.getInt("id"), rs.getString("catv_id"), rs.getString("nomvh"), rs.getInt("dispovh"),rs.getString("etatvh"), rs.getString("imagesvh"), rs.getString("descvh"), rs.getString("date"));
      data.add(r);
             }
         } catch (SQLException ex) {
@@ -237,7 +238,8 @@ private void addevn(ActionEvent event) {
         }
        
         // Récupérer les valeurs des champs
-        int catv_id = Integer.parseInt(tfcat.getText());
+        String catv_id = tfcat.getValue().toString();
+        System.out.println("The selected value is: " + catv_id);
         String nomvh = tftitre.getText();
         int dispovh = Integer.parseInt(tfdispo.getText());
         String etatvh =tfet.getText();
@@ -297,7 +299,7 @@ private void addevn(ActionEvent event) {
             }
 
             // Récupérer les nouvelles valeurs
-         int catv_id = Integer.parseInt(tfcat.getText());
+         String catv_id = tfcat.getValue().toString();
         String nom = tftitre.getText();
         int dispovh = Integer.parseInt(tfdispo.getText());
         String etatvh =tfet.getText();
@@ -360,7 +362,7 @@ private void addevn(ActionEvent event) {
          Vehicules vehicules = tableEvenements.getSelectionModel().getSelectedItem();
         if (vehicules != null) {
         tfnom.setText(vehicules.getNomvh());
-        tfcat.setText(Integer.toString(vehicules.getCatv_id())); 
+       // tfcat.setText(String.toString(vehicules.getCatv_id())); 
         tfdispo.setText(Integer.toString(vehicules.getDispovh()));
         tfet.setText(vehicules.getEtatvh());
         tfdescription.setText(vehicules.getDescvh());
@@ -372,7 +374,7 @@ private void addevn(ActionEvent event) {
         } else {
            
             tfnom.setText("");
-            tfcat.setText("");
+         //   tfcat.setText("");
             tfdispo.setText("");
             tfet.setText("");
             tfdescription.setText("");
