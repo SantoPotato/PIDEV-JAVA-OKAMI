@@ -20,9 +20,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import entities.RendezvousType;
+import java.io.FileInputStream;
+import java.util.Locale;
+import java.util.Properties;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import services.HistoriqueCRUD;
 import services.RendezvousTypeCRUD;
+import utils.HistoriqueMenuItem;
 
 /**
  * FXML Controller class
@@ -30,6 +36,8 @@ import services.RendezvousTypeCRUD;
  * @author
  */
 public class RendezvousTypeIndexController implements Initializable {
+
+    RendezvousTypeCRUD rc = new RendezvousTypeCRUD();
 
     @FXML
     private MenuItem buttonRendezvous;
@@ -53,8 +61,20 @@ public class RendezvousTypeIndexController implements Initializable {
     private TableColumn<RendezvousType, String> columnNom;
     @FXML
     private MenuItem buttonRendezvousStatistique;
-
-    RendezvousTypeCRUD rc = new RendezvousTypeCRUD();
+    @FXML
+    private MenuButton historique;
+    @FXML
+    private MenuItem buttonRendezvousCalendrier;
+    @FXML
+    private MenuButton menuLanguage;
+    @FXML
+    private MenuItem menuEnglish;
+    @FXML
+    private MenuItem menuFrench;
+    @FXML
+    private Label labelType;
+    @FXML
+    private MenuItem menuJapanese;
 
     /**
      * Initializes the controller class.
@@ -69,6 +89,13 @@ public class RendezvousTypeIndexController implements Initializable {
         tableviewRendezvousType.setItems(FXCollections.observableArrayList(rc.showAll()));
 
         columnNom.setCellValueFactory(typeRowData -> new SimpleObjectProperty<>(typeRowData.getValue().getType()));
+
+        HistoriqueCRUD hc = new HistoriqueCRUD();
+        hc.showAll().forEach(item -> {
+            historique.getItems().add(new HistoriqueMenuItem(item));
+        });
+
+        changeLanguage(Locale.getDefault().toString());
 
     }
 
@@ -158,6 +185,53 @@ public class RendezvousTypeIndexController implements Initializable {
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void redirectRendezvousCalendrier(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousCalendar.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void changeLanguageEnglish(ActionEvent event) {
+        changeLanguage("en");
+    }
+
+    @FXML
+    private void changeLanguageFrench(ActionEvent event) {
+        changeLanguage("fr");
+    }
+
+    @FXML
+    private void changeLanguageJapanese(ActionEvent event) {
+        changeLanguage("jp");
+    }
+
+    private void changeLanguage(String lang) {
+        Locale.setDefault(new Locale(lang));
+        Properties props = new Properties();
+        try {
+            props.load(new FileInputStream("src/app/localisation/ui_" + lang + ".properties"));
+            labelType.setText(props.getProperty("labelRendezvousType"));
+            columnNom.setText(props.getProperty("columnRendezvousTypeName"));
+            buttonSearch.setText(props.getProperty("buttonSearch"));
+            buttonAdd.setText(props.getProperty("buttonAdd"));
+            buttonUpdate.setText(props.getProperty("buttonUpdate"));
+            buttonDelete.setText(props.getProperty("buttonDelete"));
+            buttonRendezvous.setText(props.getProperty("menuRendezvous"));
+            buttonRendezvousType.setText(props.getProperty("menuRendezvousType"));
+            buttonRendezvousStatistique.setText(props.getProperty("menuStats"));
+            buttonRendezvousCalendrier.setText(props.getProperty("menuCalendar"));
+            menuLanguage.setText(props.getProperty("Language"));
+        } catch (IOException e) {
+            System.out.println(e);
         }
     }
 

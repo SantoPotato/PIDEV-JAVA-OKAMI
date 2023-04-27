@@ -4,6 +4,7 @@
  */
 package app.controller;
 
+import com.jfoenix.controls.JFXTimePicker;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -21,17 +22,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import entities.Rendezvous;
 import entities.RendezvousType;
 import entities.Salle;
 import entities.User;
+import java.io.FileInputStream;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.util.Properties;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import jfxtras.scene.control.LocalDateTimeTextField;
 import services.HistoriqueCRUD;
 import services.RendezvousCRUD;
 import utils.ConnectionDB;
@@ -58,9 +64,9 @@ public class RendezvousAddController implements Initializable {
     @FXML
     private ListView<User> listViewUser;
     @FXML
-    private DatePicker dateStart;
+    private LocalDateTimeTextField dateStart;
     @FXML
-    private DatePicker dateEnd;
+    private JFXTimePicker dateEnd;
     @FXML
     private Button buttonIndex;
     @FXML
@@ -77,6 +83,30 @@ public class RendezvousAddController implements Initializable {
     private Label errorSalle;
     @FXML
     private Label errorUsers;
+    @FXML
+    private MenuItem buttonRendezvousCalendrier;
+    @FXML
+    private MenuButton menuLanguage;
+    @FXML
+    private MenuItem menuEnglish;
+    @FXML
+    private MenuItem menuFrench;
+    @FXML
+    private Label labelAdd;
+    @FXML
+    private Label labelDate;
+    @FXML
+    private Label labelDuree;
+    @FXML
+    private Label labelType;
+    @FXML
+    private Label labelSalle;
+    @FXML
+    private Label labelUsers;
+    @FXML
+    private Label labelDescription;
+    @FXML
+    private MenuItem menuJapanese;
 
     /**
      * Initializes the controller class.
@@ -113,6 +143,12 @@ public class RendezvousAddController implements Initializable {
         Salle.setItems(FXCollections.observableArrayList(getSalles(c)));
         Type.setItems(FXCollections.observableArrayList(getTypes(c)));
 
+        dateStart.setLocale(Locale.FRENCH);
+        dateStart.setDateTimeFormatter(DateTimeFormatter.ofPattern("EEEE d MMMM yyyy à H:mm", Locale.FRENCH));
+        dateEnd.set24HourView(true);
+
+        changeLanguage(Locale.getDefault().toString());
+
     }
 
     @FXML
@@ -125,16 +161,16 @@ public class RendezvousAddController implements Initializable {
         LocalDateTime daterv = null;
         LocalDateTime endat = null;
 
-        if (dateStart.getValue() == null) {
+        if (dateStart.getLocalDateTime() == null) {
             errorDateStart.setText("Une date est requise");
             check++;
         } else {
-            daterv = dateStart.getValue().atStartOfDay();
+            daterv = dateStart.getLocalDateTime();
 
             if (dateEnd.getValue() == null) {
                 endat = daterv.plusMinutes(30);
             } else {
-                endat = dateEnd.getValue().atStartOfDay();
+                endat = daterv.plusHours(dateEnd.getValue().getHour()).plusMinutes(dateEnd.getValue().getMinute());
             }
 
             if (daterv.isBefore(LocalDateTime.now())) {
@@ -327,6 +363,55 @@ public class RendezvousAddController implements Initializable {
     @FXML
     private void redirectBack(ActionEvent event) {
         redirectRendezvous(event);
+    }
+
+    @FXML
+    private void redirectRendezvousCalendrier(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousCalendar.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void changeLanguageEnglish(ActionEvent event) {
+        changeLanguage("en");
+    }
+
+    @FXML
+    private void changeLanguageFrench(ActionEvent event) {
+        changeLanguage("fr");
+    }
+
+    @FXML
+    private void changeLanguageJapanese(ActionEvent event) {
+        changeLanguage("jp");
+    }
+
+    private void changeLanguage(String lang) {
+        Locale.setDefault(new Locale(lang));
+        Properties props = new Properties();
+        try {
+            props.load(new FileInputStream("src/app/localisation/ui_" + lang + ".properties"));
+            labelAdd.setText(props.getProperty("labelRendezvousAdd"));
+            labelDescription.setText(props.getProperty("labelRendezvousAddDescription"));
+            labelDate.setText(props.getProperty("columnRendezvousDateStart"));
+            labelDuree.setText(props.getProperty("columnRendezvousDateEnd"));
+            labelType.setText(props.getProperty("columnRendezvousDateType"));
+            labelSalle.setText(props.getProperty("columnRendezvousSalle"));
+            labelUsers.setText(props.getProperty("columnRendezvousUsers"));
+            buttonAdd.setText(props.getProperty("buttonAdd"));
+            buttonRendezvous.setText(props.getProperty("menuRendezvous"));
+            buttonRendezvousType.setText(props.getProperty("menuRendezvousType"));
+            buttonRendezvousStatistique.setText(props.getProperty("menuStats"));
+            buttonRendezvousCalendrier.setText(props.getProperty("menuCalendar"));
+            menuLanguage.setText(props.getProperty("Language"));
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 
 }

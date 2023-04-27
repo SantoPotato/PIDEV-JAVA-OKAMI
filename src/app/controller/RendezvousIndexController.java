@@ -28,7 +28,10 @@ import entities.Rendezvous;
 import entities.RendezvousType;
 import entities.Salle;
 import entities.User;
+import java.io.FileInputStream;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.util.Properties;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import services.HistoriqueCRUD;
@@ -40,6 +43,8 @@ import services.RendezvousCRUD;
  * @author ilyes
  */
 public class RendezvousIndexController implements Initializable {
+
+    RendezvousCRUD rc = new RendezvousCRUD();
 
     @FXML
     private Button buttonIndex;
@@ -73,8 +78,16 @@ public class RendezvousIndexController implements Initializable {
     private MenuItem buttonRendezvousStatistique;
     @FXML
     private MenuButton historique;
-
-    RendezvousCRUD rc = new RendezvousCRUD();
+    @FXML
+    private MenuItem buttonRendezvousCalendrier;
+    @FXML
+    private MenuButton menuLanguage;
+    @FXML
+    private MenuItem menuEnglish;
+    @FXML
+    private MenuItem menuFrench;
+    @FXML
+    private MenuItem menuJapanese;
 
     /**
      * Initializes the controller class.
@@ -93,7 +106,7 @@ public class RendezvousIndexController implements Initializable {
         tableviewRendezvous.setItems(FXCollections.observableArrayList(rc.showAll()));
 
         columnDateStart.setCellValueFactory(dateStartRowData -> new SimpleObjectProperty<>(
-                dateStartRowData.getValue().getDaterv().format(DateTimeFormatter.ofPattern("EEEE d MMMM yyyy à h:mm")))
+                dateStartRowData.getValue().getDaterv().format(DateTimeFormatter.ofPattern("EEEE d MMMM yyyy à H:mm", Locale.FRENCH)))
         );
         columnDateEnd.setCellValueFactory(dateEndRowData -> new SimpleObjectProperty<>(dateEndRowData.getValue().showDuree()));
 
@@ -113,6 +126,8 @@ public class RendezvousIndexController implements Initializable {
         hc.showAll().forEach(item -> {
             historique.getItems().add(new HistoriqueMenuItem(item));
         });
+
+        changeLanguage(Locale.getDefault().toString());
 
     }
 
@@ -213,6 +228,56 @@ public class RendezvousIndexController implements Initializable {
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void redirectRendezvousCalendrier(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousCalendar.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void changeLanguageEnglish(ActionEvent event) {
+        changeLanguage("en");
+    }
+
+    @FXML
+    private void changeLanguageFrench(ActionEvent event) {
+        changeLanguage("fr");
+    }
+
+    @FXML
+    private void changeLanguageJapanese(ActionEvent event) {
+        changeLanguage("jp");
+    }
+
+    private void changeLanguage(String lang) {
+        Locale.setDefault(new Locale(lang));
+        Properties props = new Properties();
+        try {
+            props.load(new FileInputStream("src/app/localisation/ui_" + lang + ".properties"));
+            columnDateStart.setText(props.getProperty("columnRendezvousDateStart"));
+            columnDateEnd.setText(props.getProperty("columnRendezvousDateEnd"));
+            columnSalle.setText(props.getProperty("columnRendezvousSalle"));
+            columnType.setText(props.getProperty("columnRendezvousType"));
+            columnUsers.setText(props.getProperty("columnRendezvousUsers"));
+            buttonSearch.setText(props.getProperty("buttonSearch"));
+            buttonAdd.setText(props.getProperty("buttonAdd"));
+            buttonUpdate.setText(props.getProperty("buttonUpdate"));
+            buttonDelete.setText(props.getProperty("buttonDelete"));
+            buttonRendezvous.setText(props.getProperty("menuRendezvous"));
+            buttonRendezvousType.setText(props.getProperty("menuRendezvousType"));
+            buttonRendezvousStatistique.setText(props.getProperty("menuStats"));
+            buttonRendezvousCalendrier.setText(props.getProperty("menuCalendar"));
+            menuLanguage.setText(props.getProperty("Language"));
+        } catch (IOException e) {
+            System.out.println(e);
         }
     }
 

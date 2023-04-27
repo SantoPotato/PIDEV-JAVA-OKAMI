@@ -4,6 +4,7 @@
  */
 package app.controller;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -11,7 +12,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -24,6 +27,8 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
@@ -32,9 +37,12 @@ import services.RendezvousCRUD;
 /**
  * FXML Controller class
  *
- * @author 
+ * @author
  */
 public class RendezvousStatsController implements Initializable {
+
+    List<String> Months = new ArrayList<>();
+    RendezvousCRUD rc = new RendezvousCRUD();
 
     @FXML
     private Button buttonIndex;
@@ -50,9 +58,18 @@ public class RendezvousStatsController implements Initializable {
     private BarChart<String, Integer> statsRendezvous;
     @FXML
     private Spinner<Integer> yearSelected;
-
-    List<String> Months = new ArrayList<>(Arrays.asList("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"));
-    RendezvousCRUD rc = new RendezvousCRUD();
+    @FXML
+    private MenuItem buttonRendezvousCalendrier;
+    @FXML
+    private MenuButton menuLanguage;
+    @FXML
+    private MenuItem menuEnglish;
+    @FXML
+    private MenuItem menuFrench;
+    @FXML
+    private Label labelStats;
+    @FXML
+    private MenuItem menuJapanese;
 
     /**
      * Initializes the controller class.
@@ -79,7 +96,7 @@ public class RendezvousStatsController implements Initializable {
             setDataBarChart(rc, yearSelected.getValue());
         });
 
-        setDataBarChart(rc, now.getYear());
+        changeLanguage(Locale.getDefault().toString());
     }
 
     @FXML
@@ -129,6 +146,52 @@ public class RendezvousStatsController implements Initializable {
         }
         statsRendezvous.getData().clear();
         statsRendezvous.getData().add(series);
+    }
+
+    @FXML
+    private void redirectRendezvousCalendrier(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousCalendar.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void changeLanguageEnglish(ActionEvent event) {
+        changeLanguage("en");
+    }
+
+    @FXML
+    private void changeLanguageFrench(ActionEvent event) {
+        changeLanguage("fr");
+    }
+
+    @FXML
+    private void changeLanguageJapanese(ActionEvent event) {
+        changeLanguage("jp");
+    }
+
+    private void changeLanguage(String lang) {
+        Locale.setDefault(new Locale(lang));
+        Properties props = new Properties();
+        try {
+            props.load(new FileInputStream("src/app/localisation/ui_" + lang + ".properties"));
+            Months = Arrays.asList(props.getProperty("barchartMonths").split(","));
+            setDataBarChart(rc, yearSelected.getValue());
+            statsRendezvousUser.setTitle(props.getProperty("piechartTitle"));
+            statsRendezvous.setTitle(props.getProperty("barchartTitle"));
+            labelStats.setText(props.getProperty("labelRendezvousStats"));
+            buttonRendezvous.setText(props.getProperty("menuRendezvous"));
+            buttonRendezvousType.setText(props.getProperty("menuRendezvousType"));
+            buttonRendezvousStatistique.setText(props.getProperty("menuStats"));
+            buttonRendezvousCalendrier.setText(props.getProperty("menuCalendar"));
+            menuLanguage.setText(props.getProperty("Language"));
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 
 }

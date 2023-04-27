@@ -3914,3 +3914,75 @@ Text {
   -fx-opacity: 0.85;
   -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 8px, 0.6, 0, 2);
 }
+
+.CalendarPicker { 
+}
+
+.CalendarPickerControlSkin { 
+}
+
+.CalendarPickerControlSkin .weeknumber {
+  visibility: hidden;
+}
+
+.CalendarPickerControlSkin .non-weekend { 
+}
+
+.CalendarPickerControlSkin .weekend { 
+	-fx-text-fill: -fx-accent;
+}
+
+.CalendarPickerControlSkin .day-button { 
+}
+
+/* highlight today */
+.CalendarPickerControlSkin .today { 
+    -fx-color: DARKGRAY; 
+}
+
+.CalendarPickerControlSkin .today-button { 
+    -fx-cursor: hand;
+    -fx-background-color: -color-success-8;
+    -fx-padding: 0 0 0 0;
+}
+
+/* highlight today */
+.CalendarPickerControlSkin .highlight { 
+	-fx-font-weight: bold;
+	-fx-font-style: italic;
+}
+
+.CalendarPicker .ListSpinner { 
+  -fx-background-color: transparent;
+    /*	-fxx-arrow-position:SPLIT; */
+    /*	-fxx-arrow-direction:VERTICAL; */
+    /*	-fxx-value-alignment:CENTER; */
+}
+
+.CalendarTextField {
+}
+
+.LocalDateTimeTextField .icon  {
+  
+}
+
+.CalendarTextFieldSkin .icon  {
+}
+
+.CalendarTextFieldSkin .icon:disabled  {
+}
+
+.CalendarTextFieldSkin_popup {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -color-success-9;
+    -fx-background-insets: 0 0 -1 0,0,1,2;
+    -fx-background-radius: 5,5,4,3;
+    -fx-padding: 0.766667em 0.733333em 0.75em 0.733333em;
+    -fx-text-fill: -color-fg-default;
+}
+
+.CalendarTextFieldSkin_popup .close-icon  {
+  
+}
+
+.CalendarTextFieldSkin_popup .accept-icon  {
+}

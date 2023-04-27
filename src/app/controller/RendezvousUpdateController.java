@@ -28,9 +28,13 @@ import entities.Rendezvous;
 import entities.RendezvousType;
 import entities.Salle;
 import entities.User;
+import java.io.FileInputStream;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Locale;
+import java.util.Properties;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import services.HistoriqueCRUD;
 import services.RendezvousCRUD;
@@ -78,6 +82,30 @@ public class RendezvousUpdateController implements Initializable {
     private Label errorSalle;
     @FXML
     private Label errorUsers;
+    @FXML
+    private MenuItem buttonRendezvousCalendrier;
+    @FXML
+    private MenuButton menuLanguage;
+    @FXML
+    private MenuItem menuEnglish;
+    @FXML
+    private MenuItem menuFrench;
+    @FXML
+    private Label labelUpdate;
+    @FXML
+    private Label labelDescription;
+    @FXML
+    private Label labelDate;
+    @FXML
+    private Label labelDuree;
+    @FXML
+    private Label labelType;
+    @FXML
+    private Label labelSalle;
+    @FXML
+    private Label labelUsers;
+    @FXML
+    private MenuItem menuJapanese;
 
     /**
      * Initializes the controller class.
@@ -114,6 +142,7 @@ public class RendezvousUpdateController implements Initializable {
         Salle.setItems(FXCollections.observableArrayList(getSalles(c)));
         Type.setItems(FXCollections.observableArrayList(getTypes(c)));
 
+        changeLanguage(Locale.getDefault().toString());
     }
 
     @FXML
@@ -204,7 +233,7 @@ public class RendezvousUpdateController implements Initializable {
         Rendezvous r = new Rendezvous(daterv, endat, true, salle, type, users);
         RendezvousCRUD rc = new RendezvousCRUD();
         rc.update(r, id);
-        
+
         HistoriqueCRUD hc = new HistoriqueCRUD();
         hc.add(1, "a mis à jours le rendez-vous '" + String.valueOf(id) + "'");
 
@@ -346,6 +375,54 @@ public class RendezvousUpdateController implements Initializable {
     @FXML
     private void redirectBack(ActionEvent event) {
         redirectRendezvous(event);
+    }
+
+    @FXML
+    private void redirectRendezvousCalendrier(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousCalendar.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void changeLanguageEnglish(ActionEvent event) {
+        changeLanguage("en");
+    }
+
+    @FXML
+    private void changeLanguageFrench(ActionEvent event) {
+        changeLanguage("fr");
+    }
+
+    @FXML
+    private void changeLanguageJapanese(ActionEvent event) {
+        changeLanguage("jp");
+    }
+
+    private void changeLanguage(String lang) {
+        Locale.setDefault(new Locale(lang));
+        Properties props = new Properties();
+        try {
+            props.load(new FileInputStream("src/app/localisation/ui_" + lang + ".properties"));
+            labelUpdate.setText(props.getProperty("labelRendezvousUpdate"));
+            labelDescription.setText(props.getProperty("labelRendezvousUpdateDescription"));
+            labelDate.setText(props.getProperty("columnRendezvousDateStart"));
+            labelDuree.setText(props.getProperty("columnRendezvousDateEnd"));
+            labelType.setText(props.getProperty("columnRendezvousDateType"));
+            labelSalle.setText(props.getProperty("columnRendezvousSalle"));
+            labelUsers.setText(props.getProperty("columnRendezvousUsers"));
+            buttonUpdate.setText(props.getProperty("buttonUpdate"));
+            buttonRendezvous.setText(props.getProperty("menuRendezvous"));
+            buttonRendezvousType.setText(props.getProperty("menuRendezvousType"));
+            buttonRendezvousStatistique.setText(props.getProperty("menuStats"));
+            buttonRendezvousCalendrier.setText(props.getProperty("menuCalendar"));
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 
 }
