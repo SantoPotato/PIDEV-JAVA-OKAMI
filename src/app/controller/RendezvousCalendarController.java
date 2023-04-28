@@ -11,15 +11,12 @@ import com.calendarfx.model.Entry;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -33,17 +30,10 @@ import services.RendezvousCRUD;
 public class RendezvousCalendarController implements Initializable {
 
     @FXML
-    private Button buttonIndex;
-    @FXML
-    private MenuItem buttonRendezvous;
-    @FXML
-    private MenuItem buttonRendezvousType;
-    @FXML
-    private MenuItem buttonRendezvousStatistique;
+    private baseController BaseController;
+    
     @FXML
     private CalendarView calendarView;
-    @FXML
-    private MenuItem buttonRendezvousCalendrier;
     @FXML
     private MenuButton menuLanguage;
     @FXML
@@ -89,50 +79,6 @@ public class RendezvousCalendarController implements Initializable {
     }
 
     @FXML
-    private void redirectRendezvous(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousIndex.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
-    private void redirectRendezvousType(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousTypeIndex.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
-    private void redirectRendezvousStatistique(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousStats.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
-    private void redirectIndex(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Index.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
     private void changeLanguageEnglish(ActionEvent event) {
         changeLanguage("en");
     }
@@ -152,11 +98,9 @@ public class RendezvousCalendarController implements Initializable {
         Properties props = new Properties();
         try {
             props.load(new FileInputStream("src/app/localisation/ui_" + lang + ".properties"));
+            BaseController.renameMenuItems(props);
+            
             labelCalendar.setText(props.getProperty("labelRendezvousCalendar"));
-            buttonRendezvous.setText(props.getProperty("menuRendezvous"));
-            buttonRendezvousType.setText(props.getProperty("menuRendezvousType"));
-            buttonRendezvousStatistique.setText(props.getProperty("menuStats"));
-            buttonRendezvousCalendrier.setText(props.getProperty("menuCalendar"));
             menuLanguage.setText(props.getProperty("Language"));
         } catch (IOException e) {
             System.out.println(e);

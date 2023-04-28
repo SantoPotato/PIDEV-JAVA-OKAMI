@@ -16,7 +16,6 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -49,11 +48,10 @@ public class RendezvousUpdateController implements Initializable {
 
     Connection c;
     int id;
-
+    
     @FXML
-    private MenuItem buttonRendezvous;
-    @FXML
-    private MenuItem buttonRendezvousType;
+    private baseController BaseController;
+    
     @FXML
     private DatePicker dateStart;
     @FXML
@@ -64,10 +62,6 @@ public class RendezvousUpdateController implements Initializable {
     private ComboBox<Salle> Salle;
     @FXML
     private ListView<User> listViewUser;
-    @FXML
-    private Button buttonIndex;
-    @FXML
-    private MenuItem buttonRendezvousStatistique;
     @FXML
     private Button buttonBack;
     @FXML
@@ -82,8 +76,6 @@ public class RendezvousUpdateController implements Initializable {
     private Label errorSalle;
     @FXML
     private Label errorUsers;
-    @FXML
-    private MenuItem buttonRendezvousCalendrier;
     @FXML
     private MenuButton menuLanguage;
     @FXML
@@ -143,28 +135,6 @@ public class RendezvousUpdateController implements Initializable {
         Type.setItems(FXCollections.observableArrayList(getTypes(c)));
 
         changeLanguage(Locale.getDefault().toString());
-    }
-
-    @FXML
-    private void redirectRendezvous(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousIndex.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
-    private void redirectRendezvousType(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousTypeIndex.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
     }
 
     @FXML
@@ -237,13 +207,7 @@ public class RendezvousUpdateController implements Initializable {
         HistoriqueCRUD hc = new HistoriqueCRUD();
         hc.add(1, "a mis à jours le rendez-vous '" + String.valueOf(id) + "'");
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousIndex.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        BaseController.redirectToPage("RendezvousIndex");
     }
 
     private Boolean checkDisponibility(Integer Salle_id, LocalDateTime start, LocalDateTime end) {
@@ -350,42 +314,10 @@ public class RendezvousUpdateController implements Initializable {
         return data;
     }
 
-    @FXML
-    private void redirectRendezvousStatistique(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousStats.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
-    private void redirectIndex(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Index.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
+    
     @FXML
     private void redirectBack(ActionEvent event) {
-        redirectRendezvous(event);
-    }
-
-    @FXML
-    private void redirectRendezvousCalendrier(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousCalendar.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        BaseController.redirectToPage("RendezvousIndex");
     }
 
     @FXML
@@ -408,6 +340,8 @@ public class RendezvousUpdateController implements Initializable {
         Properties props = new Properties();
         try {
             props.load(new FileInputStream("src/app/localisation/ui_" + lang + ".properties"));
+            BaseController.renameMenuItems(props);
+            
             labelUpdate.setText(props.getProperty("labelRendezvousUpdate"));
             labelDescription.setText(props.getProperty("labelRendezvousUpdateDescription"));
             labelDate.setText(props.getProperty("columnRendezvousDateStart"));
@@ -416,10 +350,7 @@ public class RendezvousUpdateController implements Initializable {
             labelSalle.setText(props.getProperty("columnRendezvousSalle"));
             labelUsers.setText(props.getProperty("columnRendezvousUsers"));
             buttonUpdate.setText(props.getProperty("buttonUpdate"));
-            buttonRendezvous.setText(props.getProperty("menuRendezvous"));
-            buttonRendezvousType.setText(props.getProperty("menuRendezvousType"));
-            buttonRendezvousStatistique.setText(props.getProperty("menuStats"));
-            buttonRendezvousCalendrier.setText(props.getProperty("menuCalendar"));
+            menuLanguage.setText(props.getProperty("Language"));
         } catch (IOException e) {
             System.out.println(e);
         }

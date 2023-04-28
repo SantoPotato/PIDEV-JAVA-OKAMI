@@ -47,11 +47,8 @@ public class RendezvousIndexController implements Initializable {
     RendezvousCRUD rc = new RendezvousCRUD();
 
     @FXML
-    private Button buttonIndex;
-    @FXML
-    private MenuItem buttonRendezvous;
-    @FXML
-    private MenuItem buttonRendezvousType;
+    private baseController BaseController;
+
     @FXML
     private TableView<Rendezvous> tableviewRendezvous;
     @FXML
@@ -75,19 +72,15 @@ public class RendezvousIndexController implements Initializable {
     @FXML
     private Button buttonDelete;
     @FXML
-    private MenuItem buttonRendezvousStatistique;
-    @FXML
     private MenuButton historique;
-    @FXML
-    private MenuItem buttonRendezvousCalendrier;
     @FXML
     private MenuButton menuLanguage;
     @FXML
-    private MenuItem menuEnglish;
+    private MenuItem menuEnglish1;
     @FXML
-    private MenuItem menuFrench;
+    private MenuItem menuFrench1;
     @FXML
-    private MenuItem menuJapanese;
+    private MenuItem menuJapanese1;
 
     /**
      * Initializes the controller class.
@@ -133,23 +126,7 @@ public class RendezvousIndexController implements Initializable {
 
     @FXML
     private void rendezvousAdd(ActionEvent event) {
-
-        try {
-            // Code below switch scenes
-            // The second one seems better, I guess, so I'll stick with it
-
-//            Parent root = FXMLLoader.load(getClass().getResource("../gui/RendezvousAdd.fxml"));
-//            Scene scene = new Scene(root);
-//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            stage.setScene(scene);
-//            stage.show();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousAdd.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-
+        BaseController.redirectToPage("RendezvousAdd");
     }
 
     @FXML
@@ -166,7 +143,7 @@ public class RendezvousIndexController implements Initializable {
 
                 c.setRendezvous(r);
 
-                buttonIndex.getScene().setRoot(root);
+                tableviewRendezvous.getScene().setRoot(root);
 
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
@@ -189,17 +166,6 @@ public class RendezvousIndexController implements Initializable {
     }
 
     @FXML
-    private void redirectRendezvousType(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousTypeIndex.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
     private void rendezvousTextSearch(ActionEvent event) {
         tableviewRendezvous.setItems(FXCollections.observableArrayList(rc.searchRendezvous(textSearch.getText())));
     }
@@ -207,39 +173,6 @@ public class RendezvousIndexController implements Initializable {
     @FXML
     private void rendezvousButtonSearch(ActionEvent event) {
         tableviewRendezvous.setItems(FXCollections.observableArrayList(rc.searchRendezvous(textSearch.getText())));
-    }
-
-    @FXML
-    private void redirectRendezvousStatistique(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousStats.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
-    private void redirectIndex(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Index.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
-    private void redirectRendezvousCalendrier(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousCalendar.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
     }
 
     @FXML
@@ -262,6 +195,8 @@ public class RendezvousIndexController implements Initializable {
         Properties props = new Properties();
         try {
             props.load(new FileInputStream("src/app/localisation/ui_" + lang + ".properties"));
+            BaseController.renameMenuItems(props);
+
             columnDateStart.setText(props.getProperty("columnRendezvousDateStart"));
             columnDateEnd.setText(props.getProperty("columnRendezvousDateEnd"));
             columnSalle.setText(props.getProperty("columnRendezvousSalle"));
@@ -271,10 +206,6 @@ public class RendezvousIndexController implements Initializable {
             buttonAdd.setText(props.getProperty("buttonAdd"));
             buttonUpdate.setText(props.getProperty("buttonUpdate"));
             buttonDelete.setText(props.getProperty("buttonDelete"));
-            buttonRendezvous.setText(props.getProperty("menuRendezvous"));
-            buttonRendezvousType.setText(props.getProperty("menuRendezvousType"));
-            buttonRendezvousStatistique.setText(props.getProperty("menuStats"));
-            buttonRendezvousCalendrier.setText(props.getProperty("menuCalendar"));
             menuLanguage.setText(props.getProperty("Language"));
         } catch (IOException e) {
             System.out.println(e);

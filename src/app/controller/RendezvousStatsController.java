@@ -21,12 +21,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -43,23 +41,16 @@ public class RendezvousStatsController implements Initializable {
 
     List<String> Months = new ArrayList<>();
     RendezvousCRUD rc = new RendezvousCRUD();
+    
+    @FXML
+    private baseController BaseController;
 
-    @FXML
-    private Button buttonIndex;
-    @FXML
-    private MenuItem buttonRendezvous;
-    @FXML
-    private MenuItem buttonRendezvousType;
-    @FXML
-    private MenuItem buttonRendezvousStatistique;
     @FXML
     private PieChart statsRendezvousUser;
     @FXML
     private BarChart<String, Integer> statsRendezvous;
     @FXML
     private Spinner<Integer> yearSelected;
-    @FXML
-    private MenuItem buttonRendezvousCalendrier;
     @FXML
     private MenuButton menuLanguage;
     @FXML
@@ -99,38 +90,6 @@ public class RendezvousStatsController implements Initializable {
         changeLanguage(Locale.getDefault().toString());
     }
 
-    @FXML
-    private void redirectIndex(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Index.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
-    private void redirectRendezvous(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousIndex.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
-    private void redirectRendezvousType(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousTypeIndex.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
 
     private void setDataBarChart(RendezvousCRUD rc, Integer selectedYear) {
         LocalDateTime start = LocalDateTime.of(selectedYear, 1, 1, 0, 0, 0);
@@ -146,17 +105,6 @@ public class RendezvousStatsController implements Initializable {
         }
         statsRendezvous.getData().clear();
         statsRendezvous.getData().add(series);
-    }
-
-    @FXML
-    private void redirectRendezvousCalendrier(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousCalendar.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
     }
 
     @FXML
@@ -179,15 +127,13 @@ public class RendezvousStatsController implements Initializable {
         Properties props = new Properties();
         try {
             props.load(new FileInputStream("src/app/localisation/ui_" + lang + ".properties"));
+            BaseController.renameMenuItems(props);
+            
             Months = Arrays.asList(props.getProperty("barchartMonths").split(","));
             setDataBarChart(rc, yearSelected.getValue());
             statsRendezvousUser.setTitle(props.getProperty("piechartTitle"));
             statsRendezvous.setTitle(props.getProperty("barchartTitle"));
             labelStats.setText(props.getProperty("labelRendezvousStats"));
-            buttonRendezvous.setText(props.getProperty("menuRendezvous"));
-            buttonRendezvousType.setText(props.getProperty("menuRendezvousType"));
-            buttonRendezvousStatistique.setText(props.getProperty("menuStats"));
-            buttonRendezvousCalendrier.setText(props.getProperty("menuCalendar"));
             menuLanguage.setText(props.getProperty("Language"));
         } catch (IOException e) {
             System.out.println(e);
