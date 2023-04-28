@@ -55,9 +55,9 @@
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints maxHeight="-Infinity" prefHeight="80.0" valignment="CENTER" vgrow="ALWAYS" />
-                              <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="-Infinity" prefHeight="80.0" valignment="CENTER" vgrow="ALWAYS" />
+                              <RowConstraints maxHeight="412.0000122070312" minHeight="396.0" prefHeight="396.0" valignment="CENTER" vgrow="ALWAYS" />
+                              <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="45.0" valignment="CENTER" vgrow="ALWAYS" />
+                              <RowConstraints maxHeight="71.4000244140625" minHeight="49.0" prefHeight="49.0" valignment="CENTER" vgrow="ALWAYS" />
                            </rowConstraints>
                            <children>
                               <TableView fx:id="tableviewSalle" style="-fx-background-color: none;" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">

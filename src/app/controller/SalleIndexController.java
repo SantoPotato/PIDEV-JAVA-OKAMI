@@ -8,6 +8,8 @@ package app.controller;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -178,44 +180,89 @@ private void DeleteSalle(ActionEvent event) {
 
 
 private Document createPDF(List<Salle> salleList) throws DocumentException, FileNotFoundException {
-    Document document = new Document();
-    PdfWriter.getInstance(document, new FileOutputStream("Salles.pdf"));
-    document.open();
-    // Add content to the PDF document
-    document.add(new Paragraph("Liste des salles : \n"));
+    // Créer un nouveau document PDF
+Document document = new Document();
+PdfWriter.getInstance(document, new FileOutputStream("salleList.pdf"));
+document.open();
 
-    // create table
-    PdfPTable table = new PdfPTable(3); // 3 columns
-    table.setWidthPercentage(100);
 
-   // add header row with green background color
-PdfPCell cell1 = new PdfPCell(new Paragraph("Numéro"));
-cell1.setBackgroundColor(BaseColor.GREEN);
-PdfPCell cell2 = new PdfPCell(new Paragraph("Étage"));
-cell2.setBackgroundColor(BaseColor.GREEN);
-PdfPCell cell3 = new PdfPCell(new Paragraph("Type"));
-cell3.setBackgroundColor(BaseColor.GREEN);
-table.addCell(cell1);
-table.addCell(cell2);
-table.addCell(cell3);
-
-// add data rows with grey background color
-for(Salle salle : salleList){
-    PdfPCell cell4 = new PdfPCell(new Paragraph(Integer.toString(salle.getNumsa())));
-    PdfPCell cell5 = new PdfPCell(new Paragraph(Integer.toString(salle.getEtagesa())));
-    PdfPCell cell6 = new PdfPCell(new Paragraph(salle.getTypesa()));
-    cell4.setBackgroundColor(BaseColor.LIGHT_GRAY);
-    cell5.setBackgroundColor(BaseColor.LIGHT_GRAY);
-    cell6.setBackgroundColor(BaseColor.LIGHT_GRAY);
-    table.addCell(cell4);
-    table.addCell(cell5);
-    table.addCell(cell6);
+// Ajouter une image
+try {
+    Image image = Image.getInstance("C:\\Users\\Oussama\\Downloads\\PIDEV-JAVA-OKAMI-Gestion_Salle\\PIDEV-JAVA-OKAMI-Gestion_Salle\\src\\app\\images\\hh.png");
+    image.scaleToFit(150, 150); // Redimensionner l'image
+    image.setAbsolutePosition(document.left(), document.bottom()); // Positionner l'image en bas à gauche
+    document.add(image);
+} catch (IOException e) {
+    e.printStackTrace();
 }
 
 
 
-    document.add(table);
-    document.close();
+// Ajouter un titre
+Paragraph title = new Paragraph("Liste des Salles\n\n");
+title.setAlignment(Element.ALIGN_CENTER);
+document.add(title);
+
+// Ajouter une table avec les données de la liste des salles
+PdfPTable table = new PdfPTable(3);
+table.setWidthPercentage(100);
+table.setSpacingBefore(10f);
+table.setSpacingAfter(10f);
+
+// Ajouter les en-têtes de colonnes
+PdfPCell numsa = new PdfPCell(new Paragraph("Numero Salle"));
+numsa.setBorderColor(BaseColor.BLACK);
+numsa.setPaddingLeft(10);
+numsa.setHorizontalAlignment(Element.ALIGN_CENTER);
+numsa.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+PdfPCell etagesa = new PdfPCell(new Paragraph("Etage"));
+etagesa.setBorderColor(BaseColor.BLACK);
+etagesa.setPaddingLeft(10);
+etagesa.setHorizontalAlignment(Element.ALIGN_CENTER);
+etagesa.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+PdfPCell typesa = new PdfPCell(new Paragraph("Type"));
+typesa.setBorderColor(BaseColor.BLACK);
+typesa.setPaddingLeft(10);
+typesa.setHorizontalAlignment(Element.ALIGN_CENTER);
+typesa.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+table.addCell(numsa);
+table.addCell(etagesa);
+table.addCell(typesa);
+
+// Ajouter les données de la liste des salles à la table
+for (Salle salle : salleList) {
+    PdfPCell numsaValue = new PdfPCell(new Paragraph(String.valueOf(salle.getNumsa())));
+    numsaValue.setBorderColor(BaseColor.BLACK);
+    numsaValue.setPaddingLeft(10);
+    numsaValue.setHorizontalAlignment(Element.ALIGN_CENTER);
+    numsaValue.setVerticalAlignment(Element.ALIGN_MIDDLE);
+    
+    PdfPCell etagesaValue = new PdfPCell(new Paragraph(String.valueOf(salle.getEtagesa())));
+    etagesaValue.setBorderColor(BaseColor.BLACK);
+    etagesaValue.setPaddingLeft(10);
+    etagesaValue.setHorizontalAlignment(Element.ALIGN_CENTER);
+    etagesaValue.setVerticalAlignment(Element.ALIGN_MIDDLE);
+    
+    PdfPCell typesaValue = new PdfPCell(new Paragraph(salle.getTypesa()));
+    typesaValue.setBorderColor(BaseColor.BLACK);
+    typesaValue.setPaddingLeft(10);
+    typesaValue.setHorizontalAlignment(Element.ALIGN_CENTER);
+    typesaValue.setVerticalAlignment(Element.ALIGN_MIDDLE);
+    
+    table.addCell(numsaValue);
+    table.addCell(etagesaValue);
+    table.addCell(typesaValue);
+}
+
+// Ajouter la table au document
+document.add(table);
+
+// Fermer le document
+document.close();
+
     return document;
 }
 
@@ -232,7 +279,6 @@ for(Salle salle : salleList){
     }
     }
     
-    @FXML
 private void handleButtonGeneratePDF(ActionEvent event) {
     generatePDF(event);
 }

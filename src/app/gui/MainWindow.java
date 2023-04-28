@@ -1,3 +1,4 @@
+
 /*
  * Property of Okami�
  * Not destined for commercial use
