@@ -6,7 +6,6 @@
 package Services;
 
 import Entities.Categoriesequipement;
-import Interfaces.InterfaceCategorie;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

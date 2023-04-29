@@ -8,7 +8,6 @@ package Services;
 
 import Entities.Categoriesequipement;
 import Entities.Equipement;
-import Interfaces.InterfaceCRUD;
 import utils.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
