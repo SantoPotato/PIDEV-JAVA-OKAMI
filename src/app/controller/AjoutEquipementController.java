@@ -18,21 +18,18 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import Entities.Equipement;
-import Entities.Categoriesequipement;
-import Services.EquipementCRUD;
-import Services.CategoriesEquipementCRUD;
+import entities.Equipement;
+import entities.Categoriesequipement;
+import services.EquipementCRUD;
+import services.CategoriesEquipementCRUD;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
-import java.sql.SQLException;
 import java.util.Optional;
 import java.util.Random;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
-import utils.MyConnection;
+import utils.ConnectionDB;
 
 
 /**
@@ -76,7 +73,7 @@ public class AjoutEquipementController implements Initializable {
         // TODO
         Categoriesequipement ce= new Categoriesequipement();
         CategoriesEquipementCRUD ct= new CategoriesEquipementCRUD ();
-         c = MyConnection.getInstance().getConn();
+         c = ConnectionDB.getInstance().getConnection();
         Categorie.setItems(FXCollections.observableArrayList(ct.afficherCategorie()));
        
         

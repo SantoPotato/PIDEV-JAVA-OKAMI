@@ -3,47 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package entities;
 
-import java.io.Serializable;
 import java.util.Collection;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author SNAKE 2-16
  */
-@Entity
-@Table(name = "categoriesequipement")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Categoriesequipement.findAll", query = "SELECT c FROM Categoriesequipement c")
-    , @NamedQuery(name = "Categoriesequipement.findById", query = "SELECT c FROM Categoriesequipement c WHERE c.id = :id")
-    , @NamedQuery(name = "Categoriesequipement.findByNomcate", query = "SELECT c FROM Categoriesequipement c WHERE c.nomcate = :nomcate")})
-public class Categoriesequipement implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
+public class Categoriesequipement {
+    
     private Integer id;
-    @Basic(optional = false)
-    @Column(name = "nomcate")
     private String nomcate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoriesequipement")
     private Collection<Equipement> equipementCollection;
 
     public Categoriesequipement() {
@@ -78,7 +50,6 @@ public class Categoriesequipement implements Serializable {
         this.nomcate = nomcate;
     }
 
-    @XmlTransient
     public Collection<Equipement> getEquipementCollection() {
         return equipementCollection;
     }
@@ -101,10 +72,7 @@ public class Categoriesequipement implements Serializable {
             return false;
         }
         Categoriesequipement other = (Categoriesequipement) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override

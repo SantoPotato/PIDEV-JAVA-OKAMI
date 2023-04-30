@@ -5,9 +5,8 @@
  */
 package app.controller;
 
-import Entities.Categoriesequipement;
-import Services.CategoriesEquipementCRUD;
-import Services.EquipementCRUD;
+import entities.Categoriesequipement;
+import services.CategoriesEquipementCRUD;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
@@ -22,8 +21,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;

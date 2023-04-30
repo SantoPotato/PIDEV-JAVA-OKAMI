@@ -5,10 +5,10 @@
  */
 package app.controller;
 
-import Entities.Categoriesequipement;
-import Entities.Equipement;
-import Services.CategoriesEquipementCRUD;
-import Services.EquipementCRUD;
+import entities.Categoriesequipement;
+import entities.Equipement;
+import services.CategoriesEquipementCRUD;
+import services.EquipementCRUD;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
@@ -26,10 +26,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import utils.MyConnection;
+import utils.ConnectionDB;
 
 /**
  * FXML Controller class
@@ -76,7 +74,7 @@ Connection c;
         EquipementCRUD ec = new EquipementCRUD();
          Categoriesequipement ce= new Categoriesequipement();
         CategoriesEquipementCRUD ct= new CategoriesEquipementCRUD ();
-         c = MyConnection.getInstance().getConn();
+         c = ConnectionDB.getInstance().getConnection();
         Categorie.setItems(FXCollections.observableArrayList(ct.afficherCategorie()));
     }    
 

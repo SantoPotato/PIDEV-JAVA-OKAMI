@@ -5,8 +5,8 @@
  */
 package app.controller;
 
-import Entities.Categoriesequipement;
-import Services.CategoriesEquipementCRUD;
+import entities.Categoriesequipement;
+import services.CategoriesEquipementCRUD;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
@@ -48,6 +48,8 @@ public class AjoutCategorieController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

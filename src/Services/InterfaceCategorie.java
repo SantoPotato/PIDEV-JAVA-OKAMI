@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Services;
+package services;
 
-import Entities.Categoriesequipement;
+import entities.Categoriesequipement;
 import java.util.List;
 
 /**

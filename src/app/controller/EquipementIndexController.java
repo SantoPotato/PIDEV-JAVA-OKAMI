@@ -7,32 +7,25 @@ package app.controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import Entities.Equipement;
-import Entities.Categoriesequipement;
-import Services.EquipementCRUD;
+import entities.Equipement;
+import entities.Categoriesequipement;
+import services.EquipementCRUD;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import java.sql.SQLException;
 import javafx.scene.Parent;
-import javafx.scene.control.MenuItem;
 
 /**
  * FXML Controller class

@@ -5,7 +5,7 @@
  */
 package app.controller;
 
-import Services.EquipementCRUD;
+import services.EquipementCRUD;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Map;

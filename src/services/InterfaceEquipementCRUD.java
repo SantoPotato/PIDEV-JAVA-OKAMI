@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Services;
+package services;
 
-import Entities.Categoriesequipement;
-import Entities.Equipement;
+import entities.Equipement;
 import java.util.List;
 /**
  *
  * @author SNAKE 2-16
  */
-public interface InterfaceCRUD {
+public interface InterfaceEquipementCRUD {
     
      public void ajouterEquipement2(Equipement e);
     public void modifierequipement(Equipement e,int id);

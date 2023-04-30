@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Services;
+package services;
 
 
-import Entities.Categoriesequipement;
-import Entities.Equipement;
-import utils.MyConnection;
+import entities.Categoriesequipement;
+import entities.Equipement;
+import utils.ConnectionDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,12 +20,12 @@ import java.util.List;
 import java.util.Map;
 
 
-public class EquipementCRUD implements InterfaceCRUD {
+public class EquipementCRUD implements InterfaceEquipementCRUD {
    Statement ste;
     Connection conn ;
     
    public EquipementCRUD() {
-         conn = MyConnection.getInstance().getConn();
+         conn = ConnectionDB.getInstance().getConnection();
     }
    
    
@@ -45,7 +45,6 @@ public class EquipementCRUD implements InterfaceCRUD {
             
             System.out.println("equipement ajouté!!!");
         } catch (SQLException ex) {
-            ex.printStackTrace();                    
         }   
     }
     

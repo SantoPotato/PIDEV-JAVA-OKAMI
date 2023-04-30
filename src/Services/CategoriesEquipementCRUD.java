@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Services;
+package services;
 
-import Entities.Categoriesequipement;
+import entities.Categoriesequipement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import utils.MyConnection;
+import utils.ConnectionDB;
 
 /**
  *
@@ -24,7 +24,7 @@ public class CategoriesEquipementCRUD implements InterfaceCategorie {
     Connection conn ;
     
    public CategoriesEquipementCRUD() {
-         conn = MyConnection.getInstance().getConn();
+         conn = ConnectionDB.getInstance().getConnection();
     }
    
    @Override
@@ -49,7 +49,6 @@ public class CategoriesEquipementCRUD implements InterfaceCategorie {
              ps.executeUpdate();
             System.out.println("Categorie ajouté!!!");
         } catch (SQLException ex) {
-            ex.printStackTrace();                    
         }   
     }
     
