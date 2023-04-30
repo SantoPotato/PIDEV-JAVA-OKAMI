@@ -289,21 +289,6 @@ INSERT INTO `rendezvous_user` (`rendezvous_id`, `user_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reset_password_request`
---
-
-CREATE TABLE `reset_password_request` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `selector` varchar(20) NOT NULL,
-  `hashed_token` varchar(100) NOT NULL,
-  `requested_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `expires_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `roleuser`
 --
 
@@ -419,27 +404,33 @@ INSERT INTO `stockcategories` (`id`, `typecat`) VALUES
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
-  `role_id` int(11) DEFAULT NULL,
-  `email` varchar(180) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `nom` varchar(255) NOT NULL,
-  `prenom` varchar(255) NOT NULL,
-  `is_verified` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `email` varchar(255) NOT NULL,
+  `phone_number` int(11) NOT NULL,
+  `gender` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `role_id`, `email`, `password`, `nom`, `prenom`, `is_verified`) VALUES
-(1, 1, 'aziz.hannachi@gmail.com', '1234', 'hannachi', 'aziz', 1),
-(2, 1, 'mahmoud.jebali@gmail.com', '1324', 'jebali', 'mahmoud', 1),
-(3, 2, 'sana.saadallah@gmail.com', '1234', 'saadallah', 'sana', 1),
-(4, 2, 'haythem.louati@gmail.com', '1234', 'louati', 'haythem', 1),
-(5, 3, 'ines.bezine@gmail.com', '1234', 'bezine', 'ines', 1),
-(6, 3, 'Taher.rejeb@gmail.com', '1342', 'rejeb', 'taher', 0),
-(7, 3, 'dorra.bejaoui@gmail.com', '1234', 'bejaoui', 'dorra', 0);
+INSERT INTO `user` (`id_user`, `first_name`, `last_name`, `username`, `password`, `email`, `phone_number`, `gender`, `role`) VALUES
+(1, 'a', 'b', 'aziz', '$2a$10$RmILdKD22F/slBSy5UEHPOLebC2GffLxiPhTmjLIVY4J9OO.GdzvC', 'admin.admin@gmail.com', 1245, 'femme', 'ADMIN'),
+(2, 'sawsen', 'labidi', 'sawseen', '$2a$10$VpXNXIw/J7auIBJvYAQ04e4HOEUUGbch/axMi5RMLowXZu0Mv4L6q', 'sawsen.ab@gmail.com', 1245, 'femme', 'Client'),
+(3, 'danger', 'saf', 'safd', '$2a$10$aWTBV5mBNCY/jESiM/6d5.KBu84Q3zkonMeLcLbhZwNyeYS0gRRj2', 'dangersaf@gmail.com', 1245, 'homme', 'Client'),
+(4, 'safwen', 'labidi', 'saf', '$2a$10$CyNtGxp9A4hJujMwMDqZYO1MSt0Wx4P3b7KrWlEHk/H4HQhEpAQ66', 'safabidi@gmail.com', 1245, 'homme', 'Client'),
+(5, 'abiir', 'd', 'abyr', '$2a$10$uOwqSk4hMfpCcvGME5qJQOPiJwvJsKvNsw.JbeecAgVHB4yqhQdwi', 'abi.khlifi@esprit.tn', 1245, 'femme', 'Client'),
+(6, 'abir ', 'ab', 'abb', '$2a$10$t0bebOn9Uiay6vw5HxXj5eneqKBQKUVd.BynAMdnKYsHavJSAL1tu', 'abir.khlifi@esprit.tn', 1245, 'femme', 'Client'),
+(7, 'abir ', 'ab', 'abb', '$2a$10$I7JT4t2mPujklq/EVqw.4.Pq7E5pHsfJ36BLsWzyXK41z1.ClzJFi', 'abir.khlifi@esprit.tn', 1245, 'femme', 'Client'),
+(8, 'ab', 'hhhh', 'hhhh', '$2a$10$r./BUi/k8YB3ET9Vc0GPSuHdkg8G1DnQUQoBoEM3kibFeBddkoeo6', 'abir.khlifi@esprit.tn', 1245, 'femme', 'Client'),
+(9, 'abb', 'haha', 'jdkjshf', '$2a$10$1ZLgwEyaxsSEUgNg4AlwPuUxYB/53UTE2biFwNwUSlUxoR.cBslbS', 'abir.khlifi@esprit.tn', 1245, 'femme', 'Client'),
+(10, 'houssem', 'akermi', 'houssem', '$2a$10$xufTjwXtSD23E6QAV0jobeqi.ehSoUgBgwNQ0aGM7cNr6cf4DqTem', 'mallek.ghassen@espit.tn', 1245, 'homme', 'Client'),
+(11, 'zizz', 'azz', 'ziz', '$2a$10$qL6.ng/UZLkt9Mor1H0j9.6m7eL7ZTwjxCbWYPvGz/364VQ24AU0u', 'aziz.hannachi@esprit.tn', 1245, 'femme', 'Client');
 
 -- --------------------------------------------------------
 
@@ -555,13 +546,6 @@ ALTER TABLE `rendezvous_user`
   ADD KEY `IDX_C1DEFEC8A76ED395` (`user_id`);
 
 --
--- Indexes for table `reset_password_request`
---
-ALTER TABLE `reset_password_request`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_7CE748AA76ED395` (`user_id`);
-
---
 -- Indexes for table `roleuser`
 --
 ALTER TABLE `roleuser`
@@ -590,9 +574,7 @@ ALTER TABLE `stockcategories`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`),
-  ADD KEY `IDX_8D93D649D60322AC` (`role_id`);
+  ADD PRIMARY KEY (`id_user`);
 
 --
 -- Indexes for table `vehicules`
@@ -660,12 +642,6 @@ ALTER TABLE `rendezvous_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `reset_password_request`
---
-ALTER TABLE `reset_password_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `roleuser`
 --
 ALTER TABLE `roleuser`
@@ -693,7 +669,7 @@ ALTER TABLE `stockcategories`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `vehicules`
@@ -715,7 +691,7 @@ ALTER TABLE `equipement`
 -- Constraints for table `historique`
 --
 ALTER TABLE `historique`
-  ADD CONSTRAINT `FK_EDBFD5ECA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `FK_EDBFD5ECA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`);
 
 --
 -- Constraints for table `plannification`
@@ -735,25 +711,13 @@ ALTER TABLE `rendezvous`
 --
 ALTER TABLE `rendezvous_user`
   ADD CONSTRAINT `FK_C1DEFEC83345E0A3` FOREIGN KEY (`rendezvous_id`) REFERENCES `rendezvous` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK_C1DEFEC8A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `reset_password_request`
---
-ALTER TABLE `reset_password_request`
-  ADD CONSTRAINT `FK_7CE748AA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `FK_C1DEFEC8A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `stock`
 --
 ALTER TABLE `stock`
   ADD CONSTRAINT `FK_4B36566067373F03` FOREIGN KEY (`Stockcategories`) REFERENCES `stockcategories` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `user`
---
-ALTER TABLE `user`
-  ADD CONSTRAINT `FK_8D93D649D60322AC` FOREIGN KEY (`role_id`) REFERENCES `roleuser` (`id`);
 
 --
 -- Constraints for table `vehicules`
