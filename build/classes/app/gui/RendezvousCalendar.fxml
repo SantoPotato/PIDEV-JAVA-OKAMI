@@ -16,7 +16,7 @@
    <children>
       <HBox alignment="CENTER_LEFT" layoutX="352.0" layoutY="297.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="TOP_CENTER" maxWidth="-Infinity" prefHeight="300.0" style="-fx-background-color: #244140;" HBox.hgrow="ALWAYS">
+            <VBox alignment="TOP_CENTER" maxWidth="-Infinity" prefWidth="300.0" style="-fx-background-color: #244140;" HBox.hgrow="ALWAYS">
                <children>
                   <fx:include fx:id="Base" source="base.fxml" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
                   <VBox alignment="CENTER" maxHeight="-Infinity" VBox.vgrow="ALWAYS">

@@ -7,8 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-
-  <VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.baseController">
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.baseController">
      <children>
         <VBox alignment="TOP_CENTER" maxHeight="-Infinity" prefHeight="240.0" VBox.vgrow="ALWAYS">
            <children>
@@ -24,6 +23,13 @@
            <children>
               <VBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                  <children>
+                  <MenuButton mnemonicParsing="false" style="-fx-background-color: none; -fx-font-size: 18;" text="Equipement">
+                     <items>
+                        <MenuItem fx:id="buttonEquipementIndex" mnemonicParsing="false" onAction="#redirectEquipement" text="Index" />
+                        <MenuItem fx:id="buttonEquipementCategorie" mnemonicParsing="false" onAction="#redirectEquipementCategorie" text="Catégorie" />
+                        <MenuItem fx:id="buttonEquipementStats" mnemonicParsing="false" onAction="#redirectEquipementStats" text="Statistiques" />
+                     </items>
+                  </MenuButton>
                     <MenuButton mnemonicParsing="false" style="-fx-background-color: none; -fx-font-size: 18;" text="Rendez-vous" VBox.vgrow="ALWAYS">
                        <items>
                           <MenuItem fx:id="buttonRendezvous" mnemonicParsing="false" onAction="#redirectRendezvous" text="Index" />

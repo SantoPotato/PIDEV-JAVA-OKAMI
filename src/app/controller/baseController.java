@@ -32,6 +32,12 @@ public class baseController implements Initializable {
     private MenuItem buttonRendezvousStatistique;
     @FXML
     private MenuItem buttonRendezvousCalendrier;
+    @FXML
+    private MenuItem buttonEquipementIndex;
+    @FXML
+    private MenuItem buttonEquipementCategorie;
+    @FXML
+    private MenuItem buttonEquipementStats;
 
     /**
      * Initializes the controller class.
@@ -84,6 +90,21 @@ public class baseController implements Initializable {
     @FXML
     private void redirectRendezvousCalendrier(ActionEvent event) {
         redirectToPage("RendezvousCalendar");
+    }
+
+    @FXML
+    private void redirectEquipement(ActionEvent event) {
+        redirectToPage("EquipementIndex");
+    }
+
+    @FXML
+    private void redirectEquipementCategorie(ActionEvent event) {
+        redirectToPage("CategorieIndex");
+    }
+
+    @FXML
+    private void redirectEquipementStats(ActionEvent event) {
+        redirectToPage("EquipementStats");
     }
 
 }

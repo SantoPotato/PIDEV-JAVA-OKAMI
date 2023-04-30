@@ -7,9 +7,6 @@ package app.controller;
 
 import entities.Categoriesequipement;
 import services.CategoriesEquipementCRUD;
-import com.twilio.Twilio;
-import com.twilio.rest.api.v2010.account.Message;
-import com.twilio.type.PhoneNumber;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;

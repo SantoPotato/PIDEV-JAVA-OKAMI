@@ -20,7 +20,7 @@ import javafx.scene.control.MenuItem;
 /**
  * FXML Controller class
  *
- * @author
+ * @author ilyes
  */
 public class IndexController implements Initializable {
 
