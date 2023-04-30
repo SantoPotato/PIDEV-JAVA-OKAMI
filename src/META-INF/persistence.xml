@@ -19,8 +19,8 @@
     <class>entities.Vehicules</class>
     <class>entities.User</class>
     <class>entities.Historique</class>
-    <class>entities.Salle_1</class>
-    <class>entities.User_1</class>
+    <class>Entities.Equipement</class>
+    <class>Entities.Categoriesequipement</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/healthherald?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
