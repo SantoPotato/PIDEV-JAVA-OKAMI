@@ -5,6 +5,12 @@
         <group>
             <file>file:/C:/Users/SNAKE%202-16/Documents/GitHub/PIDEV-JAVA-OKAMI/src/app/controller/StatistiqueController.java</file>
             <file>file:/C:/Users/SNAKE%202-16/Documents/GitHub/PIDEV-JAVA-OKAMI/src/app/controller/IndexController.java</file>
+            <file>file:/C:/Users/SNAKE%202-16/Documents/GitHub/PIDEV-JAVA-OKAMI/src/app/controller/AjoutEquipementController.java</file>
+            <file>file:/C:/Users/SNAKE%202-16/Documents/GitHub/PIDEV-JAVA-OKAMI/src/app/controller/EditEquipementController.java</file>
+            <file>file:/C:/Users/SNAKE%202-16/Documents/GitHub/PIDEV-JAVA-OKAMI/src/app/controller/CategorieIndexController.java</file>
+            <file>file:/C:/Users/SNAKE%202-16/Documents/GitHub/PIDEV-JAVA-OKAMI/src/app/controller/EquipementIndexController.java</file>
+            <file>file:/C:/Users/SNAKE%202-16/Documents/GitHub/PIDEV-JAVA-OKAMI/src/app/controller/EditCategorieController.java</file>
+            <file>file:/C:/Users/SNAKE%202-16/Documents/GitHub/PIDEV-JAVA-OKAMI/src/app/controller/AjoutCategorieController.java</file>
         </group>
     </open-files>
 </project-private>

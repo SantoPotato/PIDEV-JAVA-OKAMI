@@ -114,23 +114,7 @@ public class EditCategorieController implements Initializable {
         CategoriesEquipementCRUD cc = new CategoriesEquipementCRUD();
         
         cc.modifierCategorie(ce,id);
-        String ACCOUNT_SID = "AC2d6462eff326ec211eee2f8927df20f6";
-        String AUTH_TOKEN = "87e7b77c190b95c90cd841110549c27d";
-        String TWILIO_NUMBER = "+15674323540";
-        String USER_NUMBER = "+21652953558";
-         
-        // Initialize the Twilio client
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
- 
-// Send an SMS message to the user
-        Message message = Message.creator(
-            new PhoneNumber(USER_NUMBER),
-            new PhoneNumber(TWILIO_NUMBER),
-            "Your equipment "+ce.getNomcate()+ "  has been updated successfully!"
-        ).create();
-
-// Print the message SID for debugging purposes
-        System.out.println(message.getSid());
+        
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/GUI/CategorieIndex.fxml"));
         try {

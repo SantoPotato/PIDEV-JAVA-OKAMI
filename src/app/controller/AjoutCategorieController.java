@@ -12,6 +12,8 @@ import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 
 /**
  * FXML Controller class
@@ -107,12 +110,16 @@ public class AjoutCategorieController implements Initializable {
         Categoriesequipement ce = new Categoriesequipement(nom);
         CategoriesEquipementCRUD ec = new CategoriesEquipementCRUD();
         System.out.println(ce + " " );
-        ec.ajouterCategorie2(ce);
+       
+        Random random = new Random();
+        int code = random.nextInt(900000) + 100000;
         String ACCOUNT_SID = "AC2d6462eff326ec211eee2f8927df20f6";
-        String AUTH_TOKEN = "87e7b77c190b95c90cd841110549c27d";
+        String AUTH_TOKEN = "6caa89cbc120509e8745ff97cf608e17";
         String TWILIO_NUMBER = "+15674323540";
         String USER_NUMBER = "+21652953558";
+        String messageText = "Your verification code is " + code;
          
+        
         // Initialize the Twilio client
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
@@ -120,8 +127,20 @@ public class AjoutCategorieController implements Initializable {
         Message message = Message.creator(
             new PhoneNumber(USER_NUMBER),
             new PhoneNumber(TWILIO_NUMBER),
-            "Your Categorie "+ce.getNomcate()+ " has been added successfully!"
+            messageText
         ).create();
+        
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Verification Code");
+        dialog.setHeaderText("Please enter the 6-digit verification code sent to your phone:");
+        dialog.setContentText("Code:");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()) {
+             String codest = result.get();
+              ec.ajouterCategorie2(ce);
+   
+}
 
 // Print the message SID for debugging purposes
         System.out.println(message.getSid());
