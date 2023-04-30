@@ -30,7 +30,7 @@ public class RendezvousTypeCRUD implements RendezvousTypeInterface {
     public void add(RendezvousType t) {
         try {
             System.out.println(t.getType());
-            String request = "INSERT INTO rendezvous_type (id, type) VALUES (DEFAULT, ?)";
+            String request = "INSERT INTO rendezvous_type (id, type) VALUES (DEFAULT, ?);";
             PreparedStatement pst = c.prepareStatement(request);
             pst.setString(1, t.getType());
             pst.executeUpdate();
@@ -44,7 +44,7 @@ public class RendezvousTypeCRUD implements RendezvousTypeInterface {
     @Override
     public void update(RendezvousType t, Integer id) {
         try {
-            String request = "UPDATE rendezvous_type SET type=? WHERE id=?";
+            String request = "UPDATE rendezvous_type SET type=? WHERE id=?;";
             PreparedStatement pst = c.prepareStatement(request);
             pst.setString(1, t.getType());
             pst.setInt(2, id);
@@ -59,7 +59,7 @@ public class RendezvousTypeCRUD implements RendezvousTypeInterface {
     @Override
     public void remove(Integer id) {
         try {
-            String request = "DELETE FROM rendezvous_type WHERE id=?";
+            String request = "DELETE FROM rendezvous_type WHERE id=?;";
             PreparedStatement pst = c.prepareStatement(request);
             pst.setInt(1, id);
             pst.executeUpdate();
@@ -76,9 +76,33 @@ public class RendezvousTypeCRUD implements RendezvousTypeInterface {
 
         try {
 
-            String request = "SELECT * FROM rendezvous_type";
+            String request = "SELECT * FROM rendezvous_type;";
             Statement st = c.createStatement();
             ResultSet rs = st.executeQuery(request);
+
+            while (rs.next()) {
+                rendezvousTypeList.add(new RendezvousType(rs.getInt("id"), rs.getString("type")));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return rendezvousTypeList;
+    }
+
+    @Override
+    public List<RendezvousType> searchRendezvousType(String value) {
+
+        List<RendezvousType> rendezvousTypeList = new ArrayList<>();
+
+        try {
+
+            String request = "SELECT * FROM rendezvous_type WHERE type LIKE ?;";
+            PreparedStatement pst = c.prepareStatement(request);
+            value = '%' + value + '%';
+            pst.setString(1, value);
+            ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
                 rendezvousTypeList.add(new RendezvousType(rs.getInt("id"), rs.getString("type")));

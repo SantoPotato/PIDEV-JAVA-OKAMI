@@ -4,7 +4,7 @@
  */
 package entities;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -13,9 +13,9 @@ import java.util.Date;
 public class Plannification {
 
     private Integer id;
-    private Date datepl;
-    private Date heuredebutpl;
-    private Date heurefinpl;
+    private LocalDateTime datepl;
+    private LocalDateTime heuredebutpl;
+    private LocalDateTime heurefinpl;
     private Salle salle;
 
     public Plannification() {
@@ -25,7 +25,7 @@ public class Plannification {
         this.id = id;
     }
 
-    public Plannification(Integer id, Date datepl, Date heuredebutpl, Date heurefinpl) {
+    public Plannification(Integer id, LocalDateTime datepl, LocalDateTime heuredebutpl, LocalDateTime heurefinpl) {
         this.id = id;
         this.datepl = datepl;
         this.heuredebutpl = heuredebutpl;
@@ -40,27 +40,27 @@ public class Plannification {
         this.id = id;
     }
 
-    public Date getDatepl() {
+    public LocalDateTime getDatepl() {
         return datepl;
     }
 
-    public void setDatepl(Date datepl) {
+    public void setDatepl(LocalDateTime datepl) {
         this.datepl = datepl;
     }
 
-    public Date getHeuredebutpl() {
+    public LocalDateTime getHeuredebutpl() {
         return heuredebutpl;
     }
 
-    public void setHeuredebutpl(Date heuredebutpl) {
+    public void setHeuredebutpl(LocalDateTime heuredebutpl) {
         this.heuredebutpl = heuredebutpl;
     }
 
-    public Date getHeurefinpl() {
+    public LocalDateTime getHeurefinpl() {
         return heurefinpl;
     }
 
-    public void setHeurefinpl(Date heurefinpl) {
+    public void setHeurefinpl(LocalDateTime heurefinpl) {
         this.heurefinpl = heurefinpl;
     }
 

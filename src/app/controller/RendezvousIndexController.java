@@ -4,10 +4,10 @@ package app.controller;
  * Property of Okami�
  * Not destined for commercial use
  */
+import utils.HistoriqueMenuItem;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -20,8 +20,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -30,30 +28,39 @@ import entities.Rendezvous;
 import entities.RendezvousType;
 import entities.Salle;
 import entities.User;
+import java.io.FileInputStream;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.util.Properties;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import services.HistoriqueCRUD;
 import services.RendezvousCRUD;
 
 /**
  * FXML Controller class
  *
- * @author
+ * @author ilyes
  */
 public class RendezvousIndexController implements Initializable {
 
-    private ListView<User> listViewTest;
+    RendezvousCRUD rc = new RendezvousCRUD();
+
     @FXML
-    private Label labelPage;
-    @FXML
-    private Label labelPath;
-    @FXML
-    private Label labelIndex;
-    @FXML
-    private Button buttonRendezvous;
-    @FXML
-    private Button buttonRendezvousType;
-    @FXML
-    private Button buttonTest;
+    private baseController BaseController;
+
     @FXML
     private TableView<Rendezvous> tableviewRendezvous;
+    @FXML
+    private TableColumn<Rendezvous, String> columnDateStart;
+    @FXML
+    private TableColumn<Rendezvous, String> columnDateEnd;
+    @FXML
+    private TableColumn<Rendezvous, Salle> columnSalle;
+    @FXML
+    private TableColumn<Rendezvous, RendezvousType> columnType;
+    @FXML
+    private TableColumn<Rendezvous, String> columnUsers;
     @FXML
     private TextField textSearch;
     @FXML
@@ -64,19 +71,16 @@ public class RendezvousIndexController implements Initializable {
     private Button buttonUpdate;
     @FXML
     private Button buttonDelete;
-
     @FXML
-    private TableColumn<Rendezvous, Integer> idColumn;
+    private MenuButton historique;
     @FXML
-    private TableColumn<Rendezvous, Date> dateStartColumn;
+    private MenuButton menuLanguage;
     @FXML
-    private TableColumn<Rendezvous, Date> dateEndColumn;
+    private MenuItem menuEnglish1;
     @FXML
-    private TableColumn<Rendezvous, Salle> salleColumn;
+    private MenuItem menuFrench1;
     @FXML
-    private TableColumn<Rendezvous, RendezvousType> typeColumn;
-    @FXML
-    private TableColumn<Rendezvous, String> listUsersColumn;
+    private MenuItem menuJapanese1;
 
     /**
      * Initializes the controller class.
@@ -87,20 +91,19 @@ public class RendezvousIndexController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("Id"));
-        dateStartColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
-        dateEndColumn.setCellValueFactory(new PropertyValueFactory<>("Durée"));
-        salleColumn.setCellValueFactory(new PropertyValueFactory<>("Salle"));
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("Type"));
-        listUsersColumn.setCellValueFactory(new PropertyValueFactory<>("Membres"));
-
-        RendezvousCRUD rc = new RendezvousCRUD();
+        columnDateStart.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        columnDateEnd.setCellValueFactory(new PropertyValueFactory<>("Durée"));
+        columnSalle.setCellValueFactory(new PropertyValueFactory<>("Salle"));
+        columnType.setCellValueFactory(new PropertyValueFactory<>("Type"));
+        columnUsers.setCellValueFactory(new PropertyValueFactory<>("Membres"));
         tableviewRendezvous.setItems(FXCollections.observableArrayList(rc.showAll()));
 
-        dateStartColumn.setCellValueFactory(dateStartRowData -> new SimpleObjectProperty<>(dateStartRowData.getValue().getDaterv()));
-        dateEndColumn.setCellValueFactory(dateEndRowData -> new SimpleObjectProperty<>(dateEndRowData.getValue().getEndAt()));
+        columnDateStart.setCellValueFactory(dateStartRowData -> new SimpleObjectProperty<>(
+                dateStartRowData.getValue().getDaterv().format(DateTimeFormatter.ofPattern("EEEE d MMMM yyyy à H:mm", Locale.FRENCH)))
+        );
+        columnDateEnd.setCellValueFactory(dateEndRowData -> new SimpleObjectProperty<>(dateEndRowData.getValue().showDuree()));
 
-        listUsersColumn.setCellValueFactory(cellData -> {
+        columnUsers.setCellValueFactory(cellData -> {
             Collection<User> users = cellData.getValue().getUserCollection();
             if (users == null || users.isEmpty()) {
                 return new SimpleStringProperty("");
@@ -112,31 +115,18 @@ public class RendezvousIndexController implements Initializable {
             }
         });
 
-    }
+        HistoriqueCRUD hc = new HistoriqueCRUD();
+        hc.showAll().forEach(item -> {
+            historique.getItems().add(new HistoriqueMenuItem(item));
+        });
 
-    @FXML
-    private void rendezvousSearch(ActionEvent event) {
+        changeLanguage(Locale.getDefault().toString());
+
     }
 
     @FXML
     private void rendezvousAdd(ActionEvent event) {
-
-        try {
-            // Code below switch scenes
-            // The second one seems better, I guess, so I'll stick with it
-
-//            Parent root = FXMLLoader.load(getClass().getResource("../gui/RendezvousAdd.fxml"));
-//            Scene scene = new Scene(root);
-//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            stage.setScene(scene);
-//            stage.show();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousAdd.fxml"));
-            labelIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-
+        BaseController.redirectToPage("RendezvousAdd");
     }
 
     @FXML
@@ -153,7 +143,7 @@ public class RendezvousIndexController implements Initializable {
 
                 c.setRendezvous(r);
 
-                labelIndex.getScene().setRoot(root);
+                tableviewRendezvous.getScene().setRoot(root);
 
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
@@ -168,29 +158,58 @@ public class RendezvousIndexController implements Initializable {
         Rendezvous r = tableviewRendezvous.getSelectionModel().getSelectedItem();
 
         if (r != null) {
-            RendezvousCRUD rc = new RendezvousCRUD();
             rc.remove(r.getId());
             tableviewRendezvous.getItems().remove(r); // remove from the tableview
+            HistoriqueCRUD hc = new HistoriqueCRUD();
+            hc.add(1, "a supprimé le rendez-vous '" + String.valueOf(r.getId()) + "'");
         }
     }
 
     @FXML
-    private void redirectRendezvous(ActionEvent event) {
+    private void rendezvousTextSearch(ActionEvent event) {
+        tableviewRendezvous.setItems(FXCollections.observableArrayList(rc.searchRendezvous(textSearch.getText())));
     }
 
     @FXML
-    private void redirectRendezvousType(ActionEvent event) {
+    private void rendezvousButtonSearch(ActionEvent event) {
+        tableviewRendezvous.setItems(FXCollections.observableArrayList(rc.searchRendezvous(textSearch.getText())));
+    }
+
+    @FXML
+    private void changeLanguageEnglish(ActionEvent event) {
+        changeLanguage("en");
+    }
+
+    @FXML
+    private void changeLanguageFrench(ActionEvent event) {
+        changeLanguage("fr");
+    }
+
+    @FXML
+    private void changeLanguageJapanese(ActionEvent event) {
+        changeLanguage("jp");
+    }
+
+    private void changeLanguage(String lang) {
+        Locale.setDefault(new Locale(lang));
+        Properties props = new Properties();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousTypeIndex.fxml"));
-            labelIndex.getScene().setRoot(loader.load());
+            props.load(new FileInputStream("src/app/localisation/ui_" + lang + ".properties"));
+            BaseController.renameMenuItems(props);
 
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            columnDateStart.setText(props.getProperty("columnRendezvousDateStart"));
+            columnDateEnd.setText(props.getProperty("columnRendezvousDateEnd"));
+            columnSalle.setText(props.getProperty("columnRendezvousSalle"));
+            columnType.setText(props.getProperty("columnRendezvousType"));
+            columnUsers.setText(props.getProperty("columnRendezvousUsers"));
+            buttonSearch.setText(props.getProperty("buttonSearch"));
+            buttonAdd.setText(props.getProperty("buttonAdd"));
+            buttonUpdate.setText(props.getProperty("buttonUpdate"));
+            buttonDelete.setText(props.getProperty("buttonDelete"));
+            menuLanguage.setText(props.getProperty("Language"));
+        } catch (IOException e) {
+            System.out.println(e);
         }
-    }
-
-    @FXML
-    private void redirectTest(ActionEvent event) {
     }
 
 }

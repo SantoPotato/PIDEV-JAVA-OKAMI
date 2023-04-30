@@ -5,6 +5,8 @@
 package tests;
 
 
+import entities.Rendezvous;
+import java.time.LocalDateTime;
 import services.RendezvousCRUD;
 
 /**
@@ -16,16 +18,13 @@ public class Main {
     
     public static void main(String[] args) { 
         RendezvousCRUD R = new RendezvousCRUD();
-        System.out.println(R.showAll());
+        Rendezvous rdv = new Rendezvous();
+        rdv.setDaterv(LocalDateTime.now());
+ 
         
-        R.showAll().stream().map((r) -> {
-            System.out.println(r);
-            return r;
-        }).forEachOrdered((r) -> {
-            r.getUserCollection().forEach((u) -> {
-                System.out.println("    " + u);
-            });
-        });
+        System.out.println(rdv.toString());
+        System.out.println(       R.searchRendezvous("aziz")           );
+        
     }
     
 }

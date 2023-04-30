@@ -4,9 +4,11 @@
  */
 package entities;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 /**
  *
@@ -15,9 +17,9 @@ import java.util.Date;
 public class Rendezvous {
 
     private Integer id;
-    private Date daterv;
-    private boolean rappel;
-    private Date endAt;
+    private LocalDateTime daterv;
+    private Boolean rappel;
+    private LocalDateTime endAt;
     private Collection<User> userCollection;
     private RendezvousType type;
     private Salle salle;
@@ -29,7 +31,7 @@ public class Rendezvous {
         this.id = id;
     }
 
-    public Rendezvous(Integer id, Date daterv, Boolean rappel, Date endAt) {
+    public Rendezvous(Integer id, LocalDateTime daterv, Boolean rappel, LocalDateTime endAt) {
         this.id = id;
         this.daterv = daterv;
         this.rappel = rappel;
@@ -37,7 +39,7 @@ public class Rendezvous {
         this.userCollection = new ArrayList<>();
     }
 
-    public Rendezvous(Date daterv, Date endAt, Boolean rappel, Salle salle, RendezvousType type, Collection<User> userCollection) {
+    public Rendezvous(LocalDateTime daterv, LocalDateTime endAt, Boolean rappel, Salle salle, RendezvousType type, Collection<User> userCollection) {
         this.daterv = daterv;
         this.rappel = rappel;
         this.endAt = endAt;
@@ -54,11 +56,11 @@ public class Rendezvous {
         this.id = id;
     }
 
-    public Date getDaterv() {
+    public LocalDateTime getDaterv() {
         return daterv;
     }
 
-    public void setDaterv(Date daterv) {
+    public void setDaterv(LocalDateTime daterv) {
         this.daterv = daterv;
     }
 
@@ -70,11 +72,11 @@ public class Rendezvous {
         this.rappel = rappel;
     }
 
-    public Date getEndAt() {
+    public LocalDateTime getEndAt() {
         return endAt;
     }
 
-    public void setEndAt(Date endAt) {
+    public void setEndAt(LocalDateTime endAt) {
         this.endAt = endAt;
     }
 
@@ -116,7 +118,6 @@ public class Rendezvous {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Rendezvous)) {
             return false;
         }
@@ -126,7 +127,27 @@ public class Rendezvous {
 
     @Override
     public String toString() {
-        return "Rendez-vous " + type + " le : " + String.format("%td/%tm/%tY", daterv, daterv, daterv) + " à " + String.format("%tH:%tM", daterv, daterv) + " en " + salle;
+        return "Rendez-vous " + type + " le : " + daterv.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + " à " + daterv.format(DateTimeFormatter.ofPattern("HH:mm")) + " en " + salle;
+    }
+    
+        public String showDuree()
+    {
+        Duration duree = Duration.between(daterv, endAt);
+        long hours = duree.toHours() % 24;
+        long minutes = duree.toMinutes() % 60;
+        String duree_string = "";
+        if (hours > 0 && minutes > 0) {
+            return duree_string + hours + " heures et " + minutes + " minutes";
+        }
+        else {
+            if (hours > 0) {
+                duree_string = duree_string + hours + " heures";
+            }
+            if (minutes > 0) {
+                duree_string = duree_string + minutes + " minutes";
+            }
+        }
+        return duree_string;
     }
 
 }

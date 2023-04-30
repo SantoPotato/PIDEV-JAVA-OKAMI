@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+
+  <VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.baseController">
+     <children>
+        <VBox alignment="TOP_CENTER" maxHeight="-Infinity" prefHeight="240.0" VBox.vgrow="ALWAYS">
+           <children>
+              <ImageView fitHeight="140.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                 <image>
+                    <Image url="@../images/hh.png" />
+                 </image>
+              </ImageView>
+              <Button fx:id="buttonIndex" contentDisplay="CENTER" mnemonicParsing="false" onAction="#redirectIndex" style="-fx-background-color: None; -fx-font-size: 32;" text="Health Herald" VBox.vgrow="ALWAYS" />
+           </children>
+        </VBox>
+        <VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+           <children>
+              <VBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                 <children>
+                    <MenuButton mnemonicParsing="false" style="-fx-background-color: none; -fx-font-size: 18;" text="Rendez-vous" VBox.vgrow="ALWAYS">
+                       <items>
+                          <MenuItem fx:id="buttonRendezvous" mnemonicParsing="false" onAction="#redirectRendezvous" text="Index" />
+                          <MenuItem fx:id="buttonRendezvousType" mnemonicParsing="false" onAction="#redirectRendezvousType" text="Type" />
+                          <MenuItem fx:id="buttonRendezvousStatistique" mnemonicParsing="false" onAction="#redirectRendezvousStatistique" text="Statistiques" />
+                          <MenuItem fx:id="buttonRendezvousCalendrier" mnemonicParsing="false" onAction="#redirectRendezvousCalendrier" text="Calendrier" />
+                       </items>
+                    </MenuButton>
+                 </children>
+              </VBox>
+           </children>
+        </VBox>
+     </children>
+  </VBox>
