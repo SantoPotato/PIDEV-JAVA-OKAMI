@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1366.0" style="-fx-background-color: # C0C0C0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.CaptchaController">
+   <children>
+      <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER" spacing="120.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label fx:id="captchahere" alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="306.0" text="captcha" textFill="#19760d" textOverrun="CENTER_ELLIPSIS">
+                                 <font>
+                                    <Font name="Bookman Old Style Italic" size="30.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Button fx:id="newcaptchabtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#setcaptcha" opacity="0.85" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: #244140; -fx-background-radius: 70px;" text="new captcha" textAlignment="RIGHT" textFill="#fcfcfc">
+                                 <effect>
+                                    <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.16">
+                                       <bumpInput>
+                                          <Blend />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </effect>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER" spacing="20.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label text="Enter Captcha :" />
+                              <TextField fx:id="textarea" />
+                           </children>
+                        </HBox>
+                        <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Button fx:id="checkbtn" graphicTextGap="0.0" mnemonicParsing="false" onAction="#captchachecker" opacity="0.85" prefHeight="38.0" prefWidth="151.0" style="-fx-background-color: #244140; -fx-background-radius: 70px;" text="check" textFill="#fffbfb">
+                                 <opaqueInsets>
+                                    <Insets bottom="200.0" left="200.0" right="200.0" top="200.0" />
+                                 </opaqueInsets>
+                                 <effect>
+                                    <Lighting diffuseConstant="1.73" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
+                                       <bumpInput>
+                                          <Blend />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant azimuth="0.0" />
+                                       </light>
+                                    </Lighting>
+                                 </effect>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleLoginButtonClick" prefHeight="31.0" prefWidth="135.0" style="-fx-background-radius: 70px; -fx-background-color: #244140;" text="logout" textFill="#f5efef">
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" style="-fx-background-color: #244140;" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ImageView fitHeight="225.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                           <image>
+                              <Image url="@../images/hh.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="messagebtn" alignment="CENTER" contentDisplay="CENTER" text="Please Enter Captcha" textAlignment="CENTER" textFill="#f8f4f4" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font size="39.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

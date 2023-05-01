@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1366.0" style="-fx-background-color: # 808080;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.Signup_pageController">
+   <children>
+      <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER" style="-fx-background-color: #244140;" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ImageView fitHeight="279.0" fitWidth="320.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                           <image>
+                              <Image url="@../images/hh.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label text="Bienvenue !" textFill="#f2f2f2" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font size="57.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER" style="-fx-background-color: #545454; -fx-background-radius: 70px;" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label text="Créer un compte" textFill="#244140" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font size="40.0" />
+                           </font>
+                        </Label>
+                        <HBox VBox.vgrow="ALWAYS">
+                           <children>
+                              <VBox alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextField fx:id="input_firstName" promptText="prénom" VBox.vgrow="ALWAYS" />
+                                    <TextField fx:id="input_lastName" promptText="nom" VBox.vgrow="ALWAYS" />
+                                    <TextField fx:id="input_username" promptText="nom d'utilisateur" VBox.vgrow="ALWAYS" />
+                                    <PasswordField fx:id="input_password" promptText="mot de passe" VBox.vgrow="ALWAYS" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextField fx:id="input_email" promptText="email" VBox.vgrow="ALWAYS" />
+                                    <TextField fx:id="input_phone_number" promptText="numéro de téléphone" VBox.vgrow="ALWAYS" />
+                                    <TextField fx:id="input_gender" promptText="genre" VBox.vgrow="ALWAYS" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Button fx:id="btn_signup" mnemonicParsing="false" onMouseClicked="#handleSignupButtonClick" prefHeight="65.0" prefWidth="229.0" style="-fx-background-radius: 70px; -fx-background-color: #244140;" text="Créer" textFill="#f5f3f3">
+                                 <font>
+                                    <Font name="Segoe UI" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnLogin" blendMode="SCREEN" mnemonicParsing="false" onAction="#handleLoginButtonClick" onMouseClicked="#handleSignupButtonClick" prefHeight="38.0" prefWidth="94.0" style="-fx-background-radius: 70px; -fx-background-color: red;" text="Login">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="23.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
