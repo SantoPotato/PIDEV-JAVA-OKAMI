@@ -16,8 +16,6 @@ public class Salle {
     private Integer numsa;
     private Integer etagesa;
     private String typesa;
-    private Collection<Rendezvous> rendezvousCollection;
-    private Collection<Plannification> plannificationCollection;
 
     public Salle() {
     }
@@ -26,7 +24,7 @@ public class Salle {
         this.id = id;
     }
 
-    public Salle(Integer id, int numsa, int etagesa, String typesa) {
+    public Salle(Integer id, Integer numsa, Integer etagesa, String typesa) {
         this.id = id;
         this.numsa = numsa;
         this.etagesa = etagesa;
@@ -63,22 +61,6 @@ public class Salle {
 
     public void setTypesa(String typesa) {
         this.typesa = typesa;
-    }
-
-    public Collection<Rendezvous> getRendezvousCollection() {
-        return rendezvousCollection;
-    }
-
-    public void setRendezvousCollection(Collection<Rendezvous> rendezvousCollection) {
-        this.rendezvousCollection = rendezvousCollection;
-    }
-
-    public Collection<Plannification> getPlannificationCollection() {
-        return plannificationCollection;
-    }
-
-    public void setPlannificationCollection(Collection<Plannification> plannificationCollection) {
-        this.plannificationCollection = plannificationCollection;
     }
 
     @Override

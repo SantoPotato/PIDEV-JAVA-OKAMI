@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entities;
+package salle.entities;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 
 /**
  *
@@ -15,12 +16,12 @@ import java.sql.Time;
 public class Plannification {
    private int id;
    private int id_salle;
-   private Date datepl;
-   private Time heuredebutpl;
-   private Time heurefinpl;
+   private LocalDate datepl;
+   private LocalDate heuredebutpl;
+   private LocalDate heurefinpl;
    
 
-    public Plannification(int id, int id_salle, Date datepl, Time heuredebutpl, Time heurefinpl) {
+    public Plannification(int id, int id_salle, LocalDate datepl, LocalDate heuredebutpl, LocalDate heurefinpl) {
         this.id = id;
         this.id_salle = id_salle;
         this.datepl = datepl;
@@ -28,7 +29,7 @@ public class Plannification {
         this.heurefinpl = heurefinpl;
     }
 
-    public Plannification(int id_salle, Date datepl, Time heuredebutpl, Time heurefinpl) {
+    public Plannification(int id_salle, LocalDate datepl, LocalDate heuredebutpl, LocalDate heurefinpl) {
         this.id_salle = id_salle;
         this.datepl = datepl;
         this.heuredebutpl = heuredebutpl;
@@ -55,27 +56,27 @@ public class Plannification {
         this.id_salle = id_salle;
     }
 
-    public Date getDatepl() {
+    public LocalDate getDatepl() {
         return datepl;
     }
 
-    public void setDatepl(Date datepl) {
+    public void setDatepl(LocalDate datepl) {
         this.datepl = datepl;
     }
 
-    public Time getHeuredebutpl() {
+    public LocalDate getHeuredebutpl() {
         return heuredebutpl;
     }
 
-    public void setHeuredebutpl(Time heuredebutpl) {
+    public void setHeuredebutpl(LocalDate heuredebutpl) {
         this.heuredebutpl = heuredebutpl;
     }
 
-    public Time getHeurefinpl() {
+    public LocalDate getHeurefinpl() {
         return heurefinpl;
     }
 
-    public void setHeurefinpl(Time heurefinpl) {
+    public void setHeurefinpl(LocalDate heurefinpl) {
         this.heurefinpl = heurefinpl;
     }
 
