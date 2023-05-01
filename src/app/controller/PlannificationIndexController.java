@@ -87,6 +87,13 @@ public class PlannificationIndexController implements Initializable {
 
     @FXML
     private void PlannificationAdd(ActionEvent event) {
+        try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/PlannificationAdd.fxml"));
+        buttonIndex.getScene().setRoot(loader.load());
+
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
     }
 
     @FXML

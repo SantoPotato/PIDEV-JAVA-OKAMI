@@ -4,12 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Oussama/Downloads/PIDEV-JAVA-OKAMI-Gestion_Salle/PIDEV-JAVA-OKAMI-Gestion_Salle/src/app/controller/SalleAddController.java</file>
-            <file>file:/C:/Users/Oussama/Downloads/PIDEV-JAVA-OKAMI-Gestion_Salle/PIDEV-JAVA-OKAMI-Gestion_Salle/src/salle/services/SalleCRUD.java</file>
-            <file>file:/C:/Users/Oussama/Downloads/PIDEV-JAVA-OKAMI-Gestion_Salle/PIDEV-JAVA-OKAMI-Gestion_Salle/src/salle/utils/MyDB.java</file>
             <file>file:/C:/Users/Oussama/Downloads/PIDEV-JAVA-OKAMI-Gestion_Salle/PIDEV-JAVA-OKAMI-Gestion_Salle/src/app/controller/SalleIndexController.java</file>
-            <file>file:/C:/Users/Oussama/Downloads/PIDEV-JAVA-OKAMI-Gestion_Salle/PIDEV-JAVA-OKAMI-Gestion_Salle/src/app/controller/SalleUpdateController.java</file>
+            <file>file:/C:/Users/Oussama/Downloads/PIDEV-JAVA-OKAMI-Gestion_Salle/PIDEV-JAVA-OKAMI-Gestion_Salle/src/app/controller/PlannificationAddController.java</file>
             <file>file:/C:/Users/Oussama/Downloads/PIDEV-JAVA-OKAMI-Gestion_Salle/PIDEV-JAVA-OKAMI-Gestion_Salle/src/app/controller/PlannificationIndexController.java</file>
+            <file>file:/C:/Users/Oussama/Downloads/PIDEV-JAVA-OKAMI-Gestion_Salle/PIDEV-JAVA-OKAMI-Gestion_Salle/src/app/gui/PlannificationAdd.fxml</file>
             <file>file:/C:/Users/Oussama/Downloads/PIDEV-JAVA-OKAMI-Gestion_Salle/PIDEV-JAVA-OKAMI-Gestion_Salle/src/app/gui/MainWindow.java</file>
+            <file>file:/C:/Users/Oussama/Downloads/PIDEV-JAVA-OKAMI-Gestion_Salle/PIDEV-JAVA-OKAMI-Gestion_Salle/src/app/controller/SalleUpdateController.java</file>
         </group>
     </open-files>
 </project-private>
