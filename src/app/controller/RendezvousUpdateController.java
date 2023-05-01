@@ -4,6 +4,7 @@
  */
 package app.controller;
 
+import com.jfoenix.controls.JFXTimePicker;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -20,7 +21,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import entities.Rendezvous;
@@ -30,11 +30,13 @@ import entities.User;
 import java.io.FileInputStream;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Properties;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import jfxtras.scene.control.LocalDateTimeTextField;
 import services.HistoriqueCRUD;
 import services.RendezvousCRUD;
 import utils.ConnectionDB;
@@ -48,14 +50,14 @@ public class RendezvousUpdateController implements Initializable {
 
     Connection c;
     int id;
-    
+
     @FXML
     private baseController BaseController;
-    
+
     @FXML
-    private DatePicker dateStart;
+    private LocalDateTimeTextField dateStart;
     @FXML
-    private DatePicker dateEnd;
+    private JFXTimePicker dateEnd;
     @FXML
     private ComboBox<RendezvousType> Type;
     @FXML
@@ -68,8 +70,6 @@ public class RendezvousUpdateController implements Initializable {
     private Button buttonUpdate;
     @FXML
     private Label errorDateStart;
-    @FXML
-    private Label errorDateEnd;
     @FXML
     private Label errorType;
     @FXML
@@ -98,6 +98,8 @@ public class RendezvousUpdateController implements Initializable {
     private Label labelUsers;
     @FXML
     private MenuItem menuJapanese;
+    @FXML
+    private Label errorDateEnd;
 
     /**
      * Initializes the controller class.
@@ -134,6 +136,10 @@ public class RendezvousUpdateController implements Initializable {
         Salle.setItems(FXCollections.observableArrayList(getSalles(c)));
         Type.setItems(FXCollections.observableArrayList(getTypes(c)));
 
+        dateStart.setLocale(Locale.FRENCH);
+        dateStart.setDateTimeFormatter(DateTimeFormatter.ofPattern("EEEE d MMMM yyyy à H:mm", Locale.FRENCH));
+        dateEnd.set24HourView(true);
+
         changeLanguage(Locale.getDefault().toString());
     }
 
@@ -149,16 +155,16 @@ public class RendezvousUpdateController implements Initializable {
         LocalDateTime daterv = null;
         LocalDateTime endat = null;
 
-        if (dateStart.getValue() == null) {
+        if (dateStart.getLocalDateTime() == null) {
             errorDateStart.setText("Une date est requise");
             check++;
         } else {
-            daterv = dateStart.getValue().atStartOfDay();
+            daterv = dateStart.getLocalDateTime();
 
             if (dateEnd.getValue() == null) {
                 endat = daterv.plusMinutes(30);
             } else {
-                endat = dateEnd.getValue().atStartOfDay();
+                endat = daterv.plusHours(dateEnd.getValue().getHour()).plusMinutes(dateEnd.getValue().getMinute());
             }
 
             if (daterv.isBefore(LocalDateTime.now())) {
@@ -194,8 +200,6 @@ public class RendezvousUpdateController implements Initializable {
             errorUsers.setText("");
         }
 
-        System.out.println(check);
-
         if (check > 0) {
             return;
         }
@@ -230,12 +234,12 @@ public class RendezvousUpdateController implements Initializable {
 
     public void setRendezvous(Rendezvous r) {
         id = r.getId();
-        dateStart.setValue(r.getDaterv().toLocalDate());
-        dateEnd.setValue(r.getEndAt().toLocalDate());
+        dateStart.setLocalDateTime(r.getDaterv());
+        dateEnd.setValue(r.getEndAt().minusHours(r.getDaterv().getHour()).minusMinutes(r.getDaterv().getMinute()).toLocalTime());
         Type.setValue(r.getType());
         Salle.setValue(r.getSalle());
         r.getUserCollection().forEach((user) -> {
-            listViewUser.getItems().stream().filter((item) -> (item.toString().equals(user.toString()))).forEachOrdered((item) -> {
+            listViewUser.getItems().stream().filter((item) -> (item.getId_user().equals(user.getId_user()))).forEachOrdered((item) -> {
                 item.setSelected(true);
             });
         });
@@ -255,7 +259,7 @@ public class RendezvousUpdateController implements Initializable {
 
             while (set.next()) {
                 data.add(new User(
-                        set.getInt("id"), set.getString("nom"), set.getString("prenom")
+                        set.getInt("id_user"), set.getString("last_name"), set.getString("first_name")
                 ));
             }
 
@@ -314,7 +318,6 @@ public class RendezvousUpdateController implements Initializable {
         return data;
     }
 
-    
     @FXML
     private void redirectBack(ActionEvent event) {
         BaseController.redirectToPage("RendezvousIndex");
@@ -341,7 +344,7 @@ public class RendezvousUpdateController implements Initializable {
         try {
             props.load(new FileInputStream("src/app/localisation/ui_" + lang + ".properties"));
             BaseController.renameMenuItems(props);
-            
+
             labelUpdate.setText(props.getProperty("labelRendezvousUpdate"));
             labelDescription.setText(props.getProperty("labelRendezvousUpdateDescription"));
             labelDate.setText(props.getProperty("columnRendezvousDateStart"));

@@ -1,6 +1,5 @@
 package entities;
-import java.sql.Date;
-//import Entities.User;
+
 /**
  *
  * @author abirk

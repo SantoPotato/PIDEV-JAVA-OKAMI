@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import utils.UserSession;
 
 /**
  * FXML Controller class
@@ -38,6 +39,12 @@ public class baseController implements Initializable {
     private MenuItem buttonEquipementCategorie;
     @FXML
     private MenuItem buttonEquipementStats;
+    @FXML
+    private Button buttonDisconnect;
+    @FXML
+    private MenuItem buttonUser;
+    @FXML
+    private MenuItem buttonUserStats;
 
     /**
      * Initializes the controller class.
@@ -65,6 +72,13 @@ public class baseController implements Initializable {
         buttonRendezvousType.setText(props.getProperty("menuRendezvousType"));
         buttonRendezvousStatistique.setText(props.getProperty("menuStats"));
         buttonRendezvousCalendrier.setText(props.getProperty("menuCalendar"));
+    }
+
+    @FXML
+    private void handleDisconnection(ActionEvent event) {
+        UserSession userSession = UserSession.getInstace(null);
+        userSession.cleanUserSession();
+        redirectToPage("login");
     }
 
     @FXML
@@ -99,12 +113,23 @@ public class baseController implements Initializable {
 
     @FXML
     private void redirectEquipementCategorie(ActionEvent event) {
-        redirectToPage("CategorieIndex");
+        redirectToPage("CategorieEquipementIndex");
     }
 
     @FXML
     private void redirectEquipementStats(ActionEvent event) {
         redirectToPage("EquipementStats");
+    }
+
+    @FXML
+    private void redirectUser(ActionEvent event) {
+        redirectToPage("userIndex");
+    }
+
+
+    @FXML
+    private void redirectUserStats(ActionEvent event) {
+        redirectToPage("userStats");
     }
 
 }

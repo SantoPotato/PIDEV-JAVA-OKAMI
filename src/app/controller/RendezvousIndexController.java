@@ -45,6 +45,7 @@ import services.RendezvousCRUD;
 public class RendezvousIndexController implements Initializable {
 
     RendezvousCRUD rc = new RendezvousCRUD();
+    HistoriqueCRUD hc = new HistoriqueCRUD();
 
     @FXML
     private baseController BaseController;
@@ -76,11 +77,11 @@ public class RendezvousIndexController implements Initializable {
     @FXML
     private MenuButton menuLanguage;
     @FXML
-    private MenuItem menuEnglish1;
+    private MenuItem menuEnglish;
     @FXML
-    private MenuItem menuFrench1;
+    private MenuItem menuFrench;
     @FXML
-    private MenuItem menuJapanese1;
+    private MenuItem menuJapanese;
 
     /**
      * Initializes the controller class.
@@ -115,7 +116,6 @@ public class RendezvousIndexController implements Initializable {
             }
         });
 
-        HistoriqueCRUD hc = new HistoriqueCRUD();
         hc.showAll().forEach(item -> {
             historique.getItems().add(new HistoriqueMenuItem(item));
         });
@@ -134,7 +134,6 @@ public class RendezvousIndexController implements Initializable {
         Rendezvous r = tableviewRendezvous.getSelectionModel().getSelectedItem();
 
         if (r != null) {
-            // RendezvousCRUD rc = new RendezvousCRUD();
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousUpdate.fxml"));
 
@@ -160,8 +159,10 @@ public class RendezvousIndexController implements Initializable {
         if (r != null) {
             rc.remove(r.getId());
             tableviewRendezvous.getItems().remove(r); // remove from the tableview
-            HistoriqueCRUD hc = new HistoriqueCRUD();
             hc.add(1, "a supprimé le rendez-vous '" + String.valueOf(r.getId()) + "'");
+            hc.showAll().forEach(item -> {
+                historique.getItems().add(new HistoriqueMenuItem(item));
+            });
         }
     }
 
@@ -211,5 +212,6 @@ public class RendezvousIndexController implements Initializable {
             System.out.println(e);
         }
     }
+
 
 }

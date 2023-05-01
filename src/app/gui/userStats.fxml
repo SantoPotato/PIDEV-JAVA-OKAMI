@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.userStatsController">
+    <children>
+      <HBox alignment="CENTER_LEFT" layoutX="362.0" layoutY="307.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="TOP_CENTER" maxWidth="-Infinity" prefWidth="300.0" style="-fx-background-color: #244140;" HBox.hgrow="ALWAYS">
+               <children>
+                  <fx:include fx:id="Base" source="base.fxml" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="120.0" style="-fx-background-color: #3a6867;" VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="CENTER">
+                           <children>
+                              <Label style="-fx-font-size: 12;" text="/home/users/stats" VBox.vgrow="ALWAYS" />
+                              <Label style="-fx-font-size: 32;" text="Utilisateurs - Statistiques" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                          <BarChart fx:id="barChart" legendVisible="false" prefHeight="460.0" prefWidth="760.0" title="Nombre de rendez-vous par genre" VBox.vgrow="ALWAYS">
+                              <xAxis>
+                                  <CategoryAxis label="Genre" />
+                              </xAxis>
+                              <yAxis>
+                                  <NumberAxis label="Nombre de rendez-vous" />
+                              </yAxis>
+                          </BarChart>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+    </children>
+</AnchorPane>

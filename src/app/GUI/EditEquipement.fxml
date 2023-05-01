@@ -6,8 +6,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -21,7 +19,7 @@
          <children>
             <VBox alignment="TOP_CENTER" maxWidth="-Infinity" prefWidth="300.0" style="-fx-background-color: #244140;" HBox.hgrow="ALWAYS">
                <children>
-                  <fx:include source="base.fxml" />
+                  <fx:include fx:id="Base" source="base.fxml" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
             <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">

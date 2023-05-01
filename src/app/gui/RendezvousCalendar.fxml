@@ -18,7 +18,7 @@
          <children>
             <VBox alignment="TOP_CENTER" maxWidth="-Infinity" prefWidth="300.0" style="-fx-background-color: #244140;" HBox.hgrow="ALWAYS">
                <children>
-                  <fx:include fx:id="Base" source="base.fxml" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+                  <fx:include fx:id="Base" source="base.fxml" VBox.vgrow="ALWAYS" />
                   <VBox alignment="CENTER" maxHeight="-Infinity" VBox.vgrow="ALWAYS">
                      <children>
                         <MenuButton fx:id="menuLanguage" contentDisplay="CENTER" mnemonicParsing="false" popupSide="TOP" VBox.vgrow="ALWAYS">

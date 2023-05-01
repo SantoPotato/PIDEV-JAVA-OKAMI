@@ -5,10 +5,8 @@
  */
 package app.controller;
 
-import static app.controller.ForgetPasswordController.code;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +17,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -39,6 +36,8 @@ public class VerifCodeController implements Initializable {
     
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -71,7 +70,6 @@ public class VerifCodeController implements Initializable {
         
     } 
     
-   @FXML
     private void loadResetPasswordPage(ActionEvent event, String data) {
         try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/ResetPassword.fxml"));

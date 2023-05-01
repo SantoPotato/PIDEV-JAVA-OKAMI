@@ -226,7 +226,7 @@ public class RendezvousAddController implements Initializable {
 
             while (set.next()) {
                 data.add(new User(
-                        set.getInt("id"), set.getString("nom"), set.getString("prenom")
+                        set.getInt("id_user"), set.getString("last_name"), set.getString("first_name")
                 ));
             }
 

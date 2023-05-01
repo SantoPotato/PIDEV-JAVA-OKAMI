@@ -5,19 +5,9 @@
  */
 package utils;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.scene.control.Alert;
 import javax.mail.PasswordAuthentication;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.mail.Authenticator;
 import javax.mail.Message;
-
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;

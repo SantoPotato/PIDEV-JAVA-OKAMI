@@ -21,9 +21,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import entities.Equipement;
 import entities.Categoriesequipement;
 import services.EquipementCRUD;
-import com.twilio.Twilio;
-import com.twilio.rest.api.v2010.account.Message;
-import com.twilio.type.PhoneNumber;
 import java.sql.SQLException;
 import javafx.scene.Parent;
 
@@ -34,12 +31,11 @@ import javafx.scene.Parent;
  */
 public class EquipementIndexController implements Initializable {
 
-  
     @FXML
-    private Button buttonEquipement;
+    private baseController BaseController;
+
     @FXML
     private TableView<Equipement> tableviewEquipement;
-    
     @FXML
     private TextField textSearch;
     @FXML
@@ -51,12 +47,6 @@ public class EquipementIndexController implements Initializable {
     @FXML
     private Button buttonDelete;
     @FXML
-    private Button buttonIndex;
-    @FXML
-    private Button buttonCat;
-    @FXML
-    private Button buttonStatistique;
-    @FXML
     private TableColumn<Equipement, String> columnNom;
     @FXML
     private TableColumn<Equipement, Boolean> columnEtat;
@@ -67,6 +57,7 @@ public class EquipementIndexController implements Initializable {
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
@@ -77,78 +68,38 @@ public class EquipementIndexController implements Initializable {
         columnEtat.setCellValueFactory(new PropertyValueFactory<>("etateq"));
         columnDispo.setCellValueFactory(new PropertyValueFactory<>("dispoeq"));
         columnCat.setCellValueFactory(new PropertyValueFactory<>("Categoriesequipement"));
-        
 
         EquipementCRUD ec = new EquipementCRUD();
         tableviewEquipement.setItems(FXCollections.observableArrayList(ec.afficherEquipement()));
-        
-    }
 
-    @FXML
-    private void redirectIndex(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/GUI/Index.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-    
-
-    @FXML
-    private void redirectCat(ActionEvent event) {
-  try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/GUI/CategorieIndex.fxml"));
-            buttonCat.getScene().setRoot(loader.load());
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
-    private void redirectStatistique(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/GUI/Statistique.fxml"));
-            buttonStatistique.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
     }
 
     @FXML
     private void equipementTextSearch(ActionEvent event) {
-         EquipementCRUD ec = new EquipementCRUD();
-        tableviewEquipement.setItems(FXCollections.observableArrayList( ec.searchEquipement( textSearch.getText() ) ));
+        EquipementCRUD ec = new EquipementCRUD();
+        tableviewEquipement.setItems(FXCollections.observableArrayList(ec.searchEquipement(textSearch.getText())));
     }
 
     @FXML
     private void equipementButtonSearch(ActionEvent event) {
-         EquipementCRUD ec = new EquipementCRUD();
-       tableviewEquipement.setItems(FXCollections.observableArrayList( ec.searchEquipement( textSearch.getText() ) ));
+        EquipementCRUD ec = new EquipementCRUD();
+        tableviewEquipement.setItems(FXCollections.observableArrayList(ec.searchEquipement(textSearch.getText())));
     }
 
     @FXML
     private void equipementAdd(ActionEvent event) {
-         try {
-             FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/GUI/AjoutEquipement.fxml"));
-            buttonAdd.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        BaseController.redirectToPage("AjoutEquipement");
     }
 
     @FXML
     private void equipementUpdate(ActionEvent event) throws SQLException {
         Equipement e = tableviewEquipement.getSelectionModel().getSelectedItem();
-           
+
         if (e != null) {
-            
+
             try {
                 FXMLLoader loader;
-                loader = new FXMLLoader(getClass().getResource("/app/GUI/EditEquipement.fxml"));
+                loader = new FXMLLoader(getClass().getResource("/app/gui/EditEquipement.fxml"));
 
                 Parent root = loader.load();
                 EditEquipementController c = loader.getController();
@@ -166,20 +117,14 @@ public class EquipementIndexController implements Initializable {
 
     @FXML
     private void equipementDelete(ActionEvent event) {
-        Equipement e =  (Equipement) tableviewEquipement.getSelectionModel().getSelectedItem();
+        Equipement e = (Equipement) tableviewEquipement.getSelectionModel().getSelectedItem();
 
         if (e != null) {
             EquipementCRUD ec = new EquipementCRUD();
             ec.supprimerequipement(e.getId());
             tableviewEquipement.getItems().remove(e);
-               
-        
+
         }
     }
 
-    @FXML
-    private void redirectEquipement(ActionEvent event) {
-    }
-    
-    
 }

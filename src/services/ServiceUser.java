@@ -7,24 +7,16 @@ package services;
 
 import entities.Artiste;
 import entities.User;
-import utils.ConnectionUtils;
+import utils.ConnectionDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import entities.Client;
-import com.gluonhq.impl.charm.a.b.b.u;
-import org.mindrot.jbcrypt.BCrypt;
-import java.text.SimpleDateFormat;
-
 import java.sql.Statement;
 import java.util.HashMap;
-import static javafx.scene.input.KeyCode.T;
 import java.util.Map;
 
 /**
@@ -33,8 +25,9 @@ import java.util.Map;
  */
 public class ServiceUser implements Iservice<User> {
 
-    Connection cnx = ConnectionUtils.getInstance().getCnx();
+    Connection cnx = ConnectionDB.getInstance().getConnection();
 
+    @Override
    public void ajouter(User user) throws SQLException {
 
         String role = "Admin";
@@ -68,18 +61,21 @@ public class ServiceUser implements Iservice<User> {
         ps.executeUpdate();
     }
 
+    @Override
     public void supprimer(int id) throws SQLException {
         String req = "DELETE FROM user WHERE id_user =" + id;
         Statement st = cnx.createStatement();
         st.executeUpdate(req);
     }
 
+    @Override
     public void modifier(String s, String s2, String s3, String s4, int s5, String s6, String s7, int id) throws SQLException {
         String req = "UPDATE user SET first_name = '" + s + "',`last_name`= '" + s2 + "',`username`='" + s3 + "',`email`='" + s4 + "',`phone_number`='" + s5 + "',`gender`='" + s6 + "',`role`='" + s7 + "' WHERE id_user = " + id;
         Statement st = cnx.createStatement();
         st.executeUpdate(req);
     }
 
+    @Override
     public User afficher(int id) throws SQLException {
         User p = new User();
         String req = "SELECT * FROM user WHERE id_user = " + id + "";
@@ -99,6 +95,7 @@ public class ServiceUser implements Iservice<User> {
         return p;
     }
 
+    @Override
     public List<User> getAll() {
         List<User> list = new ArrayList<>();
         try {
@@ -107,14 +104,17 @@ public class ServiceUser implements Iservice<User> {
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
                 User u;
-                if (rs.getString("role").equals("Client)")) {
-                    u = new Client(rs.getInt("id_user"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getInt("phone_number"), rs.getString("gender"), rs.getString("role"));
-
-                } else if (rs.getString("role").equals("Artiste")) {
-                    u = new Artiste(rs.getInt("id_user"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getInt("phone_number"), rs.getString("gender"), rs.getString("role"));
-                } else {
-                    u = new User(rs.getInt("id_user"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getInt("phone_number"), rs.getString("gender"), rs.getString("role"));
-                    //list.add(user);
+                switch (rs.getString("role")) {
+                    case "Client)":
+                        u = new Client(rs.getInt("id_user"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getInt("phone_number"), rs.getString("gender"), rs.getString("role"));
+                        break;
+                    case "Artiste":
+                        u = new Artiste(rs.getInt("id_user"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getInt("phone_number"), rs.getString("gender"), rs.getString("role"));
+                        break;
+                    default:
+                        u = new User(rs.getInt("id_user"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getInt("phone_number"), rs.getString("gender"), rs.getString("role"));
+                        //list.add(user);
+                        break;
                 }
                 list.add(u);
                 //return list;
@@ -143,12 +143,12 @@ public class ServiceUser implements Iservice<User> {
     }
 
     public boolean checkEmailExists(String email) {
-        Connection cnx = ConnectionUtils.getInstance().getCnx();
+        Connection c = ConnectionDB.getInstance().getConnection();
         boolean result = false;
 
         try {
             String req = "SELECT * FROM user WHERE email = ?";
-            PreparedStatement st = cnx.prepareStatement(req);
+            PreparedStatement st = c.prepareStatement(req);
             st.setString(1, email);
             ResultSet rs = st.executeQuery();
             result = rs.next();
@@ -253,7 +253,7 @@ public void updatePassword( User user) throws SQLException {
     List<User> myList = new ArrayList<>();
     try {
         String requete = "SELECT * FROM User WHERE email=?";
-        PreparedStatement st = ConnectionUtils.getInstance().getCnx().prepareStatement(requete);
+        PreparedStatement st = ConnectionDB.getInstance().getConnection().prepareStatement(requete);
         st.setString(1, email);
         ResultSet rs = st.executeQuery();
         while (rs.next()) {
@@ -277,7 +277,7 @@ public void updatePassword( User user) throws SQLException {
 public Map<String, Integer> countByGender() {
     Map<String, Integer> countMap = new HashMap<>();
 
-    try (Connection connection = ConnectionUtils.getInstance().getCnx()) {
+    try (Connection connection = ConnectionDB.getInstance().getConnection()) {
         String query = "SELECT gender, COUNT(*) AS count FROM user GROUP BY gender";
         PreparedStatement statement = connection.prepareStatement(query);
         ResultSet rs = statement.executeQuery();

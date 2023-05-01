@@ -6,7 +6,7 @@
 package services;
 
 import entities.User;
-import utils.ConnectionUtils;
+import utils.ConnectionDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,7 +33,7 @@ public class AuthentificationService implements IAuthentificationService {
 
         try {
             userService.ajouter(user);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e);
         }
 
@@ -44,8 +44,9 @@ public class AuthentificationService implements IAuthentificationService {
 
     }
 
+    @Override
     public boolean checkEmailExists(String email) {
-        Connection cnx = ConnectionUtils.getInstance().getCnx();
+        Connection cnx = ConnectionDB.getInstance().getConnection();
         boolean result = false;
 
         try {
@@ -61,9 +62,10 @@ public class AuthentificationService implements IAuthentificationService {
         return result;
     }
 
+    @Override
     public boolean checkIfUserCanBeAdded(User u) {
         // Vérifier que l'adresse email n'est pas déjà utilisée par un autre utilisateur
-        Connection cnx = ConnectionUtils.getInstance().getCnx();
+        Connection cnx = ConnectionDB.getInstance().getConnection();
         String checkEmailQuery = "SELECT COUNT(*) as nbr FROM user WHERE email=?";
         try (PreparedStatement checkEmailStmt = cnx.prepareStatement(checkEmailQuery)) {
             checkEmailStmt.setString(1, u.getEmail());
@@ -103,7 +105,7 @@ public class AuthentificationService implements IAuthentificationService {
     }
 
     public boolean checkPasswd(String plainPassword, String hashedPassword) {
-        return (BCrypt.checkpw(plainPassword, hashedPassword)) ? true : false;
+        return (BCrypt.checkpw(plainPassword, hashedPassword));
     }
 
 }

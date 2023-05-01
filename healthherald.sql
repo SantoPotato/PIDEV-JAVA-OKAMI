@@ -288,23 +288,6 @@ INSERT INTO `rendezvous_user` (`rendezvous_id`, `user_id`) VALUES
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `roleuser`
---
-
-CREATE TABLE `roleuser` (
-  `id` int(11) NOT NULL,
-  `role` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `roleuser`
---
-
-INSERT INTO `roleuser` (`id`, `role`) VALUES
-(1, 'Administrateur'),
-(2, 'Employé'),
-(3, 'Utilisateur');
 
 -- --------------------------------------------------------
 
@@ -546,12 +529,6 @@ ALTER TABLE `rendezvous_user`
   ADD KEY `IDX_C1DEFEC8A76ED395` (`user_id`);
 
 --
--- Indexes for table `roleuser`
---
-ALTER TABLE `roleuser`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `salle`
 --
 ALTER TABLE `salle`
@@ -640,12 +617,6 @@ ALTER TABLE `rendezvous`
 --
 ALTER TABLE `rendezvous_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `roleuser`
---
-ALTER TABLE `roleuser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `salle`

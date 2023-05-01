@@ -5,7 +5,6 @@
     <class>okami.pidev.entities.Rendezvous_1</class>
     <class>okami.pidev.entities.User_1</class>
     <class>entities.MessengerMessages</class>
-    <class>entities.ResetPasswordRequest</class>
     <class>entities.Equipement</class>
     <class>entities.Roleuser</class>
     <class>entities.Categoriesequipement</class>

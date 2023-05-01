@@ -1,59 +1,161 @@
 /*
- * Property of Okami�
- * Not destined for commercial use
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package entities;
 
-import java.util.Collection;
-
 /**
  *
- * @author
+ * @author abirk
  */
 public class User {
 
-    private Integer id;
-    private String email;
+    private Integer id_user;
+    private String first_Name;
+    private String last_Name;
+    private String user_Name;
     private String password;
-    private String nom;
-    private String prenom;
-    private Boolean isVerified;
-    private Collection<Rendezvous> rendezvousCollection;
-    private Collection<ResetPasswordRequest> resetPasswordRequestCollection;
-    private Roleuser roleId;
-    private Collection<Historique> historiqueCollection;
-
+    private String email;
+    private Integer phone_number;
+    private String gender;
+    private String role;
     private Boolean selected;
 
     public User() {
     }
 
+    public User(Integer id, String first_Name, String last_Name, String user_Name, String email) {
+        this.id_user = id;
+        this.first_Name = first_Name;
+        this.last_Name = last_Name;
+        this.user_Name = user_Name;
+        this.email = email;
+    }
+
+    public User(String first_Name, String last_Name, String user_Name, String password, String email) {
+        this.first_Name = first_Name;
+        this.last_Name = last_Name;
+        this.user_Name = user_Name;
+        this.password = password;
+        this.email = email;
+    }
+
     public User(Integer id) {
-        this.id = id;
+        this.id_user = id;
     }
 
     public User(Integer id, String nom, String prenom) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
+        this.id_user = id;
+        this.last_Name = nom;
+        this.first_Name = prenom;
         this.selected = false;
     }
 
-    public User(Integer id, String email, String password, String nom, String prenom, boolean isVerified) {
-        this.id = id;
-        this.email = email;
+    public User(Integer id_user, String first_Name, String last_Name, String user_Name, String password, String email, int phone_number, String gender, String role) {
+        this.id_user = id_user;
+        this.first_Name = first_Name;
+        this.last_Name = last_Name;
+        this.user_Name = user_Name;
         this.password = password;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.isVerified = isVerified;
+        this.email = email;
+        this.phone_number = phone_number;
+        this.gender = gender;
+        this.role = role;
+    }
+    //liste des evenement accedeé par l'utilisateur
+
+    //private List<Evenement> evenementList;
+    public User(String first_Name, String last_Name, String user_Name, String password, String email, int phone_number, String gender) {
+
+        this.first_Name = first_Name;
+        this.last_Name = last_Name;
+        this.user_Name = user_Name;
+        this.password = password;
+        this.email = email;
+        this.phone_number = phone_number;
+        this.gender = gender;
+
     }
 
-    public Integer getId() {
-        return id;
+    public User(int id_user, String first_Name, String last_Name, String user_Name, String password) {
+        this.id_user = id_user;
+        this.first_Name = first_Name;
+        this.last_Name = last_Name;
+        this.user_Name = user_Name;
+        this.password = password;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Integer getId_user() {
+        return id_user;
+    }
+
+    public String getFirst_Name() {
+        return first_Name;
+    }
+
+    public String getLast_Name() {
+        return last_Name;
+    }
+
+    public String getUser_Name() {
+        return user_Name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public int getPhone_number() {
+        return phone_number;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setId_user(Integer id_user) {
+        this.id_user = id_user;
+    }
+
+    public void setFirst_Name(String first_Name) {
+        this.first_Name = first_Name;
+    }
+
+    public void setLast_Name(String last_Name) {
+        this.last_Name = last_Name;
+    }
+
+    public void setUser_Name(String user_Name) {
+        this.user_Name = user_Name;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone_number(int phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Boolean isSelected() {
@@ -64,82 +166,10 @@ public class User {
         this.selected = selected;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public boolean getIsVerified() {
-        return isVerified;
-    }
-
-    public void setIsVerified(boolean isVerified) {
-        this.isVerified = isVerified;
-    }
-
-    public Collection<Rendezvous> getRendezvousCollection() {
-        return rendezvousCollection;
-    }
-
-    public void setRendezvousCollection(Collection<Rendezvous> rendezvousCollection) {
-        this.rendezvousCollection = rendezvousCollection;
-    }
-
-    public Collection<ResetPasswordRequest> getResetPasswordRequestCollection() {
-        return resetPasswordRequestCollection;
-    }
-
-    public void setResetPasswordRequestCollection(Collection<ResetPasswordRequest> resetPasswordRequestCollection) {
-        this.resetPasswordRequestCollection = resetPasswordRequestCollection;
-    }
-
-    public Roleuser getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Roleuser roleId) {
-        this.roleId = roleId;
-    }
-
-    public Collection<Historique> getHistoriqueCollection() {
-        return historiqueCollection;
-    }
-
-    public void setHistoriqueCollection(Collection<Historique> historiqueCollection) {
-        this.historiqueCollection = historiqueCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (id_user != null ? id_user.hashCode() : 0);
         return hash;
     }
 
@@ -150,12 +180,12 @@ public class User {
             return false;
         }
         User other = (User) object;
-        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
+        return !((this.id_user == null && other.id_user != null) || (this.id_user != null && !this.id_user.equals(other.id_user)));
     }
 
     @Override
     public String toString() {
-        return nom + " " + prenom;
+        return last_Name + " " + first_Name;
     }
 
 }

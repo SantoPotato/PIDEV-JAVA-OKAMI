@@ -57,7 +57,7 @@ public class HistoriqueCRUD implements HistoriqueInterface {
         List<Historique> historique = new ArrayList<>();
        try {
             String request = "SELECT h.*,u.* FROM historique h "
-                    + "INNER JOIN user u ON u.id=h.user_id;";
+                    + "INNER JOIN user u ON u.id_user=h.user_id;";
             Statement st = c.createStatement();
             ResultSet rs = st.executeQuery(request);
             while (rs.next()) {

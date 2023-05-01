@@ -48,8 +48,7 @@ public class RendezvousCRUD implements RendezvousInterface {
                 while (rs.next()) {
                     int rendezvous_id = rs.getInt(1);
                     R.getUserCollection().forEach((u) -> {
-                        // System.out.print("rdv id : " + rendezvous_id + " \nUser Id : " + u.getId());
-                        addRelation(rendezvous_id, u.getId());
+                        addRelation(rendezvous_id, u.getId_user());
                     });
                 }
             }
@@ -67,7 +66,6 @@ public class RendezvousCRUD implements RendezvousInterface {
             pst.setInt(1, idR);
             pst.setInt(2, idU);
             pst.executeUpdate();
-            // System.out.println("Relation between Rendezvous " + idR + " and User " +  idU + " added succssefully." );
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
@@ -84,14 +82,12 @@ public class RendezvousCRUD implements RendezvousInterface {
             pst.setInt(4, R.getType().getId());
             pst.setInt(5, id);
             pst.executeUpdate();
-            // System.out.println("Rendez vous " + R.getId() + " updated successfully.");
 
             R.getUserCollection().forEach((u) -> {
-                // System.out.print("rdv id : " + rendezvous_id + " \nUser Id : " + u.getId());
                 if (u.isSelected()) {
-                    updateRelation(id, u.getId(), false);
+                    updateRelation(id, u.getId_user(), false);
                 } else {
-                    updateRelation(id, u.getId(), true);
+                    updateRelation(id, u.getId_user(), true);
                 }
             });
         } catch (SQLException ex) {
@@ -159,7 +155,7 @@ public class RendezvousCRUD implements RendezvousInterface {
         try {
             String request = "SELECT r.*, u.*, s.*, t.* FROM rendezvous r "
                     + "INNER JOIN rendezvous_user ru ON r.id = ru.rendezvous_id "
-                    + "INNER JOIN user u ON  u.id = ru.user_id "
+                    + "INNER JOIN user u ON  u.id_user = ru.user_id "
                     + "INNER JOIN salle s ON s.id = r.Salle "
                     + "INNER JOIN rendezvous_type t ON t.id = r.Type "
                     + "ORDER BY r.daterv;";
@@ -173,7 +169,7 @@ public class RendezvousCRUD implements RendezvousInterface {
                         new Rendezvous(rendezvousId, rs.getTimestamp("r.daterv").toLocalDateTime(), rs.getBoolean("r.rappel"), rs.getTimestamp("r.end_at").toLocalDateTime())
                 );
                 rendezvous.addUser(new User(
-                        rs.getInt("u.id"), rs.getString("u.email"), rs.getString("u.password"), rs.getString("u.nom"), rs.getString("u.prenom"), rs.getBoolean("u.is_verified")
+                        rs.getInt("u.id_user"), rs.getString("u.first_name"), rs.getString("u.last_name")
                 ));
                 rendezvous.setSalle(new Salle(
                         rs.getInt("s.id"), rs.getInt("s.numsa"), rs.getInt("s.etagesa"), rs.getString("s.typesa")
@@ -197,11 +193,11 @@ public class RendezvousCRUD implements RendezvousInterface {
         try {
             String request = "SELECT r.*, u.*, s.*, t.* FROM rendezvous r "
                     + "INNER JOIN rendezvous_user ru ON r.id = ru.rendezvous_id "
-                    + "INNER JOIN user u ON  u.id = ru.user_id "
+                    + "INNER JOIN user u ON  u.id_user = ru.user_id "
                     + "INNER JOIN salle s ON s.id = r.Salle "
                     + "INNER JOIN rendezvous_type t ON t.id = r.Type "
                     + "WHERE r.daterv > ? "
-                    + "AND u.id = ? "
+                    + "AND u.id_user = ? "
                     + "ORDER BY r.daterv;";
             PreparedStatement pst = c.prepareStatement(request);
             pst.setTimestamp(1, Timestamp.valueOf(date));
@@ -215,7 +211,7 @@ public class RendezvousCRUD implements RendezvousInterface {
                         new Rendezvous(rendezvousId, rs.getTimestamp("r.daterv").toLocalDateTime(), rs.getBoolean("r.rappel"), rs.getTimestamp("r.end_at").toLocalDateTime())
                 );
                 rendezvous.addUser(new User(
-                        rs.getInt("u.id"), rs.getString("u.email"), rs.getString("u.password"), rs.getString("u.nom"), rs.getString("u.prenom"), rs.getBoolean("u.is_verified")
+                        rs.getInt("u.id_user"), rs.getString("u.first_name"), rs.getString("u.last_name")
                 ));
                 rendezvous.setSalle(new Salle(
                         rs.getInt("s.id"), rs.getInt("s.numsa"), rs.getInt("s.etagesa"), rs.getString("s.typesa")
@@ -239,10 +235,10 @@ public class RendezvousCRUD implements RendezvousInterface {
         try {
             String request = "SELECT r.*, u.*, s.*, t.* FROM rendezvous r "
                     + "INNER JOIN rendezvous_user ru ON r.id = ru.rendezvous_id "
-                    + "INNER JOIN user u ON  u.id = ru.user_id "
+                    + "INNER JOIN user u ON  u.id_user = ru.user_id "
                     + "INNER JOIN salle s ON s.id = r.Salle "
                     + "INNER JOIN rendezvous_type t ON t.id = r.Type "
-                    + "WHERE CONCAT(u.nom, ' ', u.prenom) LIKE ? "
+                    + "WHERE CONCAT(u.last_name, ' ', u.first_name) LIKE ? "
                     + "OR CONCAT('Salle ', s.etagesa, '0', s.numsa) LIKE ? "
                     + "OR CONCAT('Salle ', s.etagesa, s.numsa) LIKE ? "
                     + "OR t.type LIKE ? "
@@ -262,7 +258,7 @@ public class RendezvousCRUD implements RendezvousInterface {
                         new Rendezvous(rendezvousId, rs.getTimestamp("r.daterv").toLocalDateTime(), rs.getBoolean("r.rappel"), rs.getTimestamp("r.end_at").toLocalDateTime())
                 );
                 rendezvous.addUser(new User(
-                        rs.getInt("u.id"), rs.getString("u.email"), rs.getString("u.password"), rs.getString("u.nom"), rs.getString("u.prenom"), rs.getBoolean("u.is_verified")
+                        rs.getInt("u.id_user"), rs.getString("u.first_name"), rs.getString("u.last_name")
                 ));
                 rendezvous.setSalle(new Salle(
                         rs.getInt("s.id"), rs.getInt("s.numsa"), rs.getInt("s.etagesa"), rs.getString("s.typesa")
@@ -308,10 +304,10 @@ public class RendezvousCRUD implements RendezvousInterface {
     @Override
     public Map<String, Integer> statsRendezvousUser() {
         try {
-            String request = "SELECT r.id, CONCAT(u.nom,' ', u.prenom) as name, COUNT(r.id) AS rdv FROM rendezvous r "
+            String request = "SELECT r.id, CONCAT(u.last_name,' ', u.first_name) as name, COUNT(r.id) AS rdv FROM rendezvous r "
                     + "INNER JOIN rendezvous_user ru ON r.id = ru.rendezvous_id "
-                    + "INNER JOIN user u ON  u.id = ru.user_id "
-                    + "GROUP BY u.id "
+                    + "INNER JOIN user u ON  u.id_user = ru.user_id "
+                    + "GROUP BY u.id_user "
                     + "ORDER BY rdv DESC "
                     + "LIMIT 5;";
             Statement st = c.createStatement();
