@@ -19,7 +19,7 @@ import utils.ConnectionDB;
  *
  * @author SNAKE 2-16
  */
-public class CategoriesEquipementCRUD implements InterfaceCategorie {
+public class CategoriesEquipementCRUD implements InterfaceCategorieEquipement {
     Statement ste;
     Connection conn ;
     

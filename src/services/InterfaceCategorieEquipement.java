@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author SNAKE 2-16
  */
-public interface InterfaceCategorie {
+public interface InterfaceCategorieEquipement {
      public void ajouterCategorie(Categoriesequipement Ct);
      public void ajouterCategorie2(Categoriesequipement Ct);
     public void modifierCategorie(Categoriesequipement Ct,int id);
