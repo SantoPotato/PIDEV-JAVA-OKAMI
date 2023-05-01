@@ -20,9 +20,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
-import salle.entities.Salle;
-import salle.services.SalleCRUD;
-import salle.utils.MyDB;
+import entities.Salle;
+import services.SalleCRUD;
+import utils.ConnectionDB;
 
 /**
  * FXML Controller class
@@ -49,10 +49,12 @@ public class SalleAddController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    c = MyDB.getInstance().getCnx();
+    c = ConnectionDB.getInstance().getConnection();
 
     // Ajout des options dans la ChoiceBox champType
     champType.getItems().addAll("Opération", "Administratif", "Repos");

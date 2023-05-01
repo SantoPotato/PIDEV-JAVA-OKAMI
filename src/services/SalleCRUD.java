@@ -3,20 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package salle.services;
+package services;
 
-import salle.entities.Salle;
-import salle.utils.MyDB;
+import entities.Salle;
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import utils.ConnectionDB;
 
 /**
  *
@@ -29,7 +25,7 @@ Connection cnx;
    public void AjouterSalle(Salle s) {
         try {
         String qry ="INSERT INTO `salle`(`numsa`,`etagesa`,`typesa`) VALUES ('"+s.getNumsa()+"','"+s.getEtagesa()+"','"+s.getTypesa()+"')";
-     cnx = MyDB.getInstance().getCnx();
+     cnx = ConnectionDB.getInstance().getConnection();
       
             Statement stm =cnx.createStatement();
             
@@ -46,7 +42,7 @@ Connection cnx;
         List<Salle> salles = new ArrayList<>();
       try {
             String qry ="SELECT * FROM `salle` ";
-            cnx = MyDB.getInstance().getCnx();
+            cnx = ConnectionDB.getInstance().getConnection();
             Statement stm = cnx.createStatement();
             ResultSet rs = stm.executeQuery(qry);
             while(rs.next()){
@@ -79,7 +75,7 @@ Connection cnx;
     public void SupprimerSalle(int id) {
 try {
             String qry ="DELETE from salle where id = "+id+";";
-            cnx = MyDB.getInstance().getCnx();
+            cnx = ConnectionDB.getInstance().getConnection();
       
             Statement stm =cnx.createStatement();
             
@@ -96,7 +92,7 @@ try {
     public void modifierSalle(Salle s) {
  try {
      String qry ="UPDATE salle SET `numsa`='"+s.getNumsa()+"',`etagesa`='"+s.getEtagesa()+"',`typesa`='"+s.getTypesa()+"' WHERE id="+s.getId()+";";    
-            cnx = MyDB.getInstance().getCnx();
+            cnx = ConnectionDB.getInstance().getConnection();
       
             Statement stm =cnx.createStatement();
             
@@ -112,7 +108,7 @@ try {
         List<Salle> Salles = new ArrayList<>();
       try {
             String qry ="Select * from salle  where id =" +id;
-            cnx = MyDB.getInstance().getCnx();
+            cnx = ConnectionDB.getInstance().getConnection();
             Statement stm = cnx.createStatement();
             ResultSet rs = stm.executeQuery(qry);
             while(rs.next()){
@@ -145,7 +141,7 @@ try {
         List<Salle> Salles = new ArrayList<>();
       try {
             String qry ="Select * from salle  where numsa =5" ;
-            cnx = MyDB.getInstance().getCnx();
+            cnx = ConnectionDB.getInstance().getConnection();
             Statement stm = cnx.createStatement();
             ResultSet rs = stm.executeQuery(qry);
             while(rs.next()){
@@ -172,7 +168,7 @@ try {
     List<Integer> ids = new ArrayList<>();
     try {
         String qry = "SELECT id FROM salle";
-        cnx = MyDB.getInstance().getCnx();
+        cnx = ConnectionDB.getInstance().getConnection();
         Statement stm = cnx.createStatement();
         ResultSet rs = stm.executeQuery(qry);
         while (rs.next()) {

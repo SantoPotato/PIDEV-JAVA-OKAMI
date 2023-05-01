@@ -17,9 +17,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import salle.entities.Plannification;
-import salle.entities.Salle;
-import salle.services.PlannificationCRUD;
+import entities.Plannification;
+import services.PlannificationCRUD;
 
 public class PlannificationIndexController implements Initializable {
 
@@ -71,10 +70,7 @@ public class PlannificationIndexController implements Initializable {
 
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (String.valueOf(plannification.getId_salle()).contains(lowerCaseFilter)) {
-                    return true;
-                }
-                return false;
+                return String.valueOf(plannification.getId_salle()).contains(lowerCaseFilter);
             });
         });
     }

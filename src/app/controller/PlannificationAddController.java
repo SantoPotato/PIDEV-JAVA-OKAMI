@@ -21,7 +21,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.util.StringConverter;
-import salle.utils.MyDB;
+import utils.ConnectionDB;
 
 /**
  * FXML Controller class
@@ -52,47 +52,47 @@ public class PlannificationAddController implements Initializable {
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        c = MyDB.getInstance().getCnx();
+        c = ConnectionDB.getInstance().getConnection();
 
         // Création d'une liste pour stocker les numéros de salles
-List<String> numSalleList = new ArrayList<>();
+        List<String> numSalleList = new ArrayList<>();
 
 // Exécution de la requête SQL pour récupérer les numéros de salles depuis la base de données
-String sql = "SELECT numsa FROM salle";
-try (Statement stmt = c.createStatement()) {
-    ResultSet rs = stmt.executeQuery(sql);
-    while (rs.next()) {
-        String numSalle = rs.getString("numsa");
-        numSalleList.add(numSalle);
-    }
-} catch (SQLException ex) {
-    // Gestion des erreurs SQL
-    ex.printStackTrace();
-}
+        String sql = "SELECT numsa FROM salle";
+        try (Statement stmt = c.createStatement()) {
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                String numSalle = rs.getString("numsa");
+                numSalleList.add(numSalle);
+            }
+        } catch (SQLException ex) {
+            // Gestion des erreurs SQL
+            System.out.println(ex.getMessage());
+        }
 
 // Ajout des numéros de salles à la ComboBox champNumsa
-champNumsa.getItems().addAll(numSalleList);
+        champNumsa.getItems().addAll(numSalleList);
 
 // Définition de la façon dont les options seront affichées dans la ComboBox champNumsa
-champNumsa.setConverter(new StringConverter<String>() {
-    @Override
-    public String toString(String option) {
-        return option;
-    }
+        champNumsa.setConverter(new StringConverter<String>() {
+            @Override
+            public String toString(String option) {
+                return option;
+            }
 
-    @Override
-    public String fromString(String string) {
-        return string;
-    }
-});
+            @Override
+            public String fromString(String string) {
+                return string;
+            }
+        });
 
     }
-        
 
     @FXML
     private void redirectSalle(ActionEvent event) {
@@ -105,5 +105,5 @@ champNumsa.setConverter(new StringConverter<String>() {
     @FXML
     private void PlannificationAdd(ActionEvent event) {
     }
-    
+
 }

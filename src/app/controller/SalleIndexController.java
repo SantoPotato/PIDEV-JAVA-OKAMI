@@ -33,8 +33,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import salle.entities.Salle;
-import salle.services.SalleCRUD;
+import entities.Salle;
+import services.SalleCRUD;
 
 /**
  * FXML Controller class
@@ -71,75 +71,75 @@ public class SalleIndexController implements Initializable {
 
     /**
      * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         columnNumsa.setCellValueFactory(new PropertyValueFactory<>("numsa"));
-    columnEtagesa.setCellValueFactory(new PropertyValueFactory<>("etagesa"));
-    columnTypesa.setCellValueFactory(new PropertyValueFactory<>("typesa"));
+        columnEtagesa.setCellValueFactory(new PropertyValueFactory<>("etagesa"));
+        columnTypesa.setCellValueFactory(new PropertyValueFactory<>("typesa"));
 
-    SalleCRUD sc = new SalleCRUD();
-    tableviewSalle.setItems(FXCollections.observableArrayList(sc.AfficherSalle()));
-ObservableList<Salle> salleList = FXCollections.observableArrayList(sc.AfficherSalle());
-filteredSalleList = new FilteredList<>(salleList, p -> true);
-tableviewSalle.setItems(filteredSalleList);
-
+        SalleCRUD sc = new SalleCRUD();
+        tableviewSalle.setItems(FXCollections.observableArrayList(sc.AfficherSalle()));
+        ObservableList<Salle> salleList = FXCollections.observableArrayList(sc.AfficherSalle());
+        filteredSalleList = new FilteredList<>(salleList, p -> true);
+        tableviewSalle.setItems(filteredSalleList);
 
 //search
-textSearch.textProperty().addListener((observable, oldValue, newValue) -> {
-    filteredSalleList.setPredicate(salle -> {
-        if (newValue == null || newValue.isEmpty()) {
-            return true;
-        }
+        textSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredSalleList.setPredicate(salle -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
 
-        String lowerCaseFilter = newValue.toLowerCase();
+                String lowerCaseFilter = newValue.toLowerCase();
 
-        if (salle.getTypesa().toLowerCase().contains(lowerCaseFilter)) {
-            return true;
-        } else if (String.valueOf(salle.getEtagesa()).contains(lowerCaseFilter)) {
-            return true;
-        } else if (String.valueOf(salle.getNumsa()).contains(lowerCaseFilter)) {
-            return true;
-        }
+                if (salle.getTypesa().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(salle.getEtagesa()).contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(salle.getNumsa()).contains(lowerCaseFilter)) {
+                    return true;
+                }
 
-        return false;
-    });
-});
-    }    
+                return false;
+            });
+        });
+    }
 
     @FXML
     private void redirectSalle(ActionEvent event) {
         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/SalleIndex.fxml"));
-        buttonIndex.getScene().setRoot(loader.load());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/SalleIndex.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
 
-    } catch (IOException ex) {
-        System.out.println(ex.getMessage());
-    }
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML
     private void redirectPlannification(ActionEvent event) {
         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/PlannificationIndex.fxml"));
-        buttonIndex.getScene().setRoot(loader.load());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/PlannificationIndex.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
 
-    } catch (IOException ex) {
-        System.out.println(ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
-    }
-
-
 
     @FXML
     private void AddSalle(ActionEvent event) {
         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/SalleAdd.fxml"));
-        buttonIndex.getScene().setRoot(loader.load());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/SalleAdd.fxml"));
+            buttonIndex.getScene().setRoot(loader.load());
 
-    } catch (IOException ex) {
-        System.out.println(ex.getMessage());
-    }
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML
@@ -166,124 +166,116 @@ textSearch.textProperty().addListener((observable, oldValue, newValue) -> {
     }
 
     @FXML
-private void DeleteSalle(ActionEvent event) {
-    Salle s = tableviewSalle.getSelectionModel().getSelectedItem();
+    private void DeleteSalle(ActionEvent event) {
+        Salle s = tableviewSalle.getSelectionModel().getSelectedItem();
 
-    if (s != null) {
-        SalleCRUD sc = new SalleCRUD();
-        sc.SupprimerSalle(s.getId());
-        tableviewSalle.getItems().remove(s); // remove from the tableview
-        tableviewSalle.refresh(); // refresh the tableview to update the display
-        System.out.println("Salle Supprimé !");
+        if (s != null) {
+            SalleCRUD sc = new SalleCRUD();
+            sc.SupprimerSalle(s.getId());
+            tableviewSalle.getItems().remove(s); // remove from the tableview
+            tableviewSalle.refresh(); // refresh the tableview to update the display
+            System.out.println("Salle Supprimé !");
+        }
     }
-}
 
-
-private Document createPDF(List<Salle> salleList) throws DocumentException, FileNotFoundException {
-    // Créer un nouveau document PDF
-Document document = new Document();
-PdfWriter.getInstance(document, new FileOutputStream("salleList.pdf"));
-document.open();
-
+    private Document createPDF(List<Salle> salleList) throws DocumentException, FileNotFoundException {
+        // Créer un nouveau document PDF
+        Document document = new Document();
+        PdfWriter.getInstance(document, new FileOutputStream("salleList.pdf"));
+        document.open();
 
 // Ajouter une image
-try {
-    Image image = Image.getInstance("C:\\Users\\Oussama\\Downloads\\PIDEV-JAVA-OKAMI-Gestion_Salle\\PIDEV-JAVA-OKAMI-Gestion_Salle\\src\\app\\images\\hh.png");
-    image.scaleToFit(150, 150); // Redimensionner l'image
-    image.setAbsolutePosition(document.left(), document.bottom()); // Positionner l'image en bas à gauche
-    document.add(image);
-} catch (IOException e) {
-    e.printStackTrace();
-}
-
-
+        try {
+            Image image = Image.getInstance("C:\\Users\\Oussama\\Downloads\\PIDEV-JAVA-OKAMI-Gestion_Salle\\PIDEV-JAVA-OKAMI-Gestion_Salle\\src\\app\\images\\hh.png");
+            image.scaleToFit(150, 150); // Redimensionner l'image
+            image.setAbsolutePosition(document.left(), document.bottom()); // Positionner l'image en bas à gauche
+            document.add(image);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 // Ajouter un titre
-Paragraph title = new Paragraph("Liste des Salles\n\n");
-title.setAlignment(Element.ALIGN_CENTER);
-document.add(title);
+        Paragraph title = new Paragraph("Liste des Salles\n\n");
+        title.setAlignment(Element.ALIGN_CENTER);
+        document.add(title);
 
 // Ajouter une table avec les données de la liste des salles
-PdfPTable table = new PdfPTable(3);
-table.setWidthPercentage(100);
-table.setSpacingBefore(10f);
-table.setSpacingAfter(10f);
+        PdfPTable table = new PdfPTable(3);
+        table.setWidthPercentage(100);
+        table.setSpacingBefore(10f);
+        table.setSpacingAfter(10f);
 
 // Ajouter les en-têtes de colonnes
-PdfPCell numsa = new PdfPCell(new Paragraph("Numero Salle"));
-numsa.setBorderColor(BaseColor.BLACK);
-numsa.setPaddingLeft(10);
-numsa.setHorizontalAlignment(Element.ALIGN_CENTER);
-numsa.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        PdfPCell numsa = new PdfPCell(new Paragraph("Numero Salle"));
+        numsa.setBorderColor(BaseColor.BLACK);
+        numsa.setPaddingLeft(10);
+        numsa.setHorizontalAlignment(Element.ALIGN_CENTER);
+        numsa.setVerticalAlignment(Element.ALIGN_MIDDLE);
 
-PdfPCell etagesa = new PdfPCell(new Paragraph("Etage"));
-etagesa.setBorderColor(BaseColor.BLACK);
-etagesa.setPaddingLeft(10);
-etagesa.setHorizontalAlignment(Element.ALIGN_CENTER);
-etagesa.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        PdfPCell etagesa = new PdfPCell(new Paragraph("Etage"));
+        etagesa.setBorderColor(BaseColor.BLACK);
+        etagesa.setPaddingLeft(10);
+        etagesa.setHorizontalAlignment(Element.ALIGN_CENTER);
+        etagesa.setVerticalAlignment(Element.ALIGN_MIDDLE);
 
-PdfPCell typesa = new PdfPCell(new Paragraph("Type"));
-typesa.setBorderColor(BaseColor.BLACK);
-typesa.setPaddingLeft(10);
-typesa.setHorizontalAlignment(Element.ALIGN_CENTER);
-typesa.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        PdfPCell typesa = new PdfPCell(new Paragraph("Type"));
+        typesa.setBorderColor(BaseColor.BLACK);
+        typesa.setPaddingLeft(10);
+        typesa.setHorizontalAlignment(Element.ALIGN_CENTER);
+        typesa.setVerticalAlignment(Element.ALIGN_MIDDLE);
 
-table.addCell(numsa);
-table.addCell(etagesa);
-table.addCell(typesa);
+        table.addCell(numsa);
+        table.addCell(etagesa);
+        table.addCell(typesa);
 
 // Ajouter les données de la liste des salles à la table
-for (Salle salle : salleList) {
-    PdfPCell numsaValue = new PdfPCell(new Paragraph(String.valueOf(salle.getNumsa())));
-    numsaValue.setBorderColor(BaseColor.BLACK);
-    numsaValue.setPaddingLeft(10);
-    numsaValue.setHorizontalAlignment(Element.ALIGN_CENTER);
-    numsaValue.setVerticalAlignment(Element.ALIGN_MIDDLE);
-    
-    PdfPCell etagesaValue = new PdfPCell(new Paragraph(String.valueOf(salle.getEtagesa())));
-    etagesaValue.setBorderColor(BaseColor.BLACK);
-    etagesaValue.setPaddingLeft(10);
-    etagesaValue.setHorizontalAlignment(Element.ALIGN_CENTER);
-    etagesaValue.setVerticalAlignment(Element.ALIGN_MIDDLE);
-    
-    PdfPCell typesaValue = new PdfPCell(new Paragraph(salle.getTypesa()));
-    typesaValue.setBorderColor(BaseColor.BLACK);
-    typesaValue.setPaddingLeft(10);
-    typesaValue.setHorizontalAlignment(Element.ALIGN_CENTER);
-    typesaValue.setVerticalAlignment(Element.ALIGN_MIDDLE);
-    
-    table.addCell(numsaValue);
-    table.addCell(etagesaValue);
-    table.addCell(typesaValue);
-}
+        salleList.forEach((salle) -> {
+            PdfPCell numsaValue = new PdfPCell(new Paragraph(String.valueOf(salle.getNumsa())));
+            numsaValue.setBorderColor(BaseColor.BLACK);
+            numsaValue.setPaddingLeft(10);
+            numsaValue.setHorizontalAlignment(Element.ALIGN_CENTER);
+            numsaValue.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+            PdfPCell etagesaValue = new PdfPCell(new Paragraph(String.valueOf(salle.getEtagesa())));
+            etagesaValue.setBorderColor(BaseColor.BLACK);
+            etagesaValue.setPaddingLeft(10);
+            etagesaValue.setHorizontalAlignment(Element.ALIGN_CENTER);
+            etagesaValue.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+            PdfPCell typesaValue = new PdfPCell(new Paragraph(salle.getTypesa()));
+            typesaValue.setBorderColor(BaseColor.BLACK);
+            typesaValue.setPaddingLeft(10);
+            typesaValue.setHorizontalAlignment(Element.ALIGN_CENTER);
+            typesaValue.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+            table.addCell(numsaValue);
+            table.addCell(etagesaValue);
+            table.addCell(typesaValue);
+        });
 
 // Ajouter la table au document
-document.add(table);
+        document.add(table);
 
 // Fermer le document
-document.close();
+        document.close();
 
-    return document;
-}
-
+        return document;
+    }
 
     @FXML
     private void generatePDF(ActionEvent event) {
         try {
-        SalleCRUD sc = new SalleCRUD();
-        List<Salle> salleList = sc.AfficherSalle();
-        createPDF(salleList);
-        System.out.println("PDF créé avec succès !");
-    } catch (IOException | DocumentException ex) {
-        System.out.println(ex.getMessage());
+            SalleCRUD sc = new SalleCRUD();
+            List<Salle> salleList = sc.AfficherSalle();
+            createPDF(salleList);
+            System.out.println("PDF créé avec succès !");
+        } catch (IOException | DocumentException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
+
+    private void handleButtonGeneratePDF(ActionEvent event) {
+        generatePDF(event);
     }
-    
-private void handleButtonGeneratePDF(ActionEvent event) {
-    generatePDF(event);
-}
 
-
-
-    
 }

@@ -3,21 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package salle.services;
+package services;
 
-import salle.entities.Plannification;
-import salle.entities.Salle;
-import salle.entities.Plannification;
-import salle.utils.MyDB;
+import entities.Plannification;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.sql.Statement;
+import utils.ConnectionDB;
 
 /**
  *
@@ -31,7 +26,7 @@ public class PlannificationCRUD {
    public void AjouterPlannification(Plannification p) {
         try {
         String qry ="INSERT INTO `plannification`(`salle`,`datepl`,`heuredebutpl`,`heurefinpl`) VALUES ('"+p.getId_salle()+"','"+p.getDatepl()+"','"+p.getHeuredebutpl()+"','"+p.getHeurefinpl()+"')";
-     cnx = MyDB.getInstance().getCnx();
+     cnx = ConnectionDB.getInstance().getConnection();
       
             Statement stm =cnx.createStatement();
             
@@ -48,7 +43,7 @@ public class PlannificationCRUD {
         List<Plannification> plannifications = new ArrayList<>();
       try {
             String qry ="SELECT * FROM `plannification` ";
-            cnx = MyDB.getInstance().getCnx();
+            cnx = ConnectionDB.getInstance().getConnection();
             Statement stm = cnx.createStatement();
             ResultSet rs = stm.executeQuery(qry);
             while(rs.next()){
@@ -82,7 +77,7 @@ public class PlannificationCRUD {
     public void SupprimerPlannification(int id) {
 try {
             String qry ="DELETE from plannification where id = "+id+";";
-            cnx = MyDB.getInstance().getCnx();
+            cnx = ConnectionDB.getInstance().getConnection();
       
             Statement stm =cnx.createStatement();
             
@@ -98,7 +93,7 @@ try {
     public void ModifierPlannification(Plannification p) {
  try {
      String qry ="UPDATE plannification SET `salle`='"+p.getId_salle()+"',`datepl`='"+p.getDatepl()+"',`heuredebutpl`='"+p.getHeuredebutpl()+"',`heurefinpl`='"+p.getHeurefinpl()+"' WHERE id="+p.getId()+";";    
-            cnx = MyDB.getInstance().getCnx();
+            cnx = ConnectionDB.getInstance().getConnection();
       
             Statement stm =cnx.createStatement();
             

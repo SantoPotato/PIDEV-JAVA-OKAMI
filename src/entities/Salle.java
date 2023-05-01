@@ -4,7 +4,6 @@
  */
 package entities;
 
-import java.util.Collection;
 
 /**
  *
@@ -22,6 +21,12 @@ public class Salle {
 
     public Salle(Integer id) {
         this.id = id;
+    }
+    
+    public Salle(Integer numsa, Integer etagesa, String typesa) {
+        this.numsa = numsa;
+        this.etagesa = etagesa;
+        this.typesa = typesa;
     }
 
     public Salle(Integer id, Integer numsa, Integer etagesa, String typesa) {
