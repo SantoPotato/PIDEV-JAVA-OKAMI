@@ -4,20 +4,25 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/stock/entities/Stock.java</file>
-            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/Details.fxml</file>
-            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/AjoutcategorieController.java</file>
-            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/EditStockController.java</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUIStock/AjoutStock.fxml</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUIStock/Notification.java</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUIStock/CategorieIndex.fxml</file>
             <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/stock/services/StockCRUD.java</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUIStock/Ajoutcategorie.fxml</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUIStock/Details.fxml</file>
             <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/stock/entities/Stockcategories.java</file>
-            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/CategorieIndexController.java</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUIStock/AjoutcategorieController.java</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUIStock/EditStock.fxml</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUIStock/Stat.fxml</file>
             <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/stock/utils/MyDB.java</file>
-            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/CategorieIndex.fxml</file>
             <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/stock/services/StockcategoriesCRUD.java</file>
-            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/AjoutStockController.java</file>
-            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/StatController.java</file>
-            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/FirstWindow.java</file>
-            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/DetailsController.java</file>
-            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/Notification.java</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUIStock/DetailsController.java</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUIStock/Editcategorie.fxml</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUIStock/CategorieIndexController.java</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUIStock/StatController.java</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUIStock/FirstWindow.java</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUIStock/AjoutStockController.java</file>
+            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUIStock/EditStockController.java</file>
         </group>
     </open-files>
 </project-private>
