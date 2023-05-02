@@ -3,12 +3,32 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/Details.fxml</file>
-            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/StatController.java</file>
-            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/FirstWindow.java</file>
-            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/stock/services/StockCRUD.java</file>
-            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/DetailsController.java</file>
-            <file>file:/C:/Users/MEHDI/Desktop/JavaApplication4/JavaApplication5/src/GUI/Stat.fxml</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/gui/statvehicule.fxml</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/gui/FirstWindow.java</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/gui/CategorieIndexvehicules.fxml</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/gui/frontvehicules.fxml</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/gui/CategorieIndexControllervehicules.java</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/gui/EditvehiculesController.java</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/entities/Vehicules.java</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/gui/DetailsVehiculesController.java</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/utils/MyDB.java</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/gestionduvehicules/Gestionduvehicules.java</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/gui/Editcategorievehicules.fxml</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/gui/StatControllervehicule.java</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/gui/Editvehicules.fxml</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/gui/FrontvehiculesController.java</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/Interfaces/InterfaceCategorievehicules.java</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/entities/Categorievehicules.java</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/utils/Mailvehicules.java</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/Interfaces/InterfaceVehiculesCRUD.java</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/services/VehiculesCRUD.java</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/gui/EditcategorieControllervehicules.java</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/gui/AjoutcategorieControllervehicules.java</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/services/VehiculescategoriesCRUD.java</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/gui/AjoutVehicules.fxml</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/gui/Ajoutcategorievehicule.fxml</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/gui/AjoutVehiculesController.java</file>
+            <file>file:/C:/Users/USER/Desktop/Nouveau%20dossier%20(2)/PIDEV-JAVA-OKAMI-gestion_vehiculesversion%20b%20old%20base/src/app/gui/DetailsVehicules.fxml</file>
         </group>
     </open-files>
 </project-private>

@@ -5,8 +5,8 @@
  */
 package Interfaces;
 
-import stock.entities.Vehicules;
-import stock.entities.Stockcategories;
+import app.entities.Vehicules;
+
 import java.util.List;
 /**
  *

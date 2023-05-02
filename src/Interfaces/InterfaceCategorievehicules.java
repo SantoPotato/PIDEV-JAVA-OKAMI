@@ -5,8 +5,8 @@
  */
 package Interfaces;
 
-import stock.entities.Vehicules;
-import stock.entities.Stockcategories;
+import app.entities.Vehicules;
+import app.entities.Categorievehicules;
 import java.util.List;
 
 /**
@@ -14,9 +14,9 @@ import java.util.List;
  * @author SNAKE 2-16
  */
 public interface InterfaceCategorievehicules {
-     public void ajouterCategorie(Stockcategories Ct);
-     public void ajouterCategorie2(Stockcategories Ct);
-    public void modifierCategorie(Stockcategories Ct);
+     public void ajouterCategorie(Categorievehicules Ct);
+     public void ajouterCategorie2(Categorievehicules Ct);
+    public void modifierCategorie(Categorievehicules Ct);
     public void supprimerCategorie(int id) ;
-    public List<Stockcategories> afficherCategorie();
+    public List<Categorievehicules> afficherCategorie();
 }
