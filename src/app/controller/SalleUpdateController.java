@@ -1,6 +1,5 @@
 package app.controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +13,6 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -29,11 +27,8 @@ import utils.ConnectionDB;
 public class SalleUpdateController implements Initializable {
 
     @FXML
-    private Button buttonIndex;
-    @FXML
-    private Button buttonSalle;
-    @FXML
-    private Button buttonPlannification;
+    private baseController BaseController;
+    
     @FXML
     private Button buttonUpdate;
     @FXML
@@ -113,14 +108,7 @@ public class SalleUpdateController implements Initializable {
                 stmt.setString(3, champType.getValue());
                 stmt.setInt(4, selectedSalle.getId());
                 stmt.executeUpdate();
-                System.out.println("Salle mise à jour");
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/SalleIndex.fxml"));
-                    buttonIndex.getScene().setRoot(loader.load());
-
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
+                BaseController.redirectToPage("SalleIndex");
             } catch (SQLException ex) {
                 Logger.getLogger(SalleUpdateController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -161,28 +149,6 @@ public class SalleUpdateController implements Initializable {
         champNum.setText(String.valueOf(salle.getNumsa()));
         champEtage.setText(String.valueOf(salle.getEtagesa()));
         champType.setValue(salle.getTypesa());
-    }
-
-    @FXML
-    private void redirectSalle(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/SalleIndex.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
-    private void redirectPlannification(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/PlannificationIndex.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
     }
 
 }

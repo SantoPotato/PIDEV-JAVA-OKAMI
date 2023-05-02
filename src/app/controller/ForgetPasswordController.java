@@ -5,7 +5,6 @@
  */
 package app.controller;
 
-import utils.MailerAPI;
 import services.ControleSaisieTextFields;
 import services.ServiceUser;
 import utils.SendMail;
@@ -17,13 +16,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -51,6 +47,9 @@ public class ForgetPasswordController implements Initializable {
 
     /**
      * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -60,14 +59,11 @@ public class ForgetPasswordController implements Initializable {
     @FXML
     private void handleButtonReturn(ActionEvent event) {
         try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-            Scene scene = new Scene((Parent) FXMLLoader.load(getClass().getResource("../gui/login.fxml")));
-            stage.setScene(scene);
-            stage.show();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/login.fxml"));
+            handleButtonReturn.getScene().setRoot(loader.load());
 
         } catch (IOException ex) {
-            System.err.println(ex.getMessage());
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -95,30 +91,23 @@ public class ForgetPasswordController implements Initializable {
             A.show();
         }
     }
-    
-    
-    
-    
+
     @FXML
     private void loadVerifCodePage(ActionEvent event, String data) {
-        try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/VerifCode.fxml"));
-            Parent page2
-                   = loader.load();
-            VerifCodeController verifCodeController= loader.getController();
-            verifCodeController.setData(data);
-            Scene scene = new Scene(page2);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
 
-            stage.show();
-        } catch (IOException ex) { 
-       
-        } 
-        
-       
-  
-          
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/VerifCode.fxml"));
+
+            Parent root = loader.load();
+            VerifCodeController verifCodeController = loader.getController();
+            verifCodeController.setData(data);
+
+            BtnCode.getScene().setRoot(root);
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 
 }

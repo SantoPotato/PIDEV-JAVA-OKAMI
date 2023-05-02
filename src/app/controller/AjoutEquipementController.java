@@ -80,15 +80,13 @@ public class AjoutEquipementController implements Initializable {
         Boolean etateq = etat.isSelected();
         Boolean dispo = Disponible.isSelected();
         Categoriesequipement type = Categorie.getValue();
-        System.out.println(type + " ");
         Equipement e = new Equipement(nom, etateq, dispo, type);
         EquipementCRUD ec = new EquipementCRUD();
-        System.out.println(e + " ");
 
         Random random = new Random();
         int code = random.nextInt(900000) + 100000;
         String ACCOUNT_SID = "AC2d6462eff326ec211eee2f8927df20f6";
-        String AUTH_TOKEN = "6caa89cbc120509e8745ff97cf608e17";
+        String AUTH_TOKEN = "943632682413b6dc8d29704ba91292a7";
         String TWILIO_NUMBER = "+15674323540";
         String USER_NUMBER = "+21652953558";
         String messageText = "Your verification code is " + code;
@@ -114,9 +112,6 @@ public class AjoutEquipementController implements Initializable {
             ec.ajouterEquipement2(e);
             // do something with the code entered by the user
         }
-
-// Print the message SID for debugging purposes
-        System.out.println(message.getSid());
 
         BaseController.redirectToPage("EquipementIndex");
     }

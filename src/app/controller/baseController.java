@@ -45,6 +45,10 @@ public class baseController implements Initializable {
     private MenuItem buttonUser;
     @FXML
     private MenuItem buttonUserStats;
+    @FXML
+    private MenuItem buttonSalle;
+    @FXML
+    private MenuItem buttonPlannification;
 
     /**
      * Initializes the controller class.
@@ -130,6 +134,16 @@ public class baseController implements Initializable {
     @FXML
     private void redirectUserStats(ActionEvent event) {
         redirectToPage("userStats");
+    }
+
+    @FXML
+    private void redirectSalle(ActionEvent event) {
+        redirectToPage("SalleIndex");
+    }
+
+    @FXML
+    private void redirectPlannification(ActionEvent event) {
+        redirectToPage("PlannificationIndex");
     }
 
 }

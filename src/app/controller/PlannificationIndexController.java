@@ -1,6 +1,5 @@
 package app.controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.Time;
@@ -10,7 +9,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -21,13 +19,11 @@ import entities.Plannification;
 import services.PlannificationCRUD;
 
 public class PlannificationIndexController implements Initializable {
+    
+    @FXML
+    private baseController BaseController;
 
-    @FXML
     private Button buttonIndex;
-    @FXML
-    private Button buttonSalle;
-    @FXML
-    private Button buttonPlannification;
     @FXML
     private TableView<Plannification> tableviewPlannification;
     @FXML
@@ -83,32 +79,7 @@ public class PlannificationIndexController implements Initializable {
 
     @FXML
     private void PlannificationAdd(ActionEvent event) {
-        try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/PlannificationAdd.fxml"));
-        buttonIndex.getScene().setRoot(loader.load());
-
-    } catch (IOException ex) {
-        System.out.println(ex.getMessage());
-    }
-    }
-
-    @FXML
-    private void PlannificationUpdate(ActionEvent event) {
-    }
-
-    @FXML
-    private void PlannificationDelete(ActionEvent event) {
-    }
-    
-    @FXML
-    private void redirectSalle(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/SalleIndex.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        BaseController.redirectToPage("PlannificationAdd");
     }
 
 }

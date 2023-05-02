@@ -31,12 +31,6 @@ import utils.ConnectionDB;
 public class PlannificationAddController implements Initializable {
 
     @FXML
-    private Button buttonIndex;
-    @FXML
-    private Button buttonSalle;
-    @FXML
-    private Button buttonPlannification;
-    @FXML
     private Button buttonAdd;
     @FXML
     private Label labesNumsa;
@@ -94,13 +88,6 @@ public class PlannificationAddController implements Initializable {
 
     }
 
-    @FXML
-    private void redirectSalle(ActionEvent event) {
-    }
-
-    @FXML
-    private void redirectPlannification(ActionEvent event) {
-    }
 
     @FXML
     private void PlannificationAdd(ActionEvent event) {

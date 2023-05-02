@@ -28,7 +28,7 @@ public class ServiceUser implements Iservice<User> {
     Connection cnx = ConnectionDB.getInstance().getConnection();
 
     @Override
-   public void ajouter(User user) throws SQLException {
+    public void ajouter(User user) throws SQLException {
 
         String role = "Admin";
         if (user instanceof Client) {
@@ -126,7 +126,7 @@ public class ServiceUser implements Iservice<User> {
         return list;
     }
 
-     public User getOneById(int id) {
+    public User getOneById(int id) {
         User p = null;
         try {
             String req = "Select * from user";
@@ -159,21 +159,6 @@ public class ServiceUser implements Iservice<User> {
         return result;
     }
 
-    // public boolean checkIfUserCanBeAdded(User u) {
-    // Vérifier que l'adresse email n'est pas déjà utilisée par un autre utilisateur
-    //String checkEmailQuery = "SELECT COUNT(*) FROM user WHERE email=?";
-    //try (PreparedStatement checkEmailStmt = cnx.prepareStatement(checkEmailQuery)) {
-    //  checkEmailStmt.setString(1, u.getEmail());
-    // ResultSet rs = checkEmailStmt.executeQuery();
-    // if (rs.next() && rs.getInt(1) > 0) {
-    // return false;
-    //}
-    // } catch (SQLException ex) {
-    // Logger.getLogger(ServiceUser.class.getName()).log(Level.SEVERE, null, ex);
-    /// return false;
-    // }
-    // return true;
-///}
     public List<User> selectBy(String attribute, String value) throws SQLException {
         String sql = "SELECT * FROM user where " + attribute + "= ?";
         PreparedStatement pstmt = cnx.prepareStatement(sql);
@@ -195,17 +180,18 @@ public class ServiceUser implements Iservice<User> {
         }
         return userList;
     }
-public void updatePassword( User user) throws SQLException {
-        System.out.println(user.getPassword());
-        String sql="UPDATE user SET PASSWORD`=? WHERE ID_USER`=?";
+
+    public void updatePassword(User user) throws SQLException {
+        String sql = "UPDATE user SET PASSWORD`=? WHERE ID_USER`=?";
         PreparedStatement pstmt = cnx.prepareStatement(sql);
-        pstmt.setString(1,user.getPassword());
-        pstmt.setInt(2,user.getId_user());
+        pstmt.setString(1, user.getPassword());
+        pstmt.setInt(2, user.getId_user());
         pstmt.executeUpdate();
         System.out.println(user.getPassword());
     }
 //mail et mot de passe. Elle tente de mettre à jour le mot de passe d'un utilisateur dans une table de base de données
- public void ResetPaswword(String email, String password) {
+
+    public void ResetPaswword(String email, String password) {
         try {
 
             String req = "UPDATE user SET password = ? WHERE email = ?";
@@ -222,13 +208,10 @@ public void updatePassword( User user) throws SQLException {
 
     }
 
-
-
 //public void editUserPassword(User user) throws SQLException {
-      //  user.setPassword(hashPasswd(user.getPlainPassword()));
-        //updatePassword(user);
+    //  user.setPassword(hashPasswd(user.getPlainPassword()));
+    //updatePassword(user);
     //}
-
     public int ChercherMail(String email) {
         try {
             String req = "SELECT * from user WHERE user.`email` ='" + email + "'  ";
@@ -246,62 +229,49 @@ public void updatePassword( User user) throws SQLException {
         return -1;
 //To change body of generated methods, choose Tools | Templates.
     }
-  
-   
 
- public List<User> searchUserByemail(String email) {
-    List<User> myList = new ArrayList<>();
-    try {
-        String requete = "SELECT * FROM User WHERE email=?";
-        PreparedStatement st = ConnectionDB.getInstance().getConnection().prepareStatement(requete);
-        st.setString(1, email);
-        ResultSet rs = st.executeQuery();
-        while (rs.next()) {
-            User u = new User();
-            u.setId_user(rs.getInt(1));
-            u.setFirst_Name(rs.getString("nom"));
-            u.setLast_Name(rs.getString("prenom"));
-            u.setPassword(rs.getString("password"));
-            u.setEmail(rs.getString("email"));
-            u.setGender(rs.getString("gender"));
-             u.setPhone_number(rs.getInt("phone_number"));
-            myList.add(u);
+    public List<User> searchUserByemail(String email) {
+        List<User> myList = new ArrayList<>();
+        try {
+            String requete = "SELECT * FROM User WHERE email=?";
+            PreparedStatement st = ConnectionDB.getInstance().getConnection().prepareStatement(requete);
+            st.setString(1, email);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                User u = new User();
+                u.setId_user(rs.getInt(1));
+                u.setFirst_Name(rs.getString("nom"));
+                u.setLast_Name(rs.getString("prenom"));
+                u.setPassword(rs.getString("password"));
+                u.setEmail(rs.getString("email"));
+                u.setGender(rs.getString("gender"));
+                u.setPhone_number(rs.getInt("phone_number"));
+                myList.add(u);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
         }
-    } catch (SQLException ex) {
-        System.err.println(ex.getMessage());
-    }
-    return myList;
-}
-
-
-public Map<String, Integer> countByGender() {
-    Map<String, Integer> countMap = new HashMap<>();
-
-    try (Connection connection = ConnectionDB.getInstance().getConnection()) {
-        String query = "SELECT gender, COUNT(*) AS count FROM user GROUP BY gender";
-        PreparedStatement statement = connection.prepareStatement(query);
-        ResultSet rs = statement.executeQuery();
-
-        while (rs.next()) {
-            String gender = rs.getString("gender");
-            int count = rs.getInt("count");
-            countMap.put(gender, count);
-        }
-    } catch (SQLException ex) {
-        System.err.println(ex.getMessage());
+        return myList;
     }
 
-    return countMap;
-}
+    public Map<String, Integer> countByGender() {
+        Map<String, Integer> countMap = new HashMap<>();
 
+        try (Connection connection = ConnectionDB.getInstance().getConnection()) {
+            String query = "SELECT gender, COUNT(*) AS count FROM user GROUP BY gender";
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
 
+            while (rs.next()) {
+                String gender = rs.getString("gender");
+                int count = rs.getInt("count");
+                countMap.put(gender, count);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
 
+        return countMap;
+    }
 
-
-
-
-
-
-
-   
 }

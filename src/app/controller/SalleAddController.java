@@ -5,15 +5,12 @@
  */
 package app.controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -30,13 +27,10 @@ import utils.ConnectionDB;
  * @author Oussama
  */
 public class SalleAddController implements Initializable {
+    
+    @FXML
+    private baseController BaseController;
 
-    @FXML
-    private Button buttonIndex;
-    @FXML
-    private Button buttonSalle;
-    @FXML
-    private Button buttonPlannification;
     @FXML
     private Button buttonAdd;
     @FXML
@@ -74,28 +68,6 @@ public class SalleAddController implements Initializable {
 }  
 
     @FXML
-    private void redirectSalle(ActionEvent event) {
-        try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/SalleIndex.fxml"));
-        buttonIndex.getScene().setRoot(loader.load());
-
-    } catch (IOException ex) {
-        System.out.println(ex.getMessage());
-    }
-    }
-
-    @FXML
-    private void redirectPlannification(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/PlannificationIndex.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
 private void SalleAdd(ActionEvent event) {
     String errorMessage = "";
     int num = 0;
@@ -130,13 +102,7 @@ private void SalleAdd(ActionEvent event) {
         SalleCRUD salleCRUD = new SalleCRUD();
         salleCRUD.AjouterSalle(salle);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/SalleIndex.fxml"));
-        try {
-            Parent root = loader.load();
-            buttonAdd.getScene().setRoot(root);   // Change the scene to another one
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        BaseController.redirectToPage("SalleIndex");
     } else {
         // Afficher une boîte de dialogue modale avec les messages d'erreur
         Alert alert = new Alert(AlertType.ERROR);

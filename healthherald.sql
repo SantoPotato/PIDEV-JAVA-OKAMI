@@ -333,25 +333,25 @@ CREATE TABLE `stock` (
   `nomst` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `dateexpirationst` date NOT NULL,
-  `quantites` int(11) NOT NULL,
-  `Stockcategories` int(11) NOT NULL
+  `stockcat_id` int(11) NOT NULL,
+  `quantites` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `stock`
 --
 
-INSERT INTO `stock` (`id`, `nomst`, `description`, `dateexpirationst`, `quantites`, `Stockcategories`) VALUES
-(1, 'Aspirine', 'utilisé pour réduire la douleur, la fièvre et / ou l’inflammation, et comme antithrombotique. Les conditions inflammatoires spécifiques que l’aspirine est utilisée pour traiter comprennent la maladie de Kawasaki, la péricardite et la fièvre rhumatismale.', '2023-03-04', 5, 3),
-(2, 'Omeprazole', 'utilisé en association avec des antibiotiques (par exemple, amoxicilline, clarithromycine) pour traiter les ulcères associés à l’infection causée par la bactérie H. pylori.', '2027-10-13', 251, 4),
-(3, 'Simvastatine', 'est utilisée pour abaisser les taux sanguins de « mauvais » cholestérol (lipoprotéines de basse densité, ou LDL), pour augmenter les niveaux de « bon » cholestérol (lipoprotéines de haute densité, ou HDL) et pour abaisser les triglycérides (un type de gr', '2025-06-21', 320, 5),
-(4, 'Metformine', 'utilisé avec un régime alimentaire pour abaisser les taux élevés de sucre dans le sang chez les patients atteints de diabète de type 2. La metformine agit en réduisant la quantité de glucose absorbée par les intestins, en diminuant la quantité de glucose', '2027-06-09', 110, 6),
-(5, 'Insuline', 'une hormone peptidique contenant deux chaînes réticulées par des ponts disulfures. L’insuline (/ ˈɪn.sjʊ.lɪn /, du latin insula, « île ») est une hormone peptidique produite par les cellules bêta des îlots pancréatiques codées chez l’homme par le gène INS', '2025-10-22', 50, 7),
-(6, 'Lévothyroxine', 'est utilisé pour traiter le déficit en hormones thyroïdiennes (hypothyroïdie), y compris une forme sévère connue sous le nom de coma myxœdème. Il peut également être utilisé pour traiter et prévenir certains types de tumeurs thyroïdiennes.', '2024-10-16', 45, 8),
-(7, 'Diazépam', 'est utilisé pour traiter le déficit en hormones thyroïdiennes (hypothyroïdie), y compris une forme sévère connue sous le nom de coma myxœdème. Il peut également être utilisé pour traiter et prévenir certains types de tumeurs thyroïdiennes.', '2026-10-21', 781, 9),
-(8, 'Céfalexine', 'est un inhibiteur de la pompe à protons qui diminue la quantité d’acide produite dans l’estomac. L’oméprazole est utilisé pour traiter les symptômes du reflux gastro-œsophagien pathologique (RGO) et d’autres affections causées par un excès d’acide gastriq', '2026-10-21', 42, 10),
-(9, 'panadol', 'est utilisé pour réduire la fièvre et soulager la douleur, y compris les maux de dents, les maux de tête, la migraine, les douleurs musculaires, la douleur', '2026-06-21', 126, 2),
-(10, 'doliprane', 'médicament de douleur', '2023-03-06', 556, 3);
+INSERT INTO `stock` (`id`, `nomst`, `description`, `dateexpirationst`, `stockcat_id`, `quantites`) VALUES
+(1, 'Aspirine', 'utilisé pour réduire la douleur, la fièvre et / ou l’inflammation, et comme antithrombotique. Les conditions inflammatoires spécifiques que l’aspirine est utilisée pour traiter comprennent la maladie de Kawasaki, la péricardite et la fièvre rhumatismale.', '2023-03-04', 3, 5),
+(2, 'Omeprazole', 'utilisé en association avec des antibiotiques (par exemple, amoxicilline, clarithromycine) pour traiter les ulcères associés à l’infection causée par la bactérie H. pylori.', '2027-10-13', 4, 251),
+(3, 'Simvastatine', 'est utilisée pour abaisser les taux sanguins de « mauvais » cholestérol (lipoprotéines de basse densité, ou LDL), pour augmenter les niveaux de « bon » cholestérol (lipoprotéines de haute densité, ou HDL) et pour abaisser les triglycérides (un type de gr', '2025-06-21', 5, 320),
+(4, 'Metformine', 'utilisé avec un régime alimentaire pour abaisser les taux élevés de sucre dans le sang chez les patients atteints de diabète de type 2. La metformine agit en réduisant la quantité de glucose absorbée par les intestins, en diminuant la quantité de glucose', '2027-06-09', 6, 110),
+(5, 'Insuline', 'une hormone peptidique contenant deux chaînes réticulées par des ponts disulfures. L’insuline (/ ˈɪn.sjʊ.lɪn /, du latin insula, « île ») est une hormone peptidique produite par les cellules bêta des îlots pancréatiques codées chez l’homme par le gène INS', '2025-10-22', 7, 50),
+(6, 'Lévothyroxine', 'est utilisé pour traiter le déficit en hormones thyroïdiennes (hypothyroïdie), y compris une forme sévère connue sous le nom de coma myxœdème. Il peut également être utilisé pour traiter et prévenir certains types de tumeurs thyroïdiennes.', '2024-10-16', 8, 45),
+(7, 'Diazépam', 'est utilisé pour traiter le déficit en hormones thyroïdiennes (hypothyroïdie), y compris une forme sévère connue sous le nom de coma myxœdème. Il peut également être utilisé pour traiter et prévenir certains types de tumeurs thyroïdiennes.', '2026-10-21', 9, 781),
+(8, 'Céfalexine', 'est un inhibiteur de la pompe à protons qui diminue la quantité d’acide produite dans l’estomac. L’oméprazole est utilisé pour traiter les symptômes du reflux gastro-œsophagien pathologique (RGO) et d’autres affections causées par un excès d’acide gastriq', '2026-10-21', 10, 42),
+(9, 'panadol', 'est utilisé pour réduire la fièvre et soulager la douleur, y compris les maux de dents, les maux de tête, la migraine, les douleurs musculaires, la douleur', '2026-06-21', 2, 126),
+(10, 'doliprane', 'médicament de douleur', '2023-03-06', 3, 556);
 
 -- --------------------------------------------------------
 
@@ -539,7 +539,7 @@ ALTER TABLE `salle`
 --
 ALTER TABLE `stock`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_4B36566067373F03` (`Stockcategories`);
+  ADD KEY `IDX_4B36566067373F03` (`stockcat_id`);
 
 --
 -- Indexes for table `stockcategories`
@@ -688,7 +688,7 @@ ALTER TABLE `rendezvous_user`
 -- Constraints for table `stock`
 --
 ALTER TABLE `stock`
-  ADD CONSTRAINT `FK_4B36566067373F03` FOREIGN KEY (`Stockcategories`) REFERENCES `stockcategories` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `FK_4B36566067373F03` FOREIGN KEY (`stockcat_id`) REFERENCES `stockcategories` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `vehicules`

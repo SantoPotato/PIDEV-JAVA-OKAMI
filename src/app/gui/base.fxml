@@ -39,6 +39,12 @@
                           <MenuItem fx:id="buttonRendezvousCalendrier" mnemonicParsing="false" onAction="#redirectRendezvousCalendrier" text="Calendrier" />
                        </items>
                     </MenuButton>
+                  <MenuButton mnemonicParsing="false" style="-fx-background-color: none; -fx-font-size: 18;" text="Salle">
+                     <items>
+                        <MenuItem fx:id="buttonSalle" mnemonicParsing="false" onAction="#redirectSalle" text="Index" />
+                        <MenuItem fx:id="buttonPlannification" mnemonicParsing="false" onAction="#redirectPlannification" text="Plannification" />
+                     </items>
+                  </MenuButton>
                   <MenuButton mnemonicParsing="false" style="-fx-background-color: none; -fx-font-size: 18;" text="Utilisateurs">
                      <items>
                         <MenuItem fx:id="buttonUser" mnemonicParsing="false" onAction="#redirectUser" text="Index" />

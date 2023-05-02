@@ -12,12 +12,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -32,10 +29,9 @@ public class VerifCodeController implements Initializable {
     private Button btnConfirmerCode;
     String code;
 
-    
-    
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
@@ -60,33 +56,35 @@ public class VerifCodeController implements Initializable {
 
     @FXML
     private void btnAnnulerCode(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/login.fxml"));
+            btnConfirmerCode.getScene().setRoot(loader.load());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
-    
-  public void setData(String data) {
-      //  System.out.println("this function was called"+data);
-      
-       this.code = data;
-        
-    } 
-    
-    private void loadResetPasswordPage(ActionEvent event, String data) {
-        try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/ResetPassword.fxml"));
-            Parent page1
-                   = loader.load();
-            ResetPasswordController resetPasswordController= loader.getController();
-            resetPasswordController.setData(data);
-            Scene scene = new Scene(page1);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
+    public void setData(String data) {
+        this.code = data;
 
-            stage.show();
-        } catch (IOException ex) { 
-        System.out.println(ex);
-        } 
-        
-        
-    } 
-    
+    }
+
+    private void loadResetPasswordPage(ActionEvent event, String data) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/ResetPassword.fxml"));
+
+            Parent root = loader.load();
+            ResetPasswordController resetPasswordController = loader.getController();
+            resetPasswordController.setData(data);
+
+            btnConfirmerCode.getScene().setRoot(root);
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+
 }

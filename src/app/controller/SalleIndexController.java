@@ -42,13 +42,10 @@ import services.SalleCRUD;
  * @author Oussama
  */
 public class SalleIndexController implements Initializable {
+    
+    @FXML
+    private baseController BaseController;
 
-    @FXML
-    private Button buttonIndex;
-    @FXML
-    private Button buttonSalle;
-    @FXML
-    private Button buttonPlannification;
     @FXML
     private TableView<Salle> tableviewSalle;
     @FXML
@@ -109,37 +106,10 @@ public class SalleIndexController implements Initializable {
         });
     }
 
-    @FXML
-    private void redirectSalle(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/SalleIndex.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
-    private void redirectPlannification(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/PlannificationIndex.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
 
     @FXML
     private void AddSalle(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/SalleAdd.fxml"));
-            buttonIndex.getScene().setRoot(loader.load());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        BaseController.redirectToPage("SalleAdd");
     }
 
     @FXML
@@ -156,7 +126,7 @@ public class SalleIndexController implements Initializable {
 
                 c.setSalle(s);
 
-                buttonIndex.getScene().setRoot(root);
+                tableviewSalle.getScene().setRoot(root);
 
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
@@ -174,7 +144,6 @@ public class SalleIndexController implements Initializable {
             sc.SupprimerSalle(s.getId());
             tableviewSalle.getItems().remove(s); // remove from the tableview
             tableviewSalle.refresh(); // refresh the tableview to update the display
-            System.out.println("Salle Supprimé !");
         }
     }
 
@@ -186,12 +155,11 @@ public class SalleIndexController implements Initializable {
 
 // Ajouter une image
         try {
-            Image image = Image.getInstance("C:\\Users\\Oussama\\Downloads\\PIDEV-JAVA-OKAMI-Gestion_Salle\\PIDEV-JAVA-OKAMI-Gestion_Salle\\src\\app\\images\\hh.png");
+            Image image = Image.getInstance("../images/hh.png");
             image.scaleToFit(150, 150); // Redimensionner l'image
             image.setAbsolutePosition(document.left(), document.bottom()); // Positionner l'image en bas à gauche
             document.add(image);
         } catch (IOException e) {
-            e.printStackTrace();
         }
 
 // Ajouter un titre
@@ -268,7 +236,6 @@ public class SalleIndexController implements Initializable {
             SalleCRUD sc = new SalleCRUD();
             List<Salle> salleList = sc.AfficherSalle();
             createPDF(salleList);
-            System.out.println("PDF créé avec succès !");
         } catch (IOException | DocumentException ex) {
             System.out.println(ex.getMessage());
         }

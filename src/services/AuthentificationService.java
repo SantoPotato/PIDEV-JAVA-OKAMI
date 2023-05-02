@@ -41,7 +41,6 @@ public class AuthentificationService implements IAuthentificationService {
 
     public AuthentificationService() {
         userService = new ServiceUser();
-
     }
 
     @Override

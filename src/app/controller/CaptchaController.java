@@ -13,14 +13,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -44,6 +40,7 @@ public class CaptchaController implements Initializable {
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
@@ -52,44 +49,38 @@ public class CaptchaController implements Initializable {
         // TODO
     }
 // vérifie si la saisie de l'utilisateur correspond au captcha généré précédemment.
+
     @FXML
     private void captchachecker(ActionEvent event) {
         String userinput = textarea.getText();
         if (userinput.equals(String.valueOf(captchahere.getText()))) {
             if (!(userinput.equals("captcha"))) {
-                messagebtn.setText("Success");
+                messagebtn.setText("Succés");
                 messagebtn.setTextFill(Color.GREEN);
-                
 
                 UserSession userSession = UserSession.getInstace(null);
                 if (userSession.getUser().getRole().equals("ADMIN")) {
-                    String pageName = "../gui/AfficheBackOff.fxml";
                     try {
-                        Node node = (Node) event.getSource();
-                        Stage stage = (Stage) node.getScene().getWindow();
-                        Scene scene = new Scene((Parent) FXMLLoader.load(getClass().getResource(pageName)));
-                        stage.setScene(scene);
-                        stage.show();
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/index.fxml"));
+                        btnLogin.getScene().setRoot(loader.load());
 
                     } catch (IOException ex) {
-                        System.err.println(ex.getMessage());
+                        System.out.println(ex.getMessage());
                     }
                 }
 
             } else {
-                messagebtn.setText("please click on new captcha");
+                messagebtn.setText("Veillez cliquer sur un nouveau Captcha");
                 messagebtn.setTextFill(Color.RED);
             }
         } else {
-            messagebtn.setText("Fail");
+            messagebtn.setText("Code erroné");
             messagebtn.setTextFill(Color.RED);
         }
     }
-    
-    
+
     ////est appelée lorsqu'un utilisateur souhaite générer un nouveau captcha.
     //Elle utilise un tableau de caractères contenant des lettres majuscules et minuscules, 
-
     @FXML
     private void setcaptcha(ActionEvent event) {
 
@@ -101,22 +92,19 @@ public class CaptchaController implements Initializable {
             int randomnumber = (int) Math.floor(Math.random() * (max - min + 1) + min);
             captchastring += data[randomnumber];
         }
-        System.out.println(captchastring);
         captchahere.setText(captchastring);
         captchahere.setTextFill(Color.GREEN);
     }
 
     @FXML
     private void handleLoginButtonClick(ActionEvent event) {
+
         try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-            Scene scene = new Scene((Parent) FXMLLoader.load(getClass().getResource("../gui/login.fxml")));
-            stage.setScene(scene);
-            stage.show();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/login.fxml"));
+            btnLogin.getScene().setRoot(loader.load());
 
         } catch (IOException ex) {
-            System.err.println(ex.getMessage());
+            System.out.println(ex.getMessage());
         }
     }
 
