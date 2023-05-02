@@ -3,22 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package stock.entities;
-
-import java.sql.Date;
+package entities;
 
 /**
  *
- 
+ *
  */
 public class Stockcategories {
-   private int id;
-    private String typecat;
-    
 
-    public Stockcategories( String typecat) {
+    private int id;
+    private String typecat;
+
+    public Stockcategories(String typecat) {
         this.typecat = typecat;
-        
+
     }
 
     public Stockcategories(int id, String typecat) {
@@ -42,30 +40,12 @@ public class Stockcategories {
         this.typecat = typecat;
     }
 
-    
-   public Stockcategories() {
+    public Stockcategories() {
     }
+
     @Override
     public String toString() {
         return typecat;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 }
-
-
-
-
-
-

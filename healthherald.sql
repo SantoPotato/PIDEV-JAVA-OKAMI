@@ -371,7 +371,7 @@ CREATE TABLE `stockcategories` (
 INSERT INTO `stockcategories` (`id`, `typecat`) VALUES
 (1, 'Antiagrégant plaquettaire'),
 (2, 'Anti-ulcéreux'),
-(3, 'Hypolipémiant\r\n'),
+(3, 'Hypolipémiant'),
 (4, 'Hypoglycémiant oral'),
 (5, 'Hypoglycémiant injectable'),
 (6, 'Hormone thyroïdienne'),

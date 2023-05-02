@@ -74,11 +74,9 @@ public class RendezvousStatsController implements Initializable {
 
         Map<String, Integer> statsUser = rc.statsRendezvousUser();
         statsUser.entrySet().forEach((entry) -> {
-            pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue()));
+            pieChartData.add(new PieChart.Data(entry.getKey() + " (" + entry.getValue() + ") ", entry.getValue()));
         });
         statsRendezvousUser.setData(pieChartData);
-
-        LocalDate now = LocalDate.now();
 
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1999, 2099);
         valueFactory.setValue(LocalDate.now().getYear());

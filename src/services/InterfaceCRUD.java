@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces;
+package services;
 
-import stock.entities.Stock;
-import stock.entities.Stockcategories;
+import entities.Stock;
 import java.util.List;
 /**
  *

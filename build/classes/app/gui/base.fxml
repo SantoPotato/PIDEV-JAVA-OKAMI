@@ -45,6 +45,13 @@
                         <MenuItem fx:id="buttonPlannification" mnemonicParsing="false" onAction="#redirectPlannification" text="Plannification" />
                      </items>
                   </MenuButton>
+                  <MenuButton mnemonicParsing="false" style="-fx-background-color: none; -fx-font-size: 18;" text="Stock">
+                     <items>
+                        <MenuItem fx:id="buttonStock" mnemonicParsing="false" onAction="#redirectStock" text="Index" />
+                        <MenuItem fx:id="buttonStockCategorie" mnemonicParsing="false" onAction="#redirectStockCategorie" text="Catégorie" />
+                        <MenuItem fx:id="buttonStockStats" mnemonicParsing="false" onAction="#redirectStockStats" text="Statistiques" />
+                     </items>
+                  </MenuButton>
                   <MenuButton mnemonicParsing="false" style="-fx-background-color: none; -fx-font-size: 18;" text="Utilisateurs">
                      <items>
                         <MenuItem fx:id="buttonUser" mnemonicParsing="false" onAction="#redirectUser" text="Index" />
