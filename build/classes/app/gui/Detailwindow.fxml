@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.gui.DetailwindowController">
+   <children>
+      <Label layoutX="94.0" layoutY="34.0" text="id:" />
+      <Label layoutX="94.0" layoutY="91.0" text="nom:" />
+      <Label layoutX="94.0" layoutY="150.0" text="prenom:" />
+      <Label layoutX="94.0" layoutY="209.0" text="password:" />
+      <Label layoutX="94.0" layoutY="257.0" text="email:" />
+      <TextField fx:id="textid" editable="false" layoutX="186.0" layoutY="30.0" />
+      <TextField fx:id="textnom" layoutX="186.0" layoutY="96.0" />
+      <TextField fx:id="textprenom" layoutX="186.0" layoutY="155.0" />
+      <TextField fx:id="textpassword" layoutX="186.0" layoutY="214.0" />
+      <TextField fx:id="textemail" layoutX="186.0" layoutY="266.0" />
+   </children>
+</AnchorPane>
