@@ -1,19 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.gui.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.UserFXMLController">
    <children>
-      <Label layoutX="135.0" layoutY="164.0" text="email:" />
-      <Label layoutX="135.0" layoutY="211.0" text="password:" />
-      <TextField fx:id="email" layoutX="206.0" layoutY="160.0" />
-      <TextField fx:id="password" layoutX="206.0" layoutY="207.0" />
-      <Button fx:id="btnsignin" layoutX="218.0" layoutY="274.0" mnemonicParsing="false" onAction="#loginuser" prefHeight="25.0" prefWidth="126.0" text="sign in" />
-      <Hyperlink fx:id="suLink" layoutX="285.0" layoutY="343.0" onAction="#signUp" text="sign up NOW!" />
-      <Label layoutX="192.0" layoutY="346.0" text="New account ?" />
+      <Pane prefHeight="720.0" prefWidth="1270.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="383.0" layoutY="155.0" prefHeight="120.0" prefWidth="510.0" text="inscription " />
+         </children>
+      </Pane>
+      <AnchorPane layoutX="844.0" prefHeight="720.0" prefWidth="436.0" style="-fx-background-color: #F7C200;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="720.0" fitWidth="431.0" layoutX="3.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="34.81549072265625" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="39.0">
+               <image>
+                  <Image url="@../images/implementation_banner_1920x2879.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="-1.0" prefHeight="720.0" prefWidth="845.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <TextField layoutX="261.0" layoutY="211.0" promptText="First name" />
+            <TextField layoutX="261.0" layoutY="312.0" promptText="Last name" />
+            <Button layoutX="218.0" layoutY="446.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="273.0" style="-fx-background-radius: 70px; -fx-background-color: #F4D32C;" text="Button">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="269.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: white;">
+         <children>
+            <AnchorPane layoutX="844.0" prefHeight="720.0" prefWidth="436.0" style="-fx-background-color: #F7C200;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="720.0" fitWidth="431.0" layoutX="3.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="34.81549072265625" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="39.0">
+                     <image>
+                        <Image url="@../images/implementation_banner_1920x2879.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="-1.0" prefHeight="720.0" prefWidth="845.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TextField fx:id="tf_fn" layoutX="261.0" layoutY="134.0" promptText="First name" />
+                  <TextField fx:id="tf_ln" layoutX="251.0" layoutY="232.0" promptText="Last name" />
+                  <Button layoutX="218.0" layoutY="446.0" mnemonicParsing="false" onAction="#login" prefHeight="79.0" prefWidth="273.0" style="-fx-background-radius: 70px; -fx-background-color: #F4D32C;" text="Login">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font>
+                  </Button>
+                  <ImageView fx:id="bt" fitHeight="150.0" fitWidth="200.0" layoutX="269.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button layoutX="285.0" layoutY="586.0" mnemonicParsing="false" onAction="#login" prefHeight="9.0" prefWidth="139.0" style="-fx-background-radius: 70px; -fx-background-color: #F4D32C;" text="inscription ">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font>
+                  </Button>
+                  <TextField layoutX="251.0" layoutY="329.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
