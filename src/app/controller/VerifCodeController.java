@@ -57,7 +57,7 @@ public class VerifCodeController implements Initializable {
     @FXML
     private void btnAnnulerCode(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/gui/login.fxml"));
             btnConfirmerCode.getScene().setRoot(loader.load());
 
         } catch (IOException ex) {

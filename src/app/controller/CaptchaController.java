@@ -61,7 +61,7 @@ public class CaptchaController implements Initializable {
                 UserSession userSession = UserSession.getInstace(null);
                 if (userSession.getUser().getRole().equals("ADMIN")) {
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/index.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/gui/index.fxml"));
                         btnLogin.getScene().setRoot(loader.load());
 
                     } catch (IOException ex) {
@@ -100,7 +100,7 @@ public class CaptchaController implements Initializable {
     private void handleLoginButtonClick(ActionEvent event) {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/gui/login.fxml"));
             btnLogin.getScene().setRoot(loader.load());
 
         } catch (IOException ex) {

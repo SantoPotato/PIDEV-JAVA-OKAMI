@@ -24,15 +24,16 @@ public class MainWindow extends Application {
 
         try {
             Locale.setDefault(new Locale("fr"));
-            Parent root = FXMLLoader.load(getClass().getResource("index.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Index.fxml"));
 
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("../themes/nord-dark.css").toExternalForm());
+
+            scene.getStylesheets().add(getClass().getResource("/app/themes/nord-dark.css").toExternalForm());
 
             primaryStage.setMinWidth(720);
             primaryStage.setMinHeight(480);
             primaryStage.setTitle("HealthHerald");
-            primaryStage.getIcons().add(new Image("app/images/hh.png"));
+            primaryStage.getIcons().add(new Image("/app/images/hh.png"));
             primaryStage.setScene(scene);
             primaryStage.show();
             

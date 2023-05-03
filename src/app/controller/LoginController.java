@@ -71,7 +71,7 @@ public class LoginController implements Initializable {
 
     private void loadPage(String name) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/" + name + ".fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/gui/" + name + ".fxml"));
             btnok.getScene().setRoot(loader.load());
 
         } catch (IOException ex) {

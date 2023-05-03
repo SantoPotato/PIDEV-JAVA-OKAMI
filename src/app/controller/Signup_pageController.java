@@ -64,7 +64,7 @@ public class Signup_pageController implements Initializable {
     private void handleLoginButtonClick(ActionEvent event) {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/gui/login.fxml"));
             btnLogin.getScene().setRoot(loader.load());
 
         } catch (IOException ex) {

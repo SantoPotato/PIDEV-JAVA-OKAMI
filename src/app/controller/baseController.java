@@ -69,7 +69,7 @@ public class baseController implements Initializable {
 
     public void redirectToPage(String name) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/" + name + ".fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/gui/" + name + ".fxml"));
             buttonIndex.getScene().setRoot(loader.load());
 
         } catch (IOException ex) {

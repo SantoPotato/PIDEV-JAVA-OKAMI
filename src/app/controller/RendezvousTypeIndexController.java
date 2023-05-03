@@ -20,7 +20,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import entities.RendezvousType;
-import java.io.FileInputStream;
 import java.util.Locale;
 import java.util.Properties;
 import javafx.scene.control.Label;
@@ -104,7 +103,7 @@ public class RendezvousTypeIndexController implements Initializable {
         if (t != null) {
             // RendezvousCRUD rc = new RendezvousCRUD();
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousTypeUpdate.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/gui/RendezvousTypeUpdate.fxml"));
 
                 Parent root = loader.load();
                 RendezvousTypeUpdateController c = loader.getController();
@@ -161,7 +160,7 @@ public class RendezvousTypeIndexController implements Initializable {
         Locale.setDefault(new Locale(lang));
         Properties props = new Properties();
         try {
-            props.load(new FileInputStream("src/app/localisation/ui_" + lang + ".properties"));
+            props.load(getClass().getClassLoader().getResourceAsStream("app/localisation/ui_" + lang + ".properties"));
             BaseController.renameMenuItems(props);
             
             labelType.setText(props.getProperty("labelRendezvousType"));

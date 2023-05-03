@@ -28,7 +28,6 @@ import entities.Rendezvous;
 import entities.RendezvousType;
 import entities.Salle;
 import entities.User;
-import java.io.FileInputStream;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Properties;
@@ -135,7 +134,7 @@ public class RendezvousIndexController implements Initializable {
 
         if (r != null) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RendezvousUpdate.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/gui/RendezvousUpdate.fxml"));
 
                 Parent root = loader.load();
                 RendezvousUpdateController c = loader.getController();
@@ -195,7 +194,7 @@ public class RendezvousIndexController implements Initializable {
         Locale.setDefault(new Locale(lang));
         Properties props = new Properties();
         try {
-            props.load(new FileInputStream("src/app/localisation/ui_" + lang + ".properties"));
+            props.load(getClass().getClassLoader().getResourceAsStream("app/localisation/ui_" + lang + ".properties"));
             BaseController.renameMenuItems(props);
 
             columnDateStart.setText(props.getProperty("columnRendezvousDateStart"));

@@ -119,7 +119,7 @@ public class SalleIndexController implements Initializable {
         if (s != null) {
             // RendezvousCRUD rc = new RendezvousCRUD();
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/SalleUpdate.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/gui/SalleUpdate.fxml"));
 
                 Parent root = loader.load();
                 SalleUpdateController c = loader.getController();

@@ -131,7 +131,7 @@ public class StockIndexController implements Initializable {
             // RendezvousCRUD rc = new RendezvousCRUD();
             try {
                 FXMLLoader loader;
-                loader = new FXMLLoader(getClass().getResource("../gui/EditStock.fxml"));
+                loader = new FXMLLoader(getClass().getResource("/app/gui/EditStock.fxml"));
 
                 Parent root = loader.load();
                 EditStockController c = loader.getController();

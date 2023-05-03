@@ -27,7 +27,6 @@ import entities.Rendezvous;
 import entities.RendezvousType;
 import entities.Salle;
 import entities.User;
-import java.io.FileInputStream;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -342,7 +341,7 @@ public class RendezvousUpdateController implements Initializable {
         Locale.setDefault(new Locale(lang));
         Properties props = new Properties();
         try {
-            props.load(new FileInputStream("src/app/localisation/ui_" + lang + ".properties"));
+            props.load(getClass().getClassLoader().getResourceAsStream("app/localisation/ui_" + lang + ".properties"));
             BaseController.renameMenuItems(props);
 
             labelUpdate.setText(props.getProperty("labelRendezvousUpdate"));

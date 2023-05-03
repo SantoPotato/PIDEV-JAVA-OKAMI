@@ -13,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import entities.RendezvousType;
-import java.io.FileInputStream;
 import java.util.Locale;
 import java.util.Properties;
 import javafx.scene.control.Label;
@@ -102,7 +101,7 @@ public class RendezvousTypeAddController implements Initializable {
         Locale.setDefault(new Locale(lang));
         Properties props = new Properties();
         try {
-            props.load(new FileInputStream("src/app/localisation/ui_" + lang + ".properties"));
+            props.load(getClass().getClassLoader().getResourceAsStream("app/localisation/ui_" + lang + ".properties"));
             BaseController.renameMenuItems(props);
 
             labelAdd.setText(props.getProperty("labelRendezvousTypeAdd"));

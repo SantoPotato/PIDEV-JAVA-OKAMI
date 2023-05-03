@@ -59,7 +59,7 @@ public class ForgetPasswordController implements Initializable {
     @FXML
     private void handleButtonReturn(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/gui/login.fxml"));
             handleButtonReturn.getScene().setRoot(loader.load());
 
         } catch (IOException ex) {
@@ -96,7 +96,7 @@ public class ForgetPasswordController implements Initializable {
     private void loadVerifCodePage(ActionEvent event, String data) {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/VerifCode.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/gui/VerifCode.fxml"));
 
             Parent root = loader.load();
             VerifCodeController verifCodeController = loader.getController();

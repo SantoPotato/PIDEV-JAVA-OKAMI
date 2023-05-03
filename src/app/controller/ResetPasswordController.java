@@ -55,7 +55,7 @@ public class ResetPasswordController implements Initializable {
             A.setContentText("Mot de passe modifié avec succés ! ");
             A.show();
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/login.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/gui/login.fxml"));
                 tfConfirm.getScene().setRoot(loader.load());
 
             } catch (IOException ex) {

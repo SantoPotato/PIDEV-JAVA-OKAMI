@@ -4,7 +4,6 @@
  */
 package app.controller;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -124,7 +123,7 @@ public class RendezvousStatsController implements Initializable {
         Locale.setDefault(new Locale(lang));
         Properties props = new Properties();
         try {
-            props.load(new FileInputStream("src/app/localisation/ui_" + lang + ".properties"));
+            props.load(getClass().getClassLoader().getResourceAsStream("app/localisation/ui_" + lang + ".properties"));
             BaseController.renameMenuItems(props);
             
             Months = Arrays.asList(props.getProperty("barchartMonths").split(","));
