@@ -18,13 +18,12 @@ import javafx.stage.Stage;
  * @author
  */
 public class MainWindow extends Application {
-
     @Override
     public void start(Stage primaryStage) {
 
         try {
             Locale.setDefault(new Locale("fr"));
-            Parent root = FXMLLoader.load(getClass().getResource("Index.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("app/gui/Index.fxml"));
 
             Scene scene = new Scene(root);
 
@@ -48,5 +47,4 @@ public class MainWindow extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
 }
