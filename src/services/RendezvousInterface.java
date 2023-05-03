@@ -20,6 +20,8 @@ public interface RendezvousInterface {
     public void update(Rendezvous r, Integer id);
 
     public void remove(Integer id);
+    
+    public void removeUser(Integer id, Integer id_user);
 
     public List<Rendezvous> showAll();
     

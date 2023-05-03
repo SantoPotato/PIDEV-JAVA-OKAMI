@@ -403,17 +403,17 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `first_name`, `last_name`, `username`, `password`, `email`, `phone_number`, `gender`, `role`) VALUES
-(1, 'a', 'b', 'aziz', '$2a$10$RmILdKD22F/slBSy5UEHPOLebC2GffLxiPhTmjLIVY4J9OO.GdzvC', 'admin.admin@gmail.com', 1245, 'femme', 'ADMIN'),
-(2, 'sawsen', 'labidi', 'sawseen', '$2a$10$VpXNXIw/J7auIBJvYAQ04e4HOEUUGbch/axMi5RMLowXZu0Mv4L6q', 'sawsen.ab@gmail.com', 1245, 'femme', 'Client'),
-(3, 'danger', 'saf', 'safd', '$2a$10$aWTBV5mBNCY/jESiM/6d5.KBu84Q3zkonMeLcLbhZwNyeYS0gRRj2', 'dangersaf@gmail.com', 1245, 'homme', 'Client'),
-(4, 'safwen', 'labidi', 'saf', '$2a$10$CyNtGxp9A4hJujMwMDqZYO1MSt0Wx4P3b7KrWlEHk/H4HQhEpAQ66', 'safabidi@gmail.com', 1245, 'homme', 'Client'),
-(5, 'abiir', 'd', 'abyr', '$2a$10$uOwqSk4hMfpCcvGME5qJQOPiJwvJsKvNsw.JbeecAgVHB4yqhQdwi', 'abi.khlifi@esprit.tn', 1245, 'femme', 'Client'),
-(6, 'abir ', 'ab', 'abb', '$2a$10$t0bebOn9Uiay6vw5HxXj5eneqKBQKUVd.BynAMdnKYsHavJSAL1tu', 'abir.khlifi@esprit.tn', 1245, 'femme', 'Client'),
-(7, 'abir ', 'ab', 'abb', '$2a$10$I7JT4t2mPujklq/EVqw.4.Pq7E5pHsfJ36BLsWzyXK41z1.ClzJFi', 'abir.khlifi@esprit.tn', 1245, 'femme', 'Client'),
-(8, 'ab', 'hhhh', 'hhhh', '$2a$10$r./BUi/k8YB3ET9Vc0GPSuHdkg8G1DnQUQoBoEM3kibFeBddkoeo6', 'abir.khlifi@esprit.tn', 1245, 'femme', 'Client'),
-(9, 'abb', 'haha', 'jdkjshf', '$2a$10$1ZLgwEyaxsSEUgNg4AlwPuUxYB/53UTE2biFwNwUSlUxoR.cBslbS', 'abir.khlifi@esprit.tn', 1245, 'femme', 'Client'),
-(10, 'houssem', 'akermi', 'houssem', '$2a$10$xufTjwXtSD23E6QAV0jobeqi.ehSoUgBgwNQ0aGM7cNr6cf4DqTem', 'mallek.ghassen@espit.tn', 1245, 'homme', 'Client'),
-(11, 'zizz', 'azz', 'ziz', '$2a$10$qL6.ng/UZLkt9Mor1H0j9.6m7eL7ZTwjxCbWYPvGz/364VQ24AU0u', 'aziz.hannachi@esprit.tn', 1245, 'femme', 'Client');
+(1, 'aziz', 'hannachi', 'aziz', '$2a$10$RmILdKD22F/slBSy5UEHPOLebC2GffLxiPhTmjLIVY4J9OO.GdzvC', 'admin.admin@gmail.com', 1245, 'femme', 'ADMIN'),
+(2, 'mahmoud', 'jebali', 'minouche', '$2a$10$VpXNXIw/J7auIBJvYAQ04e4HOEUUGbch/axMi5RMLowXZu0Mv4L6q', 'sawsen.ab@gmail.com', 1245, 'femme', 'Client'),
+(3, 'sana', 'saadallah', 'minouche master', '$2a$10$aWTBV5mBNCY/jESiM/6d5.KBu84Q3zkonMeLcLbhZwNyeYS0gRRj2', 'dangersaf@gmail.com', 1245, 'homme', 'Client'),
+(4, 'haythem', 'louati', 'minouche lord', '$2a$10$CyNtGxp9A4hJujMwMDqZYO1MSt0Wx4P3b7KrWlEHk/H4HQhEpAQ66', 'safabidi@gmail.com', 1245, 'homme', 'Client'),
+(5, 'ines', 'bezine', 'THE minouche', '$2a$10$uOwqSk4hMfpCcvGME5qJQOPiJwvJsKvNsw.JbeecAgVHB4yqhQdwi', 'abi.khlifi@esprit.tn', 1245, 'femme', 'Client'),
+(6, 'taher', 'rejeb', 'El minouchetta', '$2a$10$t0bebOn9Uiay6vw5HxXj5eneqKBQKUVd.BynAMdnKYsHavJSAL1tu', 'abir.khlifi@esprit.tn', 1245, 'femme', 'Client'),
+(7, 'dorra', 'bejaoui',  'Minoucho', '$2a$10$I7JT4t2mPujklq/EVqw.4.Pq7E5pHsfJ36BLsWzyXK41z1.ClzJFi', 'abir.khlifi@esprit.tn', 1245, 'femme', 'Client'),
+(8, 'selim', 'Ben Moktar', 'minouchacha', '$2a$10$r./BUi/k8YB3ET9Vc0GPSuHdkg8G1DnQUQoBoEM3kibFeBddkoeo6', 'abir.khlifi@esprit.tn', 1245, 'femme', 'Client'),
+(9, 'karim', 'Abdel Kader', 'manouche', '$2a$10$1ZLgwEyaxsSEUgNg4AlwPuUxYB/53UTE2biFwNwUSlUxoR.cBslbS', 'abir.khlifi@esprit.tn', 1245, 'femme', 'Client'),
+(10, 'minouche', 'minouche', 'La Manouche', '$2a$10$xufTjwXtSD23E6QAV0jobeqi.ehSoUgBgwNQ0aGM7cNr6cf4DqTem', 'mallek.ghassen@espit.tn', 1245, 'homme', 'Client'),
+(11, 'minouchette', 'minouchette', 'MinoucheMania', '$2a$10$qL6.ng/UZLkt9Mor1H0j9.6m7eL7ZTwjxCbWYPvGz/364VQ24AU0u', 'aziz.hannachi@esprit.tn', 1245, 'femme', 'Client');
 
 -- --------------------------------------------------------
 

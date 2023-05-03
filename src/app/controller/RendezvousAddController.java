@@ -39,6 +39,7 @@ import jfxtras.scene.control.LocalDateTimeTextField;
 import services.HistoriqueCRUD;
 import services.RendezvousCRUD;
 import utils.ConnectionDB;
+import utils.UserSession;
 
 /**
  * FXML Controller class
@@ -48,6 +49,8 @@ import utils.ConnectionDB;
 public class RendezvousAddController implements Initializable {
 
     Connection c;
+    HistoriqueCRUD hc = new HistoriqueCRUD();
+    UserSession session;
 
     @FXML
     private baseController BaseController;
@@ -205,10 +208,11 @@ public class RendezvousAddController implements Initializable {
         RendezvousCRUD rc = new RendezvousCRUD();
 
         rc.add(r);
-        HistoriqueCRUD hc = new HistoriqueCRUD();
-        hc.add(1, "a ajouté un nouveau rendez-vous");
 
-        
+        if (session != null && session.getUser() != null) {
+            hc.add(session.getUser().getId_user(), "a ajouté un nouveau rendez-vous");
+        }
+
         BaseController.redirectToPage("RendezvousIndex");
     }
 
@@ -302,7 +306,6 @@ public class RendezvousAddController implements Initializable {
         return data;
     }
 
-
     @FXML
     private void redirectBack(ActionEvent event) {
         BaseController.redirectToPage("RendezvousIndex");
@@ -329,7 +332,7 @@ public class RendezvousAddController implements Initializable {
         try {
             props.load(getClass().getClassLoader().getResourceAsStream("app/localisation/ui_" + lang + ".properties"));
             BaseController.renameMenuItems(props);
-            
+
             labelAdd.setText(props.getProperty("labelRendezvousAdd"));
             labelDescription.setText(props.getProperty("labelRendezvousAddDescription"));
             labelDate.setText(props.getProperty("columnRendezvousDateStart"));

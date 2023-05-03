@@ -20,6 +20,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import services.HistoriqueCRUD;
 import services.RendezvousTypeCRUD;
+import utils.UserSession;
 
 /**
  * FXML Controller class
@@ -27,6 +28,9 @@ import services.RendezvousTypeCRUD;
  * @author ilyes
  */
 public class RendezvousTypeAddController implements Initializable {
+
+    HistoriqueCRUD hc = new HistoriqueCRUD();
+    UserSession session;
 
     @FXML
     private baseController BaseController;
@@ -70,11 +74,10 @@ public class RendezvousTypeAddController implements Initializable {
         RendezvousTypeCRUD rc = new RendezvousTypeCRUD();
         rc.add(t);
 
-        HistoriqueCRUD hc = new HistoriqueCRUD();
-        hc.add(1, "a ajouté un nouveau type de rendez-vous");
-
+        if (session != null && session.getUser() != null) {
+            hc.add(session.getUser().getId_user(), "a ajouté un nouveau type de rendez-vous");
+        }
         BaseController.redirectToPage("RendezvousTypeIndex");
-
     }
 
     @FXML

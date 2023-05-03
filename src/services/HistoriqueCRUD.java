@@ -61,7 +61,7 @@ public class HistoriqueCRUD implements HistoriqueInterface {
             Statement st = c.createStatement();
             ResultSet rs = st.executeQuery(request);
             while (rs.next()) {
-                Historique h = new Historique(rs.getInt("h.id"), new User(rs.getInt("u.id"), rs.getString("u.nom"), rs.getString("u.prenom")), rs.getString("h.description"), rs.getTimestamp("h.date").toLocalDateTime());
+                Historique h = new Historique(rs.getInt("h.id"), new User(rs.getInt("u.id_user"), rs.getString("u.last_name"), rs.getString("u.first_name")), rs.getString("h.description"), rs.getTimestamp("h.date").toLocalDateTime());
                 historique.add(h);
             }
 

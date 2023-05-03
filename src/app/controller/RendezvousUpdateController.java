@@ -39,6 +39,7 @@ import jfxtras.scene.control.LocalDateTimeTextField;
 import services.HistoriqueCRUD;
 import services.RendezvousCRUD;
 import utils.ConnectionDB;
+import utils.UserSession;
 
 /**
  * FXML Controller class
@@ -49,6 +50,9 @@ public class RendezvousUpdateController implements Initializable {
 
     Connection c;
     int id;
+
+    HistoriqueCRUD hc = new HistoriqueCRUD();
+    UserSession session;
 
     @FXML
     private baseController BaseController;
@@ -207,8 +211,9 @@ public class RendezvousUpdateController implements Initializable {
         RendezvousCRUD rc = new RendezvousCRUD();
         rc.update(r, id);
 
-        HistoriqueCRUD hc = new HistoriqueCRUD();
-        hc.add(1, "a mis à jours le rendez-vous '" + String.valueOf(id) + "'");
+        if (session != null && session.getUser() != null) {
+            hc.add(session.getUser().getId_user(), "a mis à jours le rendez-vous '" + String.valueOf(id) + "'");
+        }
 
         BaseController.redirectToPage("RendezvousIndex");
     }

@@ -4,95 +4,80 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="904.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AjoutcategorieControllervehicules">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AjoutcategorievehiculeController">
    <children>
-      <Pane layoutX="242.0" layoutY="72.0" prefHeight="150.0" prefWidth="663.0" style="-fx-background-color: #3a6867;" AnchorPane.bottomAnchor="510.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+      <HBox alignment="CENTER_LEFT" layoutX="352.0" layoutY="297.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="labelPage" layoutX="291.0" layoutY="43.0" prefHeight="0.0" prefWidth="296.0" style="-fx-font-size: 24;" text="categorie - Ajout" />
-            <Label fx:id="labelPath" layoutX="291.0" layoutY="28.0" prefHeight="0.0" prefWidth="296.0" style="-fx-font-size: 12;" text="/home/stock/add" />
-         </children>
-      </Pane>
-      <VBox prefHeight="650.0" prefWidth="246.0" style="-fx-background-color: #244140;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="660.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Pane prefHeight="200.0" prefWidth="200.0">
+            <VBox alignment="TOP_CENTER" maxWidth="-Infinity" prefWidth="300.0" style="-fx-background-color: #244140;" HBox.hgrow="ALWAYS">
                <children>
-                  <Label fx:id="labelIndex" layoutX="24.0" layoutY="117.0" prefHeight="69.0" prefWidth="198.0" style="-fx-font-size: 32;" text="HealthHerald" />
-                  <ImageView fx:id="logo" fitHeight="122.0" fitWidth="130.0" layoutX="58.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/hh.png" />
-                     </image>
-                  </ImageView>
+                  <fx:include fx:id="Base" source="base.fxml" VBox.vgrow="ALWAYS" />
                </children>
-            </Pane>
-            <Button fx:id="buttonRendezvous" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#stockac" prefHeight="51.0" prefWidth="246.0" style="-fx-background-color: none; -fx-font-size: 18;" text="Stock" textFill="WHITE">
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-            <Button fx:id="buttonRendezvousType" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#stockac" prefHeight="51.0" prefWidth="246.0" style="-fx-background-color: none; -fx-font-size: 18;" text="Categorie stock" textFill="WHITE">
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-            <Button fx:id="buttonTest" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="51.0" prefWidth="246.0" style="-fx-background-color: none; -fx-font-size: 18;" textFill="WHITE">
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-         </children>
-      </VBox>
-      <VBox layoutX="256.0" layoutY="247.0" prefHeight="366.0" prefWidth="620.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="160.0">
-         <children>
-            <GridPane prefHeight="490.0" prefWidth="624.0">
-               <columnConstraints>
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints maxHeight="480.0" minHeight="0.0" prefHeight="60.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="360.0" minHeight="10.0" percentHeight="10.0" prefHeight="79.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="360.0" minHeight="0.0" percentHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="360.0" minHeight="10.0" percentHeight="10.0" prefHeight="40.0" valignment="CENTER" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="360.0" minHeight="10.0" percentHeight="11.0" prefHeight="40.0" valignment="CENTER" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="480.0" minHeight="10.0" prefHeight="220.0" valignment="CENTER" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="480.0" minHeight="0.0" prefHeight="60.0" valignment="CENTER" vgrow="SOMETIMES" />
-               </rowConstraints>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                <children>
-                  <Label prefHeight="27.0" prefWidth="581.0" style="-fx-font-size: 18;" text="Veuillez entrez les informations ci-dessous afin d'ajouter un categorie" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </Label>
-                  <Button fx:id="buttonAdd" mnemonicParsing="false" onAction="#StockAdd" prefHeight="40.0" prefWidth="160.0" text="Ajouter" GridPane.rowIndex="6" />
-                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                  <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="120.0" style="-fx-background-color: #3a6867;" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label prefHeight="35.0" prefWidth="163.0" style="-fx-font-size: 18;" text="categorie">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets left="10.0" right="10.0" />
-                           </padding>
-                        </Label>
-                        <TextField fx:id="categorie" prefHeight="36.0" prefWidth="440.0" />
+                        <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label style="-fx-font-size: 12;" text="/home/vehicules/categorie/update" VBox.vgrow="ALWAYS" />
+                              <Label style="-fx-font-size: 32;" text="Catégorie de Véhicule - Ajout" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3" />
-                  <HBox prefHeight="42.0" prefWidth="627.0" GridPane.rowIndex="4" />
-                  <HBox prefHeight="130.0" prefWidth="612.0" GridPane.rowIndex="5" />
+                  <VBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <GridPane vgap="10.0" VBox.vgrow="ALWAYS">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints prefHeight="80.0" valignment="CENTER" vgrow="ALWAYS" />
+                              <RowConstraints maxHeight="-Infinity" prefHeight="160.0" valignment="CENTER" vgrow="ALWAYS" />
+                              <RowConstraints prefHeight="80.0" valignment="CENTER" vgrow="ALWAYS" />
+                           </rowConstraints>
+                           <children>
+                              <Label maxHeight="1.7976931348623157E308" style="-fx-font-size: 18;" text="Veuillez entrez les informations ci-dessous afin d'ajouter un categorie" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                 <GridPane.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Button fx:id="buttonAdd" minHeight="-Infinity" mnemonicParsing="false" onAction="#StockAdd" prefWidth="160.0" text="Ajouter" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                 <GridPane.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <HBox alignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                 <children>
+                                    <Label maxHeight="1.7976931348623157E308" prefWidth="160.0" style="-fx-font-size: 18;" text="Categorie" HBox.hgrow="ALWAYS">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="categorie" prefHeight="80.0" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
                </children>
-            </GridPane>
+            </VBox>
          </children>
-      </VBox>
+      </HBox>
    </children>
 </AnchorPane>

@@ -151,6 +151,20 @@ public class RendezvousCRUD implements RendezvousInterface {
     }
 
     @Override
+    public void removeUser(Integer id, Integer id_user) {
+        try {
+            String request = "DELETE FROM rendezvous_user WHERE rendezvous_id=? AND user_id=?;";
+            PreparedStatement pst = c.prepareStatement(request);
+            pst.setInt(1, id);
+            pst.setInt(2, id_user);
+            pst.executeUpdate();
+            // System.out.println("Rendez vous " + id + " removed successfully.");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
+    @Override
     public List<Rendezvous> showAll() {
         try {
             String request = "SELECT r.*, u.*, s.*, t.* FROM rendezvous r "
@@ -285,7 +299,7 @@ public class RendezvousCRUD implements RendezvousInterface {
                     + "WHERE r.daterv BETWEEN ? AND ? "
                     + "GROUP BY month "
                     + "ORDER BY month";
-            PreparedStatement pst = c.prepareStatement(request);            
+            PreparedStatement pst = c.prepareStatement(request);
             pst.setTimestamp(1, Timestamp.valueOf(start));
             pst.setTimestamp(2, Timestamp.valueOf(end));
             ResultSet rs = pst.executeQuery();

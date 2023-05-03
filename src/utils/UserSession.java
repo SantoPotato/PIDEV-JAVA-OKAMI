@@ -15,7 +15,7 @@ public class UserSession {
     
     private static UserSession instance;
 
-    private User user;
+    private final User user;
 
     private UserSession(User user) {
         this.user=user;

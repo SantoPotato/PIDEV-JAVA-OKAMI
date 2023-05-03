@@ -28,6 +28,7 @@ import javafx.scene.control.MenuItem;
 import services.HistoriqueCRUD;
 import services.RendezvousTypeCRUD;
 import utils.HistoriqueMenuItem;
+import utils.UserSession;
 
 /**
  * FXML Controller class
@@ -37,10 +38,12 @@ import utils.HistoriqueMenuItem;
 public class RendezvousTypeIndexController implements Initializable {
 
     RendezvousTypeCRUD rc = new RendezvousTypeCRUD();
+    HistoriqueCRUD hc = new HistoriqueCRUD();
+    UserSession session;
 
     @FXML
     private baseController BaseController;
-    
+
     @FXML
     private TableView<RendezvousType> tableviewRendezvousType;
     @FXML
@@ -81,8 +84,6 @@ public class RendezvousTypeIndexController implements Initializable {
         tableviewRendezvousType.setItems(FXCollections.observableArrayList(rc.showAll()));
 
         columnNom.setCellValueFactory(typeRowData -> new SimpleObjectProperty<>(typeRowData.getValue().getType()));
-
-        HistoriqueCRUD hc = new HistoriqueCRUD();
         hc.showAll().forEach(item -> {
             historique.getItems().add(new HistoriqueMenuItem(item));
         });
@@ -126,8 +127,12 @@ public class RendezvousTypeIndexController implements Initializable {
         if (t != null) {
             rc.remove(t.getId());
             tableviewRendezvousType.getItems().remove(t); // remove from the tableview
-            HistoriqueCRUD hc = new HistoriqueCRUD();
-            hc.add(1, "a supprimé le type de rendez-vous '" + String.valueOf(t.getId()) + "'");
+            if (session != null && session.getUser() != null) {
+                hc.add(session.getUser().getId_user(), "a supprimé le type de rendez-vous '" + String.valueOf(t.getId()) + "'");
+                hc.showAll().forEach(item -> {
+                    historique.getItems().add(new HistoriqueMenuItem(item));
+                });
+            }
         }
     }
 
@@ -162,7 +167,7 @@ public class RendezvousTypeIndexController implements Initializable {
         try {
             props.load(getClass().getClassLoader().getResourceAsStream("app/localisation/ui_" + lang + ".properties"));
             BaseController.renameMenuItems(props);
-            
+
             labelType.setText(props.getProperty("labelRendezvousType"));
             columnNom.setText(props.getProperty("columnRendezvousTypeName"));
             buttonSearch.setText(props.getProperty("buttonSearch"));

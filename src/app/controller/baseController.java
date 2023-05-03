@@ -55,6 +55,12 @@ public class baseController implements Initializable {
     private MenuItem buttonStockCategorie;
     @FXML
     private MenuItem buttonStockStats;
+    @FXML
+    private MenuItem buttonVehicules;
+    @FXML
+    private MenuItem buttonVehiculesCategorie;
+    @FXML
+    private MenuItem buttonVehiculesStats;
 
     /**
      * Initializes the controller class.
@@ -164,6 +170,21 @@ public class baseController implements Initializable {
     @FXML
     private void redirectStockStats(ActionEvent event) {
         redirectToPage("StockStats");
+    }
+
+    @FXML
+    private void redirectVehicules(ActionEvent event) {
+        redirectToPage("VehiculesIndex");
+    }
+
+    @FXML
+    private void redirectVehiculesCategorie(ActionEvent event) {
+        redirectToPage("CategorieVehiculesIndex");
+    }
+
+    @FXML
+    private void redirectVehiculesStats(ActionEvent event) {
+        redirectToPage("VehiculesStats");
     }
 
 }

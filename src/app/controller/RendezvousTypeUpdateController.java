@@ -20,6 +20,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import services.HistoriqueCRUD;
 import services.RendezvousTypeCRUD;
+import utils.UserSession;
 
 /**
  * FXML Controller class
@@ -30,9 +31,12 @@ public class RendezvousTypeUpdateController implements Initializable {
 
     int id;
 
+    HistoriqueCRUD hc = new HistoriqueCRUD();
+    UserSession session;
+
     @FXML
     private baseController BaseController;
-    
+
     @FXML
     private Button buttonUpdate;
     @FXML
@@ -72,10 +76,9 @@ public class RendezvousTypeUpdateController implements Initializable {
         RendezvousTypeCRUD rc = new RendezvousTypeCRUD();
         //System.out.println(salle + " " +type + " " + endat + " " + users);
         rc.update(t, id);
-
-        HistoriqueCRUD hc = new HistoriqueCRUD();
-        hc.add(1, "a mis à jours le type de rendez-vous '" + String.valueOf(id) + "'");
-
+        if (session != null && session.getUser() != null) {
+            hc.add(session.getUser().getId_user(), "a mis à jours le type de rendez-vous '" + String.valueOf(id) + "'");
+        }
         BaseController.redirectToPage("RendezvousTypeIndex");
     }
 
@@ -111,7 +114,7 @@ public class RendezvousTypeUpdateController implements Initializable {
         try {
             props.load(getClass().getClassLoader().getResourceAsStream("app/localisation/ui_" + lang + ".properties"));
             BaseController.renameMenuItems(props);
-            
+
             labelUpdate.setText(props.getProperty("labelRendezvousTypeUpdate"));
             labelDescription.setText(props.getProperty("labelRendezvousTypeUpdateDescription"));
             labelName.setText(props.getProperty("columnRendezvousTypeName"));

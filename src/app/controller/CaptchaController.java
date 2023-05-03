@@ -59,14 +59,16 @@ public class CaptchaController implements Initializable {
                 messagebtn.setTextFill(Color.GREEN);
 
                 UserSession userSession = UserSession.getInstace(null);
+                String pagename = "/app/gui/FrontIndex.fxml";
                 if (userSession.getUser().getRole().equals("ADMIN")) {
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/gui/index.fxml"));
-                        btnLogin.getScene().setRoot(loader.load());
+                    pagename = "/app/gui/index.fxml";
+                }
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource(pagename));
+                    btnLogin.getScene().setRoot(loader.load());
 
-                    } catch (IOException ex) {
-                        System.out.println(ex.getMessage());
-                    }
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
                 }
 
             } else {

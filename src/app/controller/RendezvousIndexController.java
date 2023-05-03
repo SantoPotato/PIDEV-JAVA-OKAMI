@@ -35,6 +35,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import services.HistoriqueCRUD;
 import services.RendezvousCRUD;
+import utils.UserSession;
 
 /**
  * FXML Controller class
@@ -45,6 +46,7 @@ public class RendezvousIndexController implements Initializable {
 
     RendezvousCRUD rc = new RendezvousCRUD();
     HistoriqueCRUD hc = new HistoriqueCRUD();
+    UserSession session;
 
     @FXML
     private baseController BaseController;
@@ -119,6 +121,8 @@ public class RendezvousIndexController implements Initializable {
             historique.getItems().add(new HistoriqueMenuItem(item));
         });
 
+        session = UserSession.getInstace(null);
+
         changeLanguage(Locale.getDefault().toString());
 
     }
@@ -158,10 +162,12 @@ public class RendezvousIndexController implements Initializable {
         if (r != null) {
             rc.remove(r.getId());
             tableviewRendezvous.getItems().remove(r); // remove from the tableview
-            hc.add(1, "a supprimé le rendez-vous '" + String.valueOf(r.getId()) + "'");
-            hc.showAll().forEach(item -> {
-                historique.getItems().add(new HistoriqueMenuItem(item));
-            });
+            if (session != null && session.getUser() != null) {
+                hc.add(session.getUser().getId_user(), "a supprimé le rendez-vous '" + String.valueOf(r.getId()) + "'");
+                hc.showAll().forEach(item -> {
+                    historique.getItems().add(new HistoriqueMenuItem(item));
+                });
+            }
         }
     }
 
@@ -211,6 +217,5 @@ public class RendezvousIndexController implements Initializable {
             System.out.println(e);
         }
     }
-
 
 }

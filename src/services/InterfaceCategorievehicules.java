@@ -5,7 +5,6 @@
  */
 package services;
 
-import entities.Vehicules;
 import entities.Categorievehicules;
 import java.util.List;
 
@@ -14,9 +13,16 @@ import java.util.List;
  * @author SNAKE 2-16
  */
 public interface InterfaceCategorievehicules {
-     public void ajouterCategorie(Categorievehicules Ct);
-     public void ajouterCategorie2(Categorievehicules Ct);
-    public void modifierCategorie(Categorievehicules Ct);
-    public void supprimerCategorie(int id) ;
-    public List<Categorievehicules> afficherCategorie();
+
+    public void Ajouterc(Categorievehicules t);
+
+    public List<Categorievehicules> Afficherc();
+
+    public void Supprimerc(int id);
+
+    public void modifier(Categorievehicules t, int id);
+
+    public List<Categorievehicules> AffichercParId(int id);
+
+    public List<Categorievehicules> AffichercParNom();
 }

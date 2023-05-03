@@ -23,7 +23,7 @@ public class MainWindow extends Application {
 
         try {
             Locale.setDefault(new Locale("fr"));
-            Parent root = FXMLLoader.load(getClass().getResource("app/gui/Index.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/app/gui/login.fxml"));
 
             Scene scene = new Scene(root);
 

@@ -24,7 +24,7 @@
            <children>
               <VBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                  <children>
-                  <MenuButton mnemonicParsing="false" style="-fx-background-color: none; -fx-font-size: 18;" text="Equipement">
+                  <MenuButton mnemonicParsing="false" style="-fx-background-color: none; -fx-font-size: 18;" text="Equipement" VBox.vgrow="ALWAYS">
                      <items>
                         <MenuItem fx:id="buttonEquipementIndex" mnemonicParsing="false" onAction="#redirectEquipement" text="Index" />
                         <MenuItem fx:id="buttonEquipementCategorie" mnemonicParsing="false" onAction="#redirectEquipementCategorie" text="Catégorie" />
@@ -39,28 +39,35 @@
                           <MenuItem fx:id="buttonRendezvousCalendrier" mnemonicParsing="false" onAction="#redirectRendezvousCalendrier" text="Calendrier" />
                        </items>
                     </MenuButton>
-                  <MenuButton mnemonicParsing="false" style="-fx-background-color: none; -fx-font-size: 18;" text="Salle">
+                  <MenuButton mnemonicParsing="false" style="-fx-background-color: none; -fx-font-size: 18;" text="Salle" VBox.vgrow="ALWAYS">
                      <items>
                         <MenuItem fx:id="buttonSalle" mnemonicParsing="false" onAction="#redirectSalle" text="Index" />
                         <MenuItem fx:id="buttonPlannification" mnemonicParsing="false" onAction="#redirectPlannification" text="Plannification" />
                      </items>
                   </MenuButton>
-                  <MenuButton mnemonicParsing="false" style="-fx-background-color: none; -fx-font-size: 18;" text="Stock">
+                  <MenuButton mnemonicParsing="false" style="-fx-background-color: none; -fx-font-size: 18;" text="Stock" VBox.vgrow="ALWAYS">
                      <items>
                         <MenuItem fx:id="buttonStock" mnemonicParsing="false" onAction="#redirectStock" text="Index" />
                         <MenuItem fx:id="buttonStockCategorie" mnemonicParsing="false" onAction="#redirectStockCategorie" text="Catégorie" />
                         <MenuItem fx:id="buttonStockStats" mnemonicParsing="false" onAction="#redirectStockStats" text="Statistiques" />
                      </items>
                   </MenuButton>
-                  <MenuButton mnemonicParsing="false" style="-fx-background-color: none; -fx-font-size: 18;" text="Utilisateurs">
+                  <MenuButton mnemonicParsing="false" style="-fx-background-color: none; -fx-font-size: 18;" text="Utilisateurs" VBox.vgrow="ALWAYS">
                      <items>
                         <MenuItem fx:id="buttonUser" mnemonicParsing="false" onAction="#redirectUser" text="Index" />
                         <MenuItem fx:id="buttonUserStats" mnemonicParsing="false" onAction="#redirectUserStats" text="Statistiques" />
                      </items>
                   </MenuButton>
+                  <MenuButton mnemonicParsing="false" style="-fx-background-color: none; -fx-font-size: 18;" text="Véhicules" VBox.vgrow="ALWAYS">
+                     <items>
+                        <MenuItem fx:id="buttonVehicules" mnemonicParsing="false" onAction="#redirectVehicules" text="Index" />
+                        <MenuItem fx:id="buttonVehiculesCategorie" mnemonicParsing="false" onAction="#redirectVehiculesCategorie" text="Catégorie" />
+                        <MenuItem fx:id="buttonVehiculesStats" mnemonicParsing="false" onAction="#redirectVehiculesStats" text="Statistiques" />
+                     </items>
+                  </MenuButton>
                  </children>
               </VBox>
-            <VBox alignment="CENTER" maxHeight="-Infinity">
+            <VBox alignment="CENTER" maxHeight="-Infinity" VBox.vgrow="ALWAYS">
                <children>
                   <Button fx:id="buttonDisconnect" mnemonicParsing="false" onAction="#handleDisconnection" style="-fx-font-size: 14;" text="Se déconnecter" VBox.vgrow="ALWAYS" />
                </children>

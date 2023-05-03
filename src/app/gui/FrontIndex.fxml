@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.FrontIndexController">
+   <children>
+      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="120.0" style="-fx-background-color: #3a6867;" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label style="-fx-font-size: 12;" text="/home" VBox.vgrow="ALWAYS" />
+                        <Label fx:id="labelIndex" style="-fx-font-size: 32;" text="Index" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="labelIndexDescription" alignment="CENTER" contentDisplay="CENTER" style="-fx-font-size: 32;" text="Bienvenue sur la super application de Health Herald" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <fx:include source="FrontBase.fxml" VBox.vgrow="SOMETIMES" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
