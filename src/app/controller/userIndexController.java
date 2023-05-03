@@ -7,8 +7,11 @@ package app.controller;
 
 import entities.User;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -58,6 +61,8 @@ public class userIndexController implements Initializable {
     private TableColumn<?, ?> tvUsers;
     @FXML
     private Button btnsearch;
+    @FXML
+    private Button buttonDelete;
 
     /**
      * Initializes the controller class.
@@ -123,5 +128,19 @@ public class userIndexController implements Initializable {
         sortedData.comparatorProperty().bind(afficher.comparatorProperty());
         afficher.setItems(sortedData);
 
+    }
+
+    @FXML
+    private void deleteUser(ActionEvent event) {
+        User u = afficher.getSelectionModel().getSelectedItem();
+        ServiceUser userService = new ServiceUser();
+        if (u != null) {
+            try {
+                userService.supprimer(u.getId_user());
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            afficher.getItems().remove(u); // remove from the tableview
+        }
     }
 }

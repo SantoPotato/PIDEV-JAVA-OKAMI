@@ -43,6 +43,7 @@
                            <rowConstraints>
                               <RowConstraints maxHeight="-Infinity" prefHeight="80.0" valignment="CENTER" vgrow="ALWAYS" />
                               <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                            </rowConstraints>
                            <children>
                               <TableView fx:id="afficher" style="-fx-background-color: none;" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
@@ -81,6 +82,7 @@
                                     <Insets top="10.0" />
                                  </GridPane.margin>
                               </HBox>
+                              <Button fx:id="buttonDelete" mnemonicParsing="false" onAction="#deleteUser" prefHeight="38.0" prefWidth="140.0" text="Supprimer" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                            </children>
                         </GridPane>
                      </children>
