@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package app.utils;
 
 import java.util.Properties;
@@ -18,11 +13,11 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.Authenticator;
 
 public class Mailvehicules {
-    
+
     private static final String USERNAME = "mouhamedkhaled.baoueb@esprit.tn";
     private static final String PASSWORD = "201JMT3105";
 
-    public static void envoyer(String email) throws Exception{
+    public static void envoyer(String email) throws Exception {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -30,7 +25,7 @@ public class Mailvehicules {
         props.put("mail.smtp.port", "587");
         props.put("mail.smtp.ssl.trust", "*");
 
-        Session session = Session.getInstance(props,new Authenticator() {
+        Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(USERNAME, PASSWORD);
@@ -40,17 +35,45 @@ public class Mailvehicules {
         Transport.send(message);
         System.out.println("Message envoyé avec succès.");
     }
-    
-    private static Message prepareMessage(Session session, String email){ 
+
+    private static Message prepareMessage(Session session, String email) {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(USERNAME));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-            message.setSubject("Une vehicule  a été supprimer Avec Succées ");                
-            message.setText("Bonjour,\n\nConfirmation de la suprresion.\n\nCordialement,\nL'équipe de support");
+            message.setSubject("Suppression d'un véhicule avec succès");
+
+            String content = "<html>\n"
+                    + "    <head>\n"
+                    + "        <title>Suppression d'un véhicule avec succès</title>\n"
+                    + "        <style>\n"
+                    + "            body {\n"
+                    + "                font-family: Arial, sans-serif;\n"
+                    + "                font-size: 14px;\n"
+                    + "                line-height: 1.5;\n"
+                    + "            }\n"
+                    + "            h1 {\n"
+                    + "                font-size: 20px;\n"
+                    + "                font-weight: bold;\n"
+                    + "            }\n"
+                    + "            p {\n"
+                    + "                margin-bottom: 10px;\n"
+                    + "            }\n"
+                    + "        </style>\n"
+                    + "    </head>\n"
+                    + "    <body>\n"
+                    + "        <h1>Suppression d'un véhicule avec succès</h1>\n"
+                    + "        <p>Bonjour,</p>\n"
+                    + "        <p>Nous vous confirmons la suppression du véhicule.</p>\n"
+                    + "        <p>Cordialement,</p>\n"
+                    + "        <p>L'équipe de support</p>\n"
+                    + "    </body>\n"
+                    + "</html>";
+
+            message.setContent(content, "text/html");
             return message;
         } catch (MessagingException e) {
-            Logger.getLogger(Mailvehicules.class.getName()).log(Level.SEVERE,null,e);
+            Logger.getLogger(Mailvehicules.class.getName()).log(Level.SEVERE, null, e);
         }
         return null;
     }

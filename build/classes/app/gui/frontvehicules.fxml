@@ -29,7 +29,7 @@
                   <Label fx:id="labelIndex" layoutX="24.0" layoutY="117.0" prefHeight="69.0" prefWidth="198.0" style="-fx-font-size: 32;" text="HealthHerald" />
                   <ImageView fitHeight="122.0" fitWidth="130.0" layoutX="58.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/hh.png" />
+                        <Image url="@../../images/hh.png" />
                      </image>
                   </ImageView>
                </children>
