@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane id="AnchorPane" prefHeight="526.0" prefWidth="984.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.gui.FrontvehiculesController">
+<AnchorPane id="AnchorPane" prefHeight="526.0" prefWidth="984.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.FrontvehiculesController">
    <children>
       <AnchorPane layoutX="33.0" layoutY="74.0" prefHeight="75.0" prefWidth="58.0">
          <children>
