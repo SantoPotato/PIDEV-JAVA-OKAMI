@@ -79,7 +79,7 @@
                                     <Font name="Segoe UI" size="18.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="btnLogin" blendMode="SCREEN" mnemonicParsing="false" onAction="#handleLoginButtonClick" prefHeight="38.0" prefWidth="94.0" style="-fx-background-radius: 70px; -fx-background-color: red;" text="Login">
+                              <Button fx:id="btnLogin" blendMode="SCREEN" mnemonicParsing="false" onAction="#handleLoginButtonClick" prefHeight="38.0" prefWidth="94.0" style="-fx-background-radius: 70px; -fx-background-color: red;" text="Se connecter">
                                  <font>
                                     <Font name="Baskerville Old Face" size="23.0" />
                                  </font>
