@@ -111,14 +111,15 @@ public class LoginController implements Initializable {
         Connection c = ConnectionDB.getInstance().getConnection();
         String user_Name = txtuname.getText();
         String password = txtpass.getText();
-
+        
         if (user_Name.equals("") && password.equals("")) {
             JOptionPane.showMessageDialog(null, "Nom de compte ou mot de passe manquant");
         } else {
 
-            String requete = "SELECT * FROM user WHERE username = ?";
+            String requete = "SELECT * FROM user WHERE username = ? OR email = ?";
             PreparedStatement statement = c.prepareStatement(requete);
             statement.setString(1, user_Name);
+            statement.setString(2, user_Name);
             rs = statement.executeQuery();
             if (rs.next()) {
                 if (!authService.checkPasswd(password, rs.getString(5))) {

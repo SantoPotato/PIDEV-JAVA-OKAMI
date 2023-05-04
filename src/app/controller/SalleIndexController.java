@@ -155,7 +155,8 @@ public class SalleIndexController implements Initializable {
 
 // Ajouter une image
         try {
-            Image image = Image.getInstance("../images/hh.png");
+            
+            Image image = Image.getInstance(getClass().getResource("/app/images/hh.png"));
             image.scaleToFit(150, 150); // Redimensionner l'image
             image.setAbsolutePosition(document.left(), document.bottom()); // Positionner l'image en bas à gauche
             document.add(image);

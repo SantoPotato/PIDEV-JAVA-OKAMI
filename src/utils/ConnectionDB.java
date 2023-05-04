@@ -23,7 +23,6 @@ public class ConnectionDB {
     private ConnectionDB() {
         try {
             c = DriverManager.getConnection(url, login, pwd);
-            // System.out.println("Successfully connected to the database.");
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }

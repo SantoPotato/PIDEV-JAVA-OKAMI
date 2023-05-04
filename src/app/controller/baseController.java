@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import utils.UserSession;
 
@@ -23,6 +24,8 @@ import utils.UserSession;
  */
 public class baseController implements Initializable {
 
+    UserSession session;
+    
     @FXML
     private Button buttonIndex;
     @FXML
@@ -61,6 +64,10 @@ public class baseController implements Initializable {
     private MenuItem buttonVehiculesCategorie;
     @FXML
     private MenuItem buttonVehiculesStats;
+    @FXML
+    private Label labelUserName;
+    @FXML
+    private Label labelUserType;
 
     /**
      * Initializes the controller class.
@@ -70,7 +77,11 @@ public class baseController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        session = UserSession.getInstace(null);
+        if (session != null && session.getUser() != null) {
+            labelUserName.setText(session.getUser().toString());
+            labelUserType.setText(session.getUser().getRole());
+        }
     }
 
     public void redirectToPage(String name) {
@@ -92,8 +103,7 @@ public class baseController implements Initializable {
 
     @FXML
     private void handleDisconnection(ActionEvent event) {
-        UserSession userSession = UserSession.getInstace(null);
-        userSession.cleanUserSession();
+        session.cleanUserSession();
         redirectToPage("login");
     }
 
