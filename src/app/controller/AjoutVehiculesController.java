@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import entities.Vehicules;
 import entities.Categorievehicules;
+import javafx.scene.control.Alert;
 import services.VehiculescategoriesCRUD;
 import services.VehiculesCRUD;
 import javafx.scene.control.ChoiceBox;
@@ -91,14 +92,22 @@ public class AjoutVehiculesController implements Initializable {
         String nomvh = nomeq.getText();
         int dispovh = dat.isSelected() ? 1 : 0;
         String etatvh = nomeq1.getText();
-
         String descvh = nomq2.getText();
         String imagesvh = nomq3.getText();
-        String date = nomq4.getValue().toString();
+        String date = nomq4.getValue() != null ? nomq4.getValue().toString() : null;
+
+        if (nomvh.isEmpty() || etatvh.isEmpty() || descvh.isEmpty() || date == null || Categoriesvehicules == null) {
+            // Afficher un message d'erreur à l'utilisateur pour indiquer que tous les champs doivent être remplis
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur de saisie");
+            alert.setHeaderText(null);
+            alert.setContentText("Tous les champs sont obligatoires.");
+            alert.showAndWait();
+            return;
+        }
 
         Vehicules e = new Vehicules(nomvh, dispovh, etatvh, descvh, imagesvh, date, Categoriesvehicules);
         VehiculesCRUD ec = new VehiculesCRUD();
-        System.out.println(e + " ");
         ec.Ajouter(e);
 
         BaseController.redirectToPage("VehiculesIndex");
