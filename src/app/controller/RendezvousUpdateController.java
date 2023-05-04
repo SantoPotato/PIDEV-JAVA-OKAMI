@@ -135,9 +135,9 @@ public class RendezvousUpdateController implements Initializable {
             }
         });
 
-        listViewUser.getItems().addAll(getUsers(c));
-        Salle.setItems(FXCollections.observableArrayList(getSalles(c)));
-        Type.setItems(FXCollections.observableArrayList(getTypes(c)));
+        listViewUser.getItems().addAll(getUsers());
+        Salle.setItems(FXCollections.observableArrayList(getSalles()));
+        Type.setItems(FXCollections.observableArrayList(getTypes()));
 
         dateStart.setLocale(Locale.FRENCH);
         dateStart.setDateTimeFormatter(DateTimeFormatter.ofPattern("EEEE d MMMM yyyy à H:mm", Locale.FRENCH));
@@ -212,7 +212,7 @@ public class RendezvousUpdateController implements Initializable {
         rc.update(r, id);
 
         if (session != null && session.getUser() != null) {
-            hc.add(session.getUser().getId_user(), "a mis à jours le rendez-vous '" + String.valueOf(id) + "'");
+            hc.add(session.getUser().getId(), "a mis à jours le rendez-vous '" + String.valueOf(id) + "'");
         }
 
         BaseController.redirectToPage("RendezvousIndex");
@@ -243,14 +243,14 @@ public class RendezvousUpdateController implements Initializable {
         Type.setValue(r.getType());
         Salle.setValue(r.getSalle());
         r.getUserCollection().forEach((user) -> {
-            listViewUser.getItems().stream().filter((item) -> (item.getId_user().equals(user.getId_user()))).forEachOrdered((item) -> {
+            listViewUser.getItems().stream().filter((item) -> (item.getId().equals(user.getId()))).forEachOrdered((item) -> {
                 item.setSelected(true);
             });
         });
 
     }
 
-    private List<User> getUsers(Connection c) {
+    private List<User> getUsers() {
 
         List<User> data = new ArrayList<>();
 
@@ -263,7 +263,7 @@ public class RendezvousUpdateController implements Initializable {
 
             while (set.next()) {
                 data.add(new User(
-                        set.getInt("id_user"), set.getString("last_name"), set.getString("first_name")
+                        set.getInt("id"), set.getString("nom"), set.getString("prenom")
                 ));
             }
 
@@ -274,7 +274,7 @@ public class RendezvousUpdateController implements Initializable {
         return data;
     }
 
-    private List<Salle> getSalles(Connection c) {
+    private List<Salle> getSalles() {
 
         List<Salle> data = new ArrayList<>();
 
@@ -298,7 +298,7 @@ public class RendezvousUpdateController implements Initializable {
         return data;
     }
 
-    private List<RendezvousType> getTypes(Connection c) {
+    private List<RendezvousType> getTypes() {
 
         List<RendezvousType> data = new ArrayList<>();
 

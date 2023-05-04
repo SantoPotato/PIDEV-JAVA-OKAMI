@@ -51,7 +51,6 @@
                                     <TableColumn fx:id="first_nameColumn" text="Prénom" />
                                     <TableColumn fx:id="last_nameColumn" text="Nom" />
                                     <TableColumn fx:id="usernameColumn" text="Nom d'utilisateur" />
-                                    <TableColumn fx:id="passwordColumn" text="mot de passe" />
                                     <TableColumn fx:id="emailColumn" text="email" />
                                     <TableColumn fx:id="phone_numberColumn" text="Numéro de Téléphone" />
                                     <TableColumn fx:id="genderColumn" minWidth="0.0" prefWidth="0.0" text="genre" />

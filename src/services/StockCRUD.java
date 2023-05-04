@@ -40,9 +40,9 @@ public class StockCRUD {
             ResultSet rs = selectStm.executeQuery(selectQuery);
 
             // Si la valeur existe dans la liste, vous pouvez exécuter la requête INSERT
-            String insertQuery = "INSERT INTO `Stock`(`nomst`, `description`, `dateexpirationst`, `stockcat_id`, `quantites`) "
+            String insertQuery = "INSERT INTO `Stock`(`nomst`, `description`, `dateexpirationst`, `quantites`, `Stockcategories`) "
                     + "VALUES ('" + t.getNomst() + "','" + t.getDescription() + "','"
-                    + t.getDateexpirationst() + "','" + t.getStockcat_id().getId() + "','" + t.getQuantites() + "')";
+                    + t.getDateexpirationst() + "','" + t.getQuantites() + "," + t.getStockcategories().getId() +"')";
 
             Statement insertStm = cnx.createStatement();
             insertStm.executeUpdate(insertQuery);
@@ -66,15 +66,14 @@ public class StockCRUD {
                 p.setNomst(rs.getString(2));
                 p.setDescription(rs.getString(3));
                 p.setDateexpirationst(rs.getDate(4).toLocalDate());
-                int stockcat_id = rs.getInt(5); // Modifier pour récupérer le stockcat_id à partir du ResultSet
+                p.setQuantites(rs.getInt(5));
+                int Stockcategories = rs.getInt(6); // Modifier pour récupérer le stockcat_id à partir du ResultSet
 
                 // Créer un objet Stockcategories et définir ses attributs à partir des données de la table
                 Stockcategories ca = new Stockcategories();
 
-                ca.setTypecat(GetDoctorById(stockcat_id).getTypecat()); // Utiliser la méthode GetDoctorById pour récupérer le typecat
-                p.setStockcat_id(ca);
-
-                p.setQuantites(rs.getInt(6));
+                ca.setTypecat(GetDoctorById(Stockcategories).getTypecat()); // Utiliser la méthode GetDoctorById pour récupérer le typecat
+                p.setStockcategories(ca);
 
                 Stock.add(p);
 
@@ -127,7 +126,7 @@ public class StockCRUD {
 //@Override
     public void modifier(Stock e, int id) {
         try {
-            String req = "UPDATE Stock SET nomst=?, description=?, dateexpirationst=?, stockcat_id=?, quantites=? WHERE id=?";
+            String req = "UPDATE Stock SET nomst=?, description=?, dateexpirationst=?, quantites=?, Stockcategories=? WHERE id=?";
             PreparedStatement pre = cnx.prepareStatement(req);
 
             pre.setString(1, e.getNomst());
@@ -138,13 +137,13 @@ public class StockCRUD {
                 pre.setDate(3, null);
             }
 
-            if (e.getStockcat_id() != null) {
-                pre.setInt(4, e.getStockcat_id().getId());
+            pre.setInt(4, e.getQuantites());
+            
+            if (e.getStockcategories() != null) {
+                pre.setInt(5, e.getStockcategories().getId());
             } else {
                 // Handle the case when the stockcat_id is null
             }
-
-            pre.setInt(5, e.getQuantites());
             pre.setInt(6, id);
 
             pre.executeUpdate();
@@ -172,7 +171,7 @@ public class StockCRUD {
                 Stockcategories ca = new Stockcategories();
                 ca.setId(stockcat_id);
                 ca.setTypecat(GetDoctorById(stockcat_id).getTypecat()); // Utiliser la méthode GetDoctorById pour récupérer le typecat
-                p.setStockcat_id(ca);
+                p.setStockcategories(ca);
 
                 p.setQuantites(rs.getInt(6));
 
@@ -201,14 +200,14 @@ public class StockCRUD {
                 p.setDescription(rs.getString(3));
                 p.setDateexpirationst(rs.getDate(4).toLocalDate());
 
-                int stockcat_id = rs.getInt(5); // Modifier pour récupérer le stockcat_id à partir du ResultSet
+                int stockcat_id = rs.getInt(6); // Modifier pour récupérer le stockcat_id à partir du ResultSet
                 // Créer un objet Stockcategories et définir ses attributs à partir des données de la table
                 Stockcategories ca = new Stockcategories();
                 ca.setId(stockcat_id);
                 ca.setTypecat(GetDoctorById(stockcat_id).getTypecat()); // Utiliser la méthode GetDoctorById pour récupérer le typecat
-                p.setStockcat_id(ca);
+                p.setStockcategories(ca);
 
-                p.setQuantites(rs.getInt(6));
+                p.setQuantites(rs.getInt(5));
 
                 Stock.add(p);
 

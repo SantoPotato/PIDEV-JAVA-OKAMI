@@ -93,7 +93,7 @@ public class EditStockController implements Initializable {
         nomeq.setText(e.getNomst());
         nomeq1.setText(e.getDescription());
         dat.setValue(e.getDateexpirationst()); // Utilisez la valeur dateexpirationst que vous avez définie précédemment
-        catColumn.setValue(e.getStockcat_id());
+        catColumn.setValue(e.getStockcategories());
         nomq2.setText(String.valueOf(e.getQuantites()));
         id = e.getId();
     }
@@ -110,7 +110,7 @@ public class EditStockController implements Initializable {
         e.setNomst(nomst);
         e.setDescription(description);
         e.setDateexpirationst(dateexpirationst.toLocalDate()); // Utilisez la valeur dateexpirationst que vous avez définie précédemment
-        e.setStockcat_id(stockcat_id);
+        e.setStockcategories(stockcat_id);
         e.setQuantites(quantites);
         ec.modifier(e, id);
         BaseController.redirectToPage("StockIndex");

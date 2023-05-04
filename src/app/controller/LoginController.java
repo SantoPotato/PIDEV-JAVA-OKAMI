@@ -6,7 +6,7 @@
 package app.controller;
 
 import entities.User;
-import services.AuthentificationService;
+import entities.UserRole;
 import services.OAuthAuthenticator;
 import services.OAuthGoogleAuthenticator;
 import java.io.IOException;
@@ -27,6 +27,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.fxml.FXMLLoader;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  * FXML Controller class
@@ -107,37 +108,36 @@ public class LoginController implements Initializable {
     @FXML
     private void Login(ActionEvent event) throws SQLException {
 
-        AuthentificationService authService = new AuthentificationService();
         Connection c = ConnectionDB.getInstance().getConnection();
         String user_Name = txtuname.getText();
         String password = txtpass.getText();
-        
-        if (user_Name.equals("") && password.equals("")) {
+
+        if (user_Name.equals("") || password.equals("")) {
             JOptionPane.showMessageDialog(null, "Nom de compte ou mot de passe manquant");
         } else {
 
-            String requete = "SELECT * FROM user WHERE username = ? OR email = ?";
+            String requete = "SELECT u.*,r.* FROM user u INNER JOIN roleuser r ON r.id=u.role_id WHERE u.username = ? OR u.email = ?";
             PreparedStatement statement = c.prepareStatement(requete);
             statement.setString(1, user_Name);
             statement.setString(2, user_Name);
             rs = statement.executeQuery();
             if (rs.next()) {
-                if (!authService.checkPasswd(password, rs.getString(5))) {
+                if (!checkPasswd(password, rs.getString("password"))) {
                     JOptionPane.showMessageDialog(null, "Nom de compte ou mot de passe incorrect");
 
                 } else {
                     User user = new User();
-                    user.setId_user(rs.getInt(1));
-                    user.setFirst_Name(rs.getString(2));
-                    user.setLast_Name(rs.getString(3));
-                    user.setUser_Name(rs.getString(4));
-                    user.setPassword(rs.getString(5));
-                    user.setEmail(rs.getString(6));
-                    user.setPhone_number(rs.getInt(7));
-                    user.setGender(rs.getString(8));
-                    user.setRole(rs.getString(9));
+                    user.setId(rs.getInt("u.id"));
+                    user.setNom(rs.getString("u.nom"));
+                    user.setPrenom(rs.getString("u.prenom"));
+                    user.setUsername(rs.getString("u.username"));
+                    user.setPassword(rs.getString("u.password"));
+                    user.setEmail(rs.getString("u.email"));
+                    user.setPhone_number(rs.getInt("u.phone_number"));
+                    user.setGender(rs.getString("u.gender"));
+                    user.setRole(new UserRole(rs.getInt("r.id"), rs.getString("r.role")));
 
-                    UserSession userSession = UserSession.getInstace(user);
+                    UserSession.getInstace(user);
                     loadPage("captcha");
 
                 }
@@ -168,6 +168,10 @@ public class LoginController implements Initializable {
         String gSecret = "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";
         OAuthAuthenticator auth = new OAuthGoogleAuthenticator(gClientId, gRedir, gSecret, gScope);
         auth.startLogin();
+    }
+
+    public boolean checkPasswd(String plainPassword, String hashedPassword) {
+        return (BCrypt.checkpw(plainPassword, hashedPassword));
     }
 
 }

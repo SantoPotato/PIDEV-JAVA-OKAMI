@@ -45,7 +45,7 @@ public class VehiculesIndexController implements Initializable {
 
     @FXML
     baseController BaseController;
-    
+
     @FXML
     private TableView<Vehicules> tableviewEquipement;
     @FXML
@@ -71,7 +71,6 @@ public class VehiculesIndexController implements Initializable {
     private Button BtnQr;
     @FXML
     private ImageView qrcodee;
-
 
     /**
      * Initializes the controller class.
@@ -161,10 +160,6 @@ public class VehiculesIndexController implements Initializable {
         }
     }
 
-    private void refreshTable() {
-        tableviewEquipement.refresh();
-    }
-
     @FXML
     private void StockDelete(ActionEvent event) {
         Vehicules e = (Vehicules) tableviewEquipement.getSelectionModel().getSelectedItem();
@@ -174,13 +169,15 @@ public class VehiculesIndexController implements Initializable {
 
             ec.Supprimer(e.getId());
             tableviewEquipement.getItems().remove(e);
-            tableviewEquipement.refresh(); // refresh the tableview
         }
     }
 
     @FXML
     private void BtnQr(ActionEvent event) {
         Vehicules p = tableviewEquipement.getSelectionModel().getSelectedItem();
+        if (p == null) {
+            return;
+        }
 
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         String etatDispo;

@@ -5,10 +5,15 @@
  */
 package app.controller;
 
-import services.AuthentificationService;
+import entities.User;
+import entities.UserRole;
 import utils.SendMail;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +22,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import org.mindrot.jbcrypt.BCrypt;
+import services.ServiceUser;
+import utils.ConnectionDB;
 
 /**
  * FXML Controller class
@@ -31,7 +39,6 @@ public class Signup_pageController implements Initializable {
     @FXML
     private Button btn_signup;
 
-    AuthentificationService authentificationService = null;
     @FXML
     private TextField input_firstName;
     @FXML
@@ -57,7 +64,7 @@ public class Signup_pageController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        authentificationService = new AuthentificationService();
+
     }
 
     @FXML
@@ -77,10 +84,10 @@ public class Signup_pageController implements Initializable {
         String first_name = input_firstName.getText();
         String last_name = input_lastName.getText();
         String username = input_username.getText();
-        //String username = input_username.getText();
         String email = input_email.getText();
         String password = input_password.getText();
         String gender = input_gender.getText();
+        int phone_number = Integer.parseInt(input_phone_number.getText());
 
         if (input_firstName.getText().isEmpty() || input_lastName.getText().isEmpty() || input_username.getText().isEmpty()
                 || input_email.getText().isEmpty() || input_password.getText().isEmpty()
@@ -125,7 +132,32 @@ public class Signup_pageController implements Initializable {
             return;
         }
 
-        authentificationService.signup(first_name, last_name, username, email, password, gender);
+        if (!checkifEmailExists(email)) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attention");
+            alert.setHeaderText(null);
+            alert.setContentText("Email déjà utilisée");
+            alert.showAndWait();
+            return;
+        }
+        
+        if (!checkifUsernameExists(username)) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attention");
+            alert.setHeaderText(null);
+            alert.setContentText("Nom de compte déjà utilisé");
+            alert.showAndWait();
+            return;
+        }
+
+        User user = new User(new UserRole(3, "Utilisateur"), email, hashPasswd(password), last_name, first_name, username, phone_number, gender);
+        ServiceUser userService = new ServiceUser();
+        try {
+            userService.ajouter(user);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
         // String host = "smtp.gmail.com";
         // String user = "abir.khlifi@esprit.tn";
         // String pass = "chle9emesprit20202021";
@@ -144,6 +176,44 @@ public class Signup_pageController implements Initializable {
 
         handleLoginButtonClick(event);
 
+    }
+
+    private boolean checkifEmailExists(String email) {
+        // Vérifier que l'adresse email n'est pas déjà utilisée par un autre utilisateur
+        Connection cnx = ConnectionDB.getInstance().getConnection();
+        String checkEmailQuery = "SELECT COUNT(*) as nbr FROM user WHERE email=?";
+        try (PreparedStatement checkEmailStmt = cnx.prepareStatement(checkEmailQuery)) {
+            checkEmailStmt.setString(1, email);
+            ResultSet rs = checkEmailStmt.executeQuery();
+            if (rs.next() && rs.getInt("nbr") > 0) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean checkifUsernameExists(String username) {
+        // Vérifier que l'adresse email n'est pas déjà utilisée par un autre utilisateur
+        Connection cnx = ConnectionDB.getInstance().getConnection();
+        String query = "SELECT COUNT(*) as nbr FROM user WHERE username=?";
+        try (PreparedStatement checkUsersame = cnx.prepareStatement(query)) {
+            checkUsersame.setString(1, username);
+            ResultSet rs = checkUsersame.executeQuery();
+            if (rs.next() && rs.getInt("nbr") > 0) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    private String hashPasswd(String plainTextPassword) {
+        return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
     }
 
 }

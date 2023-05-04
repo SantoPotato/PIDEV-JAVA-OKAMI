@@ -11,95 +11,80 @@ package entities;
  */
 public class User {
 
-    private Integer id_user;
-    private String first_Name;
-    private String last_Name;
-    private String user_Name;
-    private String password;
+    private Integer id;
+    private UserRole role_id;
     private String email;
+    private String password;
+    private String nom;
+    private String prenom;
+    private Boolean is_verified;
+
+    private String username;
     private Integer phone_number;
     private String gender;
-    private String role;
+
     private Boolean selected;
 
     public User() {
     }
 
-    public User(Integer id, String first_Name, String last_Name, String user_Name, String email) {
-        this.id_user = id;
-        this.first_Name = first_Name;
-        this.last_Name = last_Name;
-        this.user_Name = user_Name;
-        this.email = email;
-    }
-
-    public User(String first_Name, String last_Name, String user_Name, String password, String email) {
-        this.first_Name = first_Name;
-        this.last_Name = last_Name;
-        this.user_Name = user_Name;
-        this.password = password;
-        this.email = email;
-    }
-
     public User(Integer id) {
-        this.id_user = id;
+        this.id = id;
     }
 
     public User(Integer id, String nom, String prenom) {
-        this.id_user = id;
-        this.last_Name = nom;
-        this.first_Name = prenom;
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
         this.selected = false;
     }
 
-    public User(Integer id_user, String first_Name, String last_Name, String user_Name, String password, String email, int phone_number, String gender, String role) {
-        this.id_user = id_user;
-        this.first_Name = first_Name;
-        this.last_Name = last_Name;
-        this.user_Name = user_Name;
-        this.password = password;
+    public User(String nom, String prenom, String email, String username, String password) {
+        this.nom = nom;
+        this.prenom = prenom;
         this.email = email;
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(UserRole role_id, String email, String password, String nom, String prenom, String username, Integer phone_number, String gender) {
+        this.role_id = role_id;
+        this.email = email;
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.username = username;
         this.phone_number = phone_number;
         this.gender = gender;
-        this.role = role;
     }
-    //liste des evenement accedeé par l'utilisateur
 
-    //private List<Evenement> evenementList;
-    public User(String first_Name, String last_Name, String user_Name, String password, String email, int phone_number, String gender) {
-
-        this.first_Name = first_Name;
-        this.last_Name = last_Name;
-        this.user_Name = user_Name;
-        this.password = password;
+    public User(Integer id, UserRole role_id, String email, String password, String nom, String prenom, Boolean is_verified, String username, Integer phone_number, String gender) {
+        this.id = id;
+        this.role_id = role_id;
         this.email = email;
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.is_verified = is_verified;
+        this.username = username;
         this.phone_number = phone_number;
         this.gender = gender;
-
     }
 
-    public User(int id_user, String first_Name, String last_Name, String user_Name, String password) {
-        this.id_user = id_user;
-        this.first_Name = first_Name;
-        this.last_Name = last_Name;
-        this.user_Name = user_Name;
-        this.password = password;
+    public Integer getId() {
+        return id;
     }
 
-    public Integer getId_user() {
-        return id_user;
+    public String getPrenom() {
+        return prenom;
     }
 
-    public String getFirst_Name() {
-        return first_Name;
+    public String getNom() {
+        return nom;
     }
 
-    public String getLast_Name() {
-        return last_Name;
-    }
-
-    public String getUser_Name() {
-        return user_Name;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
@@ -118,24 +103,24 @@ public class User {
         return gender;
     }
 
-    public String getRole() {
-        return role;
+    public UserRole getRole() {
+        return role_id;
     }
 
-    public void setId_user(Integer id_user) {
-        this.id_user = id_user;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setFirst_Name(String first_Name) {
-        this.first_Name = first_Name;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
-    public void setLast_Name(String last_Name) {
-        this.last_Name = last_Name;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public void setUser_Name(String user_Name) {
-        this.user_Name = user_Name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {
@@ -154,8 +139,8 @@ public class User {
         this.gender = gender;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRole(UserRole role_id) {
+        this.role_id = role_id;
     }
 
     public Boolean isSelected() {
@@ -169,7 +154,7 @@ public class User {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id_user != null ? id_user.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -180,12 +165,12 @@ public class User {
             return false;
         }
         User other = (User) object;
-        return !((this.id_user == null && other.id_user != null) || (this.id_user != null && !this.id_user.equals(other.id_user)));
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override
     public String toString() {
-        return last_Name + " " + first_Name;
+        return nom + " " + prenom;
     }
 
 }

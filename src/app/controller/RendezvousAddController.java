@@ -112,6 +112,7 @@ public class RendezvousAddController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         c = ConnectionDB.getInstance().getConnection();
+        
         listViewUser.setCellFactory(param -> new ListCell<User>() {
             private CheckBox checkBox;
 
@@ -133,9 +134,9 @@ public class RendezvousAddController implements Initializable {
             }
         });
 
-        listViewUser.getItems().addAll(getUsers(c));
-        Salle.setItems(FXCollections.observableArrayList(getSalles(c)));
-        Type.setItems(FXCollections.observableArrayList(getTypes(c)));
+        listViewUser.getItems().addAll(getUsers());
+        Salle.setItems(FXCollections.observableArrayList(getSalles()));
+        Type.setItems(FXCollections.observableArrayList(getTypes()));
 
         dateStart.setLocale(Locale.FRENCH);
         dateStart.setDateTimeFormatter(DateTimeFormatter.ofPattern("EEEE d MMMM yyyy à H:mm", Locale.FRENCH));
@@ -210,13 +211,13 @@ public class RendezvousAddController implements Initializable {
         rc.add(r);
 
         if (session != null && session.getUser() != null) {
-            hc.add(session.getUser().getId_user(), "a ajouté un nouveau rendez-vous");
+            hc.add(session.getUser().getId(), "a ajouté un nouveau rendez-vous");
         }
 
         BaseController.redirectToPage("RendezvousIndex");
     }
 
-    private List<User> getUsers(Connection c) {
+    private List<User> getUsers() {
 
         List<User> data = new ArrayList<>();
 
@@ -229,7 +230,7 @@ public class RendezvousAddController implements Initializable {
 
             while (set.next()) {
                 data.add(new User(
-                        set.getInt("id_user"), set.getString("last_name"), set.getString("first_name")
+                        set.getInt("id"), set.getString("nom"), set.getString("prenom")
                 ));
             }
 
@@ -258,7 +259,7 @@ public class RendezvousAddController implements Initializable {
         return false;
     }
 
-    private List<Salle> getSalles(Connection c) {
+    private List<Salle> getSalles() {
 
         List<Salle> data = new ArrayList<>();
 
@@ -282,7 +283,7 @@ public class RendezvousAddController implements Initializable {
         return data;
     }
 
-    private List<RendezvousType> getTypes(Connection c) {
+    private List<RendezvousType> getTypes() {
 
         List<RendezvousType> data = new ArrayList<>();
 

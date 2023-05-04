@@ -288,6 +288,38 @@ INSERT INTO `rendezvous_user` (`rendezvous_id`, `user_id`) VALUES
 
 -- --------------------------------------------------------
 
+--
+-- Table structure for table `reset_password_request`
+--
+
+CREATE TABLE `reset_password_request` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `selector` varchar(20) NOT NULL,
+  `hashed_token` varchar(100) NOT NULL,
+  `requested_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `expires_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roleuser`
+--
+
+CREATE TABLE `roleuser` (
+  `id` int(11) NOT NULL,
+  `role` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roleuser`
+--
+
+INSERT INTO `roleuser` (`id`, `role`) VALUES
+(1, 'Administrateur'),
+(2, 'Employé'),
+(3, 'Utilisateur');
 
 -- --------------------------------------------------------
 
@@ -333,25 +365,25 @@ CREATE TABLE `stock` (
   `nomst` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `dateexpirationst` date NOT NULL,
-  `stockcat_id` int(11) NOT NULL,
-  `quantites` int(11) NOT NULL
+  `quantites` int(11) NOT NULL,
+  `Stockcategories` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `stock`
 --
 
-INSERT INTO `stock` (`id`, `nomst`, `description`, `dateexpirationst`, `stockcat_id`, `quantites`) VALUES
-(1, 'Aspirine', 'utilisé pour réduire la douleur, la fièvre et / ou l’inflammation, et comme antithrombotique. Les conditions inflammatoires spécifiques que l’aspirine est utilisée pour traiter comprennent la maladie de Kawasaki, la péricardite et la fièvre rhumatismale.', '2023-03-04', 3, 5),
-(2, 'Omeprazole', 'utilisé en association avec des antibiotiques (par exemple, amoxicilline, clarithromycine) pour traiter les ulcères associés à l’infection causée par la bactérie H. pylori.', '2027-10-13', 4, 251),
-(3, 'Simvastatine', 'est utilisée pour abaisser les taux sanguins de « mauvais » cholestérol (lipoprotéines de basse densité, ou LDL), pour augmenter les niveaux de « bon » cholestérol (lipoprotéines de haute densité, ou HDL) et pour abaisser les triglycérides (un type de gr', '2025-06-21', 5, 320),
-(4, 'Metformine', 'utilisé avec un régime alimentaire pour abaisser les taux élevés de sucre dans le sang chez les patients atteints de diabète de type 2. La metformine agit en réduisant la quantité de glucose absorbée par les intestins, en diminuant la quantité de glucose', '2027-06-09', 6, 110),
-(5, 'Insuline', 'une hormone peptidique contenant deux chaînes réticulées par des ponts disulfures. L’insuline (/ ˈɪn.sjʊ.lɪn /, du latin insula, « île ») est une hormone peptidique produite par les cellules bêta des îlots pancréatiques codées chez l’homme par le gène INS', '2025-10-22', 7, 50),
-(6, 'Lévothyroxine', 'est utilisé pour traiter le déficit en hormones thyroïdiennes (hypothyroïdie), y compris une forme sévère connue sous le nom de coma myxœdème. Il peut également être utilisé pour traiter et prévenir certains types de tumeurs thyroïdiennes.', '2024-10-16', 8, 45),
-(7, 'Diazépam', 'est utilisé pour traiter le déficit en hormones thyroïdiennes (hypothyroïdie), y compris une forme sévère connue sous le nom de coma myxœdème. Il peut également être utilisé pour traiter et prévenir certains types de tumeurs thyroïdiennes.', '2026-10-21', 9, 781),
-(8, 'Céfalexine', 'est un inhibiteur de la pompe à protons qui diminue la quantité d’acide produite dans l’estomac. L’oméprazole est utilisé pour traiter les symptômes du reflux gastro-œsophagien pathologique (RGO) et d’autres affections causées par un excès d’acide gastriq', '2026-10-21', 10, 42),
-(9, 'panadol', 'est utilisé pour réduire la fièvre et soulager la douleur, y compris les maux de dents, les maux de tête, la migraine, les douleurs musculaires, la douleur', '2026-06-21', 2, 126),
-(10, 'doliprane', 'médicament de douleur', '2023-03-06', 3, 556);
+INSERT INTO `stock` (`id`, `nomst`, `description`, `dateexpirationst`, `quantites`, `Stockcategories`) VALUES
+(1, 'Aspirine', 'utilisé pour réduire la douleur, la fièvre et / ou l’inflammation, et comme antithrombotique. Les conditions inflammatoires spécifiques que l’aspirine est utilisée pour traiter comprennent la maladie de Kawasaki, la péricardite et la fièvre rhumatismale.', '2023-03-04', 5, 3),
+(2, 'Omeprazole', 'utilisé en association avec des antibiotiques (par exemple, amoxicilline, clarithromycine) pour traiter les ulcères associés à l’infection causée par la bactérie H. pylori.', '2027-10-13', 251, 4),
+(3, 'Simvastatine', 'est utilisée pour abaisser les taux sanguins de « mauvais » cholestérol (lipoprotéines de basse densité, ou LDL), pour augmenter les niveaux de « bon » cholestérol (lipoprotéines de haute densité, ou HDL) et pour abaisser les triglycérides (un type de gr', '2025-06-21', 320, 5),
+(4, 'Metformine', 'utilisé avec un régime alimentaire pour abaisser les taux élevés de sucre dans le sang chez les patients atteints de diabète de type 2. La metformine agit en réduisant la quantité de glucose absorbée par les intestins, en diminuant la quantité de glucose', '2027-06-09', 110, 6),
+(5, 'Insuline', 'une hormone peptidique contenant deux chaînes réticulées par des ponts disulfures. L’insuline (/ ˈɪn.sjʊ.lɪn /, du latin insula, « île ») est une hormone peptidique produite par les cellules bêta des îlots pancréatiques codées chez l’homme par le gène INS', '2025-10-22', 50, 7),
+(6, 'Lévothyroxine', 'est utilisé pour traiter le déficit en hormones thyroïdiennes (hypothyroïdie), y compris une forme sévère connue sous le nom de coma myxœdème. Il peut également être utilisé pour traiter et prévenir certains types de tumeurs thyroïdiennes.', '2024-10-16', 45, 8),
+(7, 'Diazépam', 'est utilisé pour traiter le déficit en hormones thyroïdiennes (hypothyroïdie), y compris une forme sévère connue sous le nom de coma myxœdème. Il peut également être utilisé pour traiter et prévenir certains types de tumeurs thyroïdiennes.', '2026-10-21', 781, 9),
+(8, 'Céfalexine', 'est un inhibiteur de la pompe à protons qui diminue la quantité d’acide produite dans l’estomac. L’oméprazole est utilisé pour traiter les symptômes du reflux gastro-œsophagien pathologique (RGO) et d’autres affections causées par un excès d’acide gastriq', '2026-10-21', 42, 10),
+(9, 'panadol', 'est utilisé pour réduire la fièvre et soulager la douleur, y compris les maux de dents, les maux de tête, la migraine, les douleurs musculaires, la douleur', '2026-06-21', 126, 2),
+(10, 'doliprane', 'médicament de douleur', '2023-03-06', 556, 3);
 
 -- --------------------------------------------------------
 
@@ -371,7 +403,7 @@ CREATE TABLE `stockcategories` (
 INSERT INTO `stockcategories` (`id`, `typecat`) VALUES
 (1, 'Antiagrégant plaquettaire'),
 (2, 'Anti-ulcéreux'),
-(3, 'Hypolipémiant'),
+(3, 'Hypolipémiant\r\n'),
 (4, 'Hypoglycémiant oral'),
 (5, 'Hypoglycémiant injectable'),
 (6, 'Hormone thyroïdienne'),
@@ -387,33 +419,30 @@ INSERT INTO `stockcategories` (`id`, `typecat`) VALUES
 --
 
 CREATE TABLE `user` (
-  `id_user` int(11) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
+  `id` int(11) NOT NULL,
+  `role_id` int(11) DEFAULT NULL,
+  `email` varchar(180) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `phone_number` int(11) NOT NULL,
-  `gender` varchar(255) NOT NULL,
-  `role` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `nom` varchar(255) NOT NULL,
+  `prenom` varchar(255) NOT NULL,
+  `is_verified` tinyint(1) DEFAULT 0,
+  `username` varchar(255) DEFAULT NULL,
+  `phone_number` int(11) DEFAULT NULL,
+  `gender` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_user`, `first_name`, `last_name`, `username`, `password`, `email`, `phone_number`, `gender`, `role`) VALUES
-(1, 'aziz', 'hannachi', 'aziz', '$2a$10$RmILdKD22F/slBSy5UEHPOLebC2GffLxiPhTmjLIVY4J9OO.GdzvC', 'admin.admin@gmail.com', 1245, 'femme', 'ADMIN'),
-(2, 'mahmoud', 'jebali', 'minouche', '$2a$10$VpXNXIw/J7auIBJvYAQ04e4HOEUUGbch/axMi5RMLowXZu0Mv4L6q', 'sawsen.ab@gmail.com', 1245, 'femme', 'Client'),
-(3, 'sana', 'saadallah', 'minouche master', '$2a$10$aWTBV5mBNCY/jESiM/6d5.KBu84Q3zkonMeLcLbhZwNyeYS0gRRj2', 'dangersaf@gmail.com', 1245, 'homme', 'Client'),
-(4, 'haythem', 'louati', 'minouche lord', '$2a$10$CyNtGxp9A4hJujMwMDqZYO1MSt0Wx4P3b7KrWlEHk/H4HQhEpAQ66', 'safabidi@gmail.com', 1245, 'homme', 'Client'),
-(5, 'ines', 'bezine', 'THE minouche', '$2a$10$uOwqSk4hMfpCcvGME5qJQOPiJwvJsKvNsw.JbeecAgVHB4yqhQdwi', 'abi.khlifi@esprit.tn', 1245, 'femme', 'Client'),
-(6, 'taher', 'rejeb', 'El minouchetta', '$2a$10$t0bebOn9Uiay6vw5HxXj5eneqKBQKUVd.BynAMdnKYsHavJSAL1tu', 'abir.khlifi@esprit.tn', 1245, 'femme', 'Client'),
-(7, 'dorra', 'bejaoui',  'Minoucho', '$2a$10$I7JT4t2mPujklq/EVqw.4.Pq7E5pHsfJ36BLsWzyXK41z1.ClzJFi', 'abir.khlifi@esprit.tn', 1245, 'femme', 'Client'),
-(8, 'selim', 'Ben Moktar', 'minouchacha', '$2a$10$r./BUi/k8YB3ET9Vc0GPSuHdkg8G1DnQUQoBoEM3kibFeBddkoeo6', 'abir.khlifi@esprit.tn', 1245, 'femme', 'Client'),
-(9, 'karim', 'Abdel Kader', 'manouche', '$2a$10$1ZLgwEyaxsSEUgNg4AlwPuUxYB/53UTE2biFwNwUSlUxoR.cBslbS', 'abir.khlifi@esprit.tn', 1245, 'femme', 'Client'),
-(10, 'minouche', 'minouche', 'La Manouche', '$2a$10$xufTjwXtSD23E6QAV0jobeqi.ehSoUgBgwNQ0aGM7cNr6cf4DqTem', 'mallek.ghassen@espit.tn', 1245, 'homme', 'Client'),
-(11, 'minouchette', 'minouchette', 'MinoucheMania', '$2a$10$qL6.ng/UZLkt9Mor1H0j9.6m7eL7ZTwjxCbWYPvGz/364VQ24AU0u', 'aziz.hannachi@esprit.tn', 1245, 'femme', 'Client');
+INSERT INTO `user` (`id`, `role_id`, `email`, `password`, `nom`, `prenom`, `is_verified`, `username`, `phone_number`, `gender`) VALUES
+(1, 1, 'aziz.hannachi@gmail.com', '$2a$10$onjSGbnFL5sjYt4kuKPTd.ImIP/gDVrAmX2nER8KK.fCZGsH/OHwW', 'hannachi', 'aziz', 1, 'minouche', 25625123, 'Homme'),
+(2, 1, 'mahmoud.jebali@gmail.com', '$2a$10$MjU3pgOnVRAvYy4NJ6ZpL.ZY/BNmkoavHXNlcFh/OUzxuPgndGGvC', 'jebali', 'mahmoud', 1, 'manouche', 26153425, 'Femme'),
+(3, 2, 'sana.saadallah@gmail.com', '$2a$10$86HRrjh0IMee8XLYzx2A5O5xsNdQutd.ik/5dAOefRiQ86tf2ydwq', 'saadallah', 'sana', 1, 'minouche master', 26158952, 'Chient'),
+(4, 2, 'haythem.louati@gmail.com', '$2a$10$pIqVdB3VUldJF5z2DRgQ.OiMLFeXtU9s4jDyvxMViA7ThosOKJBaC', 'louati', 'haythem', 1, 'minouche lord', 95665821, 'Chat'),
+(5, 3, 'ines.bezine@gmail.com', '$2a$10$UYnjbgF2nXMy9TX12vd7/.Iyk176R3Jdy5z7KbhajGoRgACMc58Eu', 'bezine', 'ines', 1, 'El Minouchetta', 95215552, 'Furret'),
+(6, 3, 'Taher.rejeb@gmail.com', '$2a$10$PZ1JGSLfy2y5trxcwIS4OOClelPD/5WIU0bnhJrWev3lYf7XMu6By', 'rejeb', 'taher', 0, 'El minoucho', 96650015, 'Hélicoptère'),
+(7, 3, 'dorra.bejaoui@gmail.com', '$2a$10$b32JWQ7X4IkDEKXrR/MIOuuFzlF3exYMUNhuEng6pb3WVPhPVqd1e', 'bejaoui', 'dorra', 0, 'La Manouche', 15001251, 'Poubelle à glace');
 
 -- --------------------------------------------------------
 
@@ -436,17 +465,17 @@ CREATE TABLE `vehicules` (
 -- Dumping data for table `vehicules`
 --
 
-INSERT INTO `vehicules` (`id`, `nomvh`, `dispovh`, `etatvh`, `descvh`, `imagesvh`, `date`, `Categoriesvehicules`) VALUES
-(1, '4', 0, 'fonctionnelle', 'Véhicule de catégorie C : Ambulance', '64068c1f7c0d3.jpg', '2023-03-01 13:44:00', 2),
-(2, '1', 0, 'non fonctionnelle', 'Véhicule de catégorie A : Ambulance de secours et de soins d\'urgence (ASSU)', '64068c4876c96.jpg', '2023-03-02 13:50:00', 1),
-(3, '2', 0, 'fonctionnelle', 'Véhicule de catégorie B : Voiture de secours aux asphyxiés et blessés (VSAB)', '64068c8968fd4.jpg', '2023-02-27 18:04:00', 2),
-(4, '2', 0, 'fonctionnelle', 'Véhicule de catégorie B : Voiture de secours aux asphyxiés et blessés (VSAB)', '64068ca3442fa.jpg', '2023-03-01 16:08:00', 2),
-(5, '4', 0, 'fonctionnelle', 'Véhicule de catégorie C : Ambulance', '64068cb81baf2.jpg', '2023-02-06 00:37:00', 2),
-(6, '1', 0, 'fonctionnelle', 'Véhicule de catégorie A : Ambulance de secours et de soins d\'urgence (ASSU)', '64068cd5ab0cf.jpg', '2023-03-02 12:20:00', 2),
-(7, '1', 0, 'fonctionnelle', 'Véhicule de catégorie A : Ambulance de secours et de soins d\'urgence (ASSU)', '64068cec71874.jpg', '2023-03-01 12:57:00', 2),
-(8, '1', 0, 'fonctionnelle', 'Véhicule de catégorie A : Ambulance de secours et de soins d\'urgence (ASSU)', '64068d147c57b.jpg', '2023-03-03 12:58:00', 2),
-(9, '2', 0, 'fonctionnelle', 'Véhicule de catégorie B : Voiture de secours aux asphyxiés et blessés (VSAB)', '64068d44c660d.jpg', '2023-03-06 00:32:00', 2),
-(10, '4', 0, 'non fonctionnelle', 'Véhicule de catégorie C : Ambulance', '64068d59bd02f.jpg', '2023-03-07 00:36:00', 1);
+INSERT INTO vehicules (id, nomvh, dispovh, etatvh, descvh, imagesvh, date, Categoriesvehicules) VALUES
+(1, 'Ambulance', 0, 'fonctionnelle', 'Véhicule de catégorie C : Ambulance', '64068c1f7c0d3.jpg', '2023-03-01 13:44:00', 2),
+(2, 'Ambulance de secours', 0, 'non fonctionnelle', 'Véhicule de catégorie A : Ambulance de secours et de soins d\'urgence (ASSU)', '64068c4876c96.jpg', '2023-03-02 13:50:00', 1),
+(3, 'Voiture de secours aux asphyxiés et blessés', 0, 'fonctionnelle', 'Véhicule de catégorie B : Voiture de secours aux asphyxiés et blessés (VSAB)', '64068c8968fd4.jpg', '2023-02-27 18:04:00', 2),
+(4, 'Voiture de secours aux asphyxiés et blessés', 0, 'fonctionnelle', 'Véhicule de catégorie B : Voiture de secours aux asphyxiés et blessés (VSAB)', '64068ca3442fa.jpg', '2023-03-01 16:08:00', 2),
+(5, 'Ambulance', 0, 'fonctionnelle', 'Véhicule de catégorie C : Ambulance', '64068cb81baf2.jpg', '2023-02-06 00:37:00', 2),
+(6, 'Ambulance de secours', 0, 'fonctionnelle', 'Véhicule de catégorie A : Ambulance de secours et de soins d\'urgence (ASSU)', '64068cd5ab0cf.jpg', '2023-03-02 12:20:00', 2),
+(7, 'Ambulance de secours', 0, 'fonctionnelle', 'Véhicule de catégorie A : Ambulance de secours et de soins d\'urgence (ASSU)', '64068cec71874.jpg', '2023-03-01 12:57:00', 2),
+(8, 'Ambulance de secours', 0, 'fonctionnelle', 'Véhicule de catégorie A : Ambulance de secours et de soins d\'urgence (ASSU)', '64068d147c57b.jpg', '2023-03-03 12:58:00', 2),
+(9, 'Voiture de secours aux asphyxiés et blessés ', 0, 'fonctionnelle', 'Véhicule de catégorie B : Voiture de secours aux asphyxiés et blessés (VSAB)', '64068d44c660d.jpg', '2023-03-06 00:32:00', 2),
+(10, 'Ambulance', 0, 'non fonctionnelle', 'Véhicule de catégorie C : Ambulance', '64068d59bd02f.jpg', '2023-03-07 00:36:00', 1);
 
 --
 -- Indexes for dumped tables
@@ -529,6 +558,19 @@ ALTER TABLE `rendezvous_user`
   ADD KEY `IDX_C1DEFEC8A76ED395` (`user_id`);
 
 --
+-- Indexes for table `reset_password_request`
+--
+ALTER TABLE `reset_password_request`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_7CE748AA76ED395` (`user_id`);
+
+--
+-- Indexes for table `roleuser`
+--
+ALTER TABLE `roleuser`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `salle`
 --
 ALTER TABLE `salle`
@@ -539,7 +581,7 @@ ALTER TABLE `salle`
 --
 ALTER TABLE `stock`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_4B36566067373F03` (`stockcat_id`);
+  ADD KEY `IDX_4B36566067373F03` (`Stockcategories`);
 
 --
 -- Indexes for table `stockcategories`
@@ -551,7 +593,9 @@ ALTER TABLE `stockcategories`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`),
+  ADD KEY `IDX_8D93D649D60322AC` (`role_id`);
 
 --
 -- Indexes for table `vehicules`
@@ -619,6 +663,18 @@ ALTER TABLE `rendezvous_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `reset_password_request`
+--
+ALTER TABLE `reset_password_request`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `roleuser`
+--
+ALTER TABLE `roleuser`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `salle`
 --
 ALTER TABLE `salle`
@@ -640,7 +696,7 @@ ALTER TABLE `stockcategories`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `vehicules`
@@ -662,7 +718,7 @@ ALTER TABLE `equipement`
 -- Constraints for table `historique`
 --
 ALTER TABLE `historique`
-  ADD CONSTRAINT `FK_EDBFD5ECA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`);
+  ADD CONSTRAINT `FK_EDBFD5ECA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `plannification`
@@ -682,13 +738,25 @@ ALTER TABLE `rendezvous`
 --
 ALTER TABLE `rendezvous_user`
   ADD CONSTRAINT `FK_C1DEFEC83345E0A3` FOREIGN KEY (`rendezvous_id`) REFERENCES `rendezvous` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK_C1DEFEC8A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`) ON DELETE CASCADE;
+  ADD CONSTRAINT `FK_C1DEFEC8A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `reset_password_request`
+--
+ALTER TABLE `reset_password_request`
+  ADD CONSTRAINT `FK_7CE748AA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `stock`
 --
 ALTER TABLE `stock`
-  ADD CONSTRAINT `FK_4B36566067373F03` FOREIGN KEY (`stockcat_id`) REFERENCES `stockcategories` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `FK_4B36566067373F03` FOREIGN KEY (`Stockcategories`) REFERENCES `stockcategories` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `FK_8D93D649D60322AC` FOREIGN KEY (`role_id`) REFERENCES `roleuser` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `vehicules`

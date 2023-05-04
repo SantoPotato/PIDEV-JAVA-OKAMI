@@ -16,12 +16,6 @@ public class Vehicules {
     private String imagesvh;
     private String date;
     private Categorievehicules Categoriesvehicules;
-    
-   /*
-    @Override
-    public String toString() {
-        return "Vehicules{" + "id=" + id + ", catv_id=" + catv_id.getTypecatv() + ", nomvh=" + nomvh + ", dispovh=" + dispovh + ", etatvh=" + etatvh + ", descvh=" + descvh + '}';
-    }*/
 
     public Vehicules(int id, String nomvh, int dispovh, String etatvh, String descvh, String imagesvh, String date, Categorievehicules Categoriesvehicules) {
         this.id = id;

@@ -77,7 +77,7 @@ public class RendezvousTypeUpdateController implements Initializable {
         //System.out.println(salle + " " +type + " " + endat + " " + users);
         rc.update(t, id);
         if (session != null && session.getUser() != null) {
-            hc.add(session.getUser().getId_user(), "a mis à jours le type de rendez-vous '" + String.valueOf(id) + "'");
+            hc.add(session.getUser().getId(), "a mis à jours le type de rendez-vous '" + String.valueOf(id) + "'");
         }
         BaseController.redirectToPage("RendezvousTypeIndex");
     }

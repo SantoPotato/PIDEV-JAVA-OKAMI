@@ -72,7 +72,7 @@ public class StockIndexController implements Initializable {
         nomColumn.setCellValueFactory(new PropertyValueFactory<>("nomst"));
         desColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         datColumn.setCellValueFactory(new PropertyValueFactory<>("dateexpirationst"));
-        catColumn.setCellValueFactory(new PropertyValueFactory<>("stockcat_id"));
+        catColumn.setCellValueFactory(new PropertyValueFactory<>("Stockcategories"));
         quantColumn.setCellValueFactory(new PropertyValueFactory<>("quantites"));
 
         nomColumn.setPrefWidth(100);

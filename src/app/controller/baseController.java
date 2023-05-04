@@ -80,7 +80,7 @@ public class baseController implements Initializable {
         session = UserSession.getInstace(null);
         if (session != null && session.getUser() != null) {
             labelUserName.setText(session.getUser().toString());
-            labelUserType.setText(session.getUser().getRole());
+            labelUserType.setText(session.getUser().getRole().toString());
         }
     }
 

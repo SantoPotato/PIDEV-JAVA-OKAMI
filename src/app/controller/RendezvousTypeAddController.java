@@ -75,7 +75,7 @@ public class RendezvousTypeAddController implements Initializable {
         rc.add(t);
 
         if (session != null && session.getUser() != null) {
-            hc.add(session.getUser().getId_user(), "a ajouté un nouveau type de rendez-vous");
+            hc.add(session.getUser().getId(), "a ajouté un nouveau type de rendez-vous");
         }
         BaseController.redirectToPage("RendezvousTypeIndex");
     }

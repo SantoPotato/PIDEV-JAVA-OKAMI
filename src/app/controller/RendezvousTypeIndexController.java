@@ -128,7 +128,7 @@ public class RendezvousTypeIndexController implements Initializable {
             rc.remove(t.getId());
             tableviewRendezvousType.getItems().remove(t); // remove from the tableview
             if (session != null && session.getUser() != null) {
-                hc.add(session.getUser().getId_user(), "a supprimé le type de rendez-vous '" + String.valueOf(t.getId()) + "'");
+                hc.add(session.getUser().getId(), "a supprimé le type de rendez-vous '" + String.valueOf(t.getId()) + "'");
                 hc.showAll().forEach(item -> {
                     historique.getItems().add(new HistoriqueMenuItem(item));
                 });

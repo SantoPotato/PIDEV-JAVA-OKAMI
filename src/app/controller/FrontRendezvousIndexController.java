@@ -76,7 +76,7 @@ public class FrontRendezvousIndexController implements Initializable {
         columnType.setCellValueFactory(new PropertyValueFactory<>("Type"));
         columnUsers.setCellValueFactory(new PropertyValueFactory<>("Membres"));
         if (session != null && session.getUser() != null) {
-            tableviewRendezvous.setItems(FXCollections.observableArrayList(rc.getRendezvousByUser(LocalDateTime.now(), session.getUser().getId_user())));
+            tableviewRendezvous.setItems(FXCollections.observableArrayList(rc.getRendezvousByUser(LocalDateTime.now(), session.getUser().getId())));
         }
 
         columnDateStart.setCellValueFactory(dateStartRowData -> new SimpleObjectProperty<>(
@@ -118,7 +118,7 @@ public class FrontRendezvousIndexController implements Initializable {
         Rendezvous r = tableviewRendezvous.getSelectionModel().getSelectedItem();
 
         if (r != null && session != null && session.getUser() != null) {
-            rc.removeUser(r.getId(), session.getUser().getId_user());
+            rc.removeUser(r.getId(), session.getUser().getId());
             tableviewRendezvous.getItems().remove(r); // remove from the tableview
         }
     }

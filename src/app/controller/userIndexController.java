@@ -17,7 +17,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import services.ServiceUser;
-import utils.UserSession;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -44,8 +43,6 @@ public class userIndexController implements Initializable {
     @FXML
     private TableColumn<User, String> usernameColumn;
     @FXML
-    private TableColumn<User, String> passwordColumn;
-    @FXML
     private TableColumn<User, String> emailColumn;
     @FXML
     private TableColumn<User, String> phone_numberColumn;
@@ -71,26 +68,16 @@ public class userIndexController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ServiceUser userService = new ServiceUser();
-        first_nameColumn.setCellValueFactory(new PropertyValueFactory<>("first_Name"));
-        last_nameColumn.setCellValueFactory(new PropertyValueFactory<>("last_Name"));
-        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("user_Name"));
-        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
+        first_nameColumn.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        last_nameColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         phone_numberColumn.setCellValueFactory(new PropertyValueFactory<>("phone_number"));
         genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
-        roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
+        roleColumn.setCellValueFactory(new PropertyValueFactory<>("role_id"));
 
         List<User> userList = userService.getAll();
         afficher.getItems().setAll(userList);
-    }
-
-    private void handleLogoutButtonClick(ActionEvent event) {
-
-        UserSession userSession = UserSession.getInstace(null);
-        userSession.cleanUserSession();
-
-        //redirect to captcha page
-        BaseController.redirectToPage("login");
     }
 
     @FXML
@@ -134,7 +121,7 @@ public class userIndexController implements Initializable {
         ServiceUser userService = new ServiceUser();
         if (u != null) {
             try {
-                userService.supprimer(u.getId_user());
+                userService.supprimer(u.getId());
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }

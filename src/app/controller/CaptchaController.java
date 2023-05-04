@@ -60,7 +60,7 @@ public class CaptchaController implements Initializable {
 
                 UserSession userSession = UserSession.getInstace(null);
                 String pagename = "/app/gui/FrontIndex.fxml";
-                if (userSession.getUser().getRole().equals("ADMIN")) {
+                if (userSession.getUser().getRole().toString().equalsIgnoreCase("Administrateur")) {
                     pagename = "/app/gui/Index.fxml";
                 }
                 try {

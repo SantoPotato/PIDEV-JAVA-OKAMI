@@ -14,23 +14,23 @@ public class Stock {
     private String nomst;
     private String description;
     private LocalDate dateexpirationst;
-    private Stockcategories stockcat_id;
     private int quantites;
+    private Stockcategories Stockcategories;
 
-    public Stock(String nomst, String description, LocalDate dateexpirationst, Stockcategories stockcat_id, int quantites) {
+    public Stock(String nomst, String description, LocalDate dateexpirationst, int quantites, Stockcategories Stockcategories) {
         this.nomst = nomst;
         this.description = description;
         this.dateexpirationst = dateexpirationst;
-        this.stockcat_id = stockcat_id;
+        this.Stockcategories = Stockcategories;
         this.quantites = quantites;
     }
 
-    public Stock(int id, String nomst, String description, LocalDate dateexpirationst, Stockcategories stockcat_id, int quantites) {
+    public Stock(int id, String nomst, String description, LocalDate dateexpirationst, int quantites, Stockcategories Stockcategories) {
         this.id = id;
         this.nomst = nomst;
         this.description = description;
         this.dateexpirationst = dateexpirationst;
-        this.stockcat_id = stockcat_id;
+        this.Stockcategories = Stockcategories;
         this.quantites = quantites;
     }
 
@@ -74,12 +74,12 @@ public class Stock {
         this.dateexpirationst = dateexpirationst;
     }
 
-    public Stockcategories getStockcat_id() {
-        return stockcat_id;
+    public Stockcategories getStockcategories() {
+        return Stockcategories;
     }
 
-    public void setStockcat_id(Stockcategories stockcat_id) {
-        this.stockcat_id = stockcat_id;
+    public void setStockcategories(Stockcategories Stockcategories) {
+        this.Stockcategories = Stockcategories;
     }
 
     public int getQuantites() {
@@ -99,8 +99,8 @@ public class Stock {
                 + " nomst=" + nomst + ","
                 + " description=" + description + ","
                 + " date=" + dateexpirationst + ","
-                + " stockcat_id=" + stockcat_id.getTypecat() + ","
-                + " quantites=" + quantites + '}';
+                + " quantites=" + quantites + ","
+                + " Stockcategories=" + Stockcategories.getTypecat() + '}';
     }
 
 }

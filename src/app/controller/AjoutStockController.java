@@ -135,7 +135,7 @@ public class AjoutStockController implements Initializable {
         e.setNomst(nomst);
         e.setDescription(description);
         e.setDateexpirationst(dateexpirationst);
-        e.setStockcat_id(stockcat_id);
+        e.setStockcategories(stockcat_id);
         e.setQuantites(quantites);
         ec.Ajouter(e);
         BaseController.redirectToPage("StockIndex");
