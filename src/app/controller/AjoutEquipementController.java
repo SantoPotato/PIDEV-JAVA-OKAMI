@@ -86,7 +86,7 @@ public class AjoutEquipementController implements Initializable {
         Random random = new Random();
         int code = random.nextInt(900000) + 100000;
         String ACCOUNT_SID = "AC2d6462eff326ec211eee2f8927df20f6";
-        String AUTH_TOKEN = "943632682413b6dc8d29704ba91292a7";
+        String AUTH_TOKEN = "6da1ecb008696c6e84094b526cb67536";
         String TWILIO_NUMBER = "+15674323540";
         String USER_NUMBER = "+21652953558";
         String messageText = "Your verification code is " + code;

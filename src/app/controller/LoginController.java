@@ -143,7 +143,7 @@ public class LoginController implements Initializable {
 
             } else {
 
-                JOptionPane.showMessageDialog(null, " Imposse de se connecter  ");
+                JOptionPane.showMessageDialog(null, " Impossible de se connecter  ");
                 txtuname.setText("");
                 txtpass.setText("");
                 txtuname.requestFocus();

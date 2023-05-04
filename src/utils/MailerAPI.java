@@ -36,6 +36,7 @@ public class MailerAPI {
                  prop.put("mail.smtp.port", "587");
             sesh = Session.getInstance(prop,
                 new javax.mail.Authenticator() {
+                    @Override
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(UN, PW);
                     }

@@ -61,7 +61,7 @@ public class CaptchaController implements Initializable {
                 UserSession userSession = UserSession.getInstace(null);
                 String pagename = "/app/gui/FrontIndex.fxml";
                 if (userSession.getUser().getRole().equals("ADMIN")) {
-                    pagename = "/app/gui/index.fxml";
+                    pagename = "/app/gui/Index.fxml";
                 }
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource(pagename));
@@ -72,7 +72,7 @@ public class CaptchaController implements Initializable {
                 }
 
             } else {
-                messagebtn.setText("Veillez cliquer sur un nouveau Captcha");
+                messagebtn.setText("Veuillez cliquer sur un nouveau Captcha");
                 messagebtn.setTextFill(Color.RED);
             }
         } else {

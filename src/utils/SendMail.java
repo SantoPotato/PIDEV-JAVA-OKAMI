@@ -36,6 +36,7 @@ public class SendMail {
         props.put("mail.smtp.socketFactory.fallback", "false");
         Session session = Session.getDefaultInstance(props,
                 new javax.mail.Authenticator() {
+                    @Override
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(from,password);
                     }
@@ -62,7 +63,6 @@ public class SendMail {
             Transport.send(message);
             System.out.println("Sent message successfully....");
         } catch (MessagingException mex) {
-            mex.printStackTrace();
         }
     }
 
